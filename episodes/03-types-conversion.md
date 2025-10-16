@@ -1,38 +1,38 @@
 ---
-title: Data Types and Type Conversion
+title: 데이터 유형 및 유형 변환
 teaching: 10
 exercises: 10
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain key differences between integers and floating point numbers.
-- Explain key differences between numbers and character strings.
-- Use built-in functions to convert between integers, floating point numbers, and strings.
+- 정수와 부동 소수점 숫자의 주요 차이점을 설명합니다.
+- 숫자와 문자열의 주요 차이점을 설명합니다.
+- 내장 함수를 사용하여 정수, 부동 소수점 숫자 및 문자열 간에 변환합니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- What kinds of data do programs store?
-- How can I convert one type to another?
+- 프로그램은 어떤 종류의 데이터를 저장합니까?
+- 한 유형을 다른 유형으로 어떻게 변환할 수 있습니까?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Every value has a type.
+## 모든 값에는 유형이 있습니다.
 
-- Every value in a program has a specific type.
-- Integer (`int`): represents positive or negative whole numbers like 3 or -512.
-- Floating point number (`float`): represents real numbers like 3.14159 or -2.5.
-- Character string (usually called "string", `str`): text.
-  - Written in either single quotes or double quotes (as long as they match).
-  - The quote marks aren't printed when the string is displayed.
+- 프로그램의 모든 값에는 특정 유형이 있습니다.
+- 정수 (`int`): 3 또는 -512와 같은 양수 또는 음수 정수를 나타냅니다.
+- 부동 소수점 숫자 (`float`): 3.14159 또는 -2.5와 같은 실수를 나타냅니다.
+- 문자열 (일반적으로 "string", `str`이라고 함): 텍스트.
+  - 작은따옴표나 큰따옴표로 작성됩니다(일치하는 한).
+  - 문자열이 표시될 때 따옴표는 인쇄되지 않습니다.
 
-## Use the built-in function `type` to find the type of a value.
+## 내장 함수 `type`을 사용하여 값의 유형을 찾습니다.
 
-- Use the built-in function `type` to find out what type a value has.
-- Works on variables as well.
-  - But remember: the *value* has the type --- the *variable* is just a label.
+- 내장 함수 `type`을 사용하여 값의 유형을 찾습니다.
+- 변수에서도 작동합니다.
+  - 하지만 기억하십시오: *값*에는 유형이 있고 *변수*는 단지 레이블일 뿐입니다.
 
 ```python
 print(type(52))
@@ -51,9 +51,9 @@ print(type(fitness))
 <class 'str'>
 ```
 
-## Types control what operations (or methods) can be performed on a given value.
+## 유형은 지정된 값에 대해 수행할 수 있는 작업(또는 메서드)을 제어합니다.
 
-- A value's type determines what the program can do to it.
+- 값의 유형은 프로그램이 해당 값에 대해 수행할 수 있는 작업을 결정합니다.
 
 ```python
 print(5 - 3)
@@ -76,9 +76,9 @@ TypeError                                 Traceback (most recent call last)
 TypeError: unsupported operand type(s) for -: 'str' and 'str'
 ```
 
-## You can use the "+" and "\*" operators on strings.
+## 문자열에 "+" 및 "*" 연산자를 사용할 수 있습니다.
 
-- "Adding" character strings concatenates them.
+- 문자열을 "더하면" 연결됩니다.
 
 ```python
 full_name = 'Ahmed' + ' ' + 'Walsh'
@@ -89,8 +89,8 @@ print(full_name)
 Ahmed Walsh
 ```
 
-- Multiplying a character string by an integer *N* creates a new string that consists of that character string repeated  *N* times.
-  - Since multiplication is repeated addition.
+- 문자열에 정수 *N*을 곱하면 해당 문자열이 *N*번 반복되는 새 문자열이 생성됩니다.
+  - 곱셈은 반복적인 덧셈이기 때문입니다.
 
 ```python
 separator = '=' * 10
@@ -101,9 +101,9 @@ print(separator)
 ==========
 ```
 
-## Strings have a length (but numbers don't).
+## 문자열에는 길이가 있지만 숫자에는 없습니다.
 
-- The built-in function `len` counts the number of characters in a string.
+- 내장 함수 `len`은 문자열의 문자 수를 계산합니다.
 
 ```python
 print(len(full_name))
@@ -113,7 +113,7 @@ print(len(full_name))
 11
 ```
 
-- But numbers don't have a length (not even zero).
+- 그러나 숫자에는 길이가 없습니다(0도 아님).
 
 ```python
 print(len(52))
@@ -128,9 +128,9 @@ TypeError                                 Traceback (most recent call last)
 TypeError: object of type 'int' has no len()
 ```
 
-## Must convert numbers to strings or vice versa when operating on them. {#convert-numbers-and-strings}
+## 숫자와 문자열을 연산할 때는 숫자를 문자열로 또는 그 반대로 변환해야 합니다. {#convert-numbers-and-strings}
 
-- Cannot add numbers and strings.
+- 숫자와 문자열을 더할 수 없습니다.
 
 ```python
 print(1 + '2')
@@ -145,8 +145,8 @@ TypeError                                 Traceback (most recent call last)
 TypeError: unsupported operand type(s) for +: 'int' and 'str'
 ```
 
-- Not allowed because it's ambiguous: should `1 + '2'` be `3` or `'12'`?
-- Some types can be converted to other types by using the type name as a function.
+- 모호하기 때문에 허용되지 않습니다: `1 + '2'`는 `3`이어야 합니까, 아니면 `'12'`여야 합니까?
+- 일부 유형은 유형 이름을 함수로 사용하여 다른 유형으로 변환할 수 있습니다.
 
 ```python
 print(1 + int('2'))
@@ -158,10 +158,10 @@ print(str(1) + '2')
 12
 ```
 
-## Can mix integers and floats freely in operations.
+## 연산에서 정수와 실수를 자유롭게 혼합할 수 있습니다.
 
-- Integers and floating-point numbers can be mixed in arithmetic.
-  - Python 3 automatically converts integers to floats as needed.
+- 정수와 부동 소수점 숫자는 산술에서 혼합될 수 있습니다.
+  - 파이썬 3은 필요에 따라 정수를 실수로 자동 변환합니다.
 
 ```python
 print('half is', 1 / 2.0)
@@ -173,12 +173,10 @@ half is 0.5
 three squared is 9.0
 ```
 
-## Variables only change value when something is assigned to them.
+## 변수는 무언가 할당될 때만 값이 변경됩니다.
 
-- If we make one cell in a spreadsheet depend on another,
-  and update the latter,
-  the former updates automatically.
-- This does **not** happen in programming languages.
+- 스프레드시트에서 한 셀을 다른 셀에 종속시키고 후자를 업데이트하면 전자가 자동으로 업데이트됩니다.
+- 프로그래밍 언어에서는 이런 일이 발생하지 **않습니다**.
 
 ```python
 variable_one = 1
@@ -191,24 +189,22 @@ print('first is', variable_one, 'and second is', variable_two)
 first is 2 and second is 5
 ```
 
-- The computer reads the value of `variable_one` when doing the multiplication,
-  creates a new value, and assigns it to `variable_two`.
-- Afterwards, the value of `variable_two` is set to the new value and *not dependent on `variable_one`* so its value
-  does not automatically change when `variable_one` changes.
+- 컴퓨터는 곱셈을 할 때 `variable_one`의 값을 읽고 새 값을 생성하여 `variable_two`에 할당합니다.
+- 그 후 `variable_two`의 값은 새 값으로 설정되고 *`variable_one`에 종속되지 않으므로* `variable_one`이 변경될 때 값이 자동으로 변경되지 않습니다.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Fractions
+## 분수
 
-What type of value is 3.4?
-How can you find out?
+3.4는 어떤 유형의 값입니까?
+어떻게 알 수 있습니까?
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-It is a floating-point number (often abbreviated "float").
-It is possible to find out by using the built-in function `type()`.
+부동 소수점 숫자입니다(종종 "float"로 축약됨).
+내장 함수 `type()`을 사용하여 알아낼 수 있습니다.
 
 ```python
 print(type(3.4))
@@ -224,16 +220,16 @@ print(type(3.4))
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Automatic Type Conversion
+## 자동 유형 변환
 
-What type of value is 3.25 + 4?
+3.25 + 4는 어떤 유형의 값입니까?
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-It is a float:
-integers are automatically converted to floats as necessary.
+실수입니다:
+정수는 필요에 따라 자동으로 실수로 변환됩니다.
 
 ```python
 result = 3.25 + 4
@@ -250,43 +246,39 @@ print(result, 'is', type(result))
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Choose a Type
+## 유형 선택
 
-What type of value (integer, floating point number, or character string)
-would you use to represent each of the following?  Try to come up with more than one good answer for each problem.  For example, in  # 1, when would counting days with a floating point variable make more sense than using an integer?
+다음 각각을 나타내는 데 어떤 유형의 값(정수, 부동 소수점 숫자 또는 문자열)을 사용하시겠습니까? 각 문제에 대해 하나 이상의 좋은 답을 생각해 보십시오. 예를 들어, #1에서 부동 소수점 변수로 일수를 세는 것이 정수를 사용하는 것보다 더 의미 있는 경우는 언제입니까?
 
-1. Number of days since the start of the year.
-2. Time elapsed from the start of the year until now in days.
-3. Serial number of a piece of lab equipment.
-4. A lab specimen's age
-5. Current population of a city.
-6. Average population of a city over time.
+1. 연초부터 경과한 일수.
+2. 연초부터 지금까지 경과한 시간을 일 단위로 표시.
+3. 실험실 장비의 일련 번호.
+4. 실험실 표본의 나이
+5. 도시의 현재 인구.
+6. 시간 경과에 따른 도시의 평균 인구.
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-The answers to the questions are:
+질문에 대한 답변은 다음과 같습니다.
 
-1. Integer, since the number of days would lie between 1 and 365.
-2. Floating point, since fractional days are required
-3. Character string if serial number contains letters and numbers, otherwise integer if the serial number consists only of numerals
-4. This will vary! How do you define a specimen's age? whole days since collection (integer)? date and time (string)?
-5. Choose floating point to represent population as large aggregates (eg millions), or integer to represent population in units of individuals.
-6. Floating point number, since an average is likely to have a fractional part.
+1. 정수, 일수가 1에서 365 사이이기 때문입니다.
+2. 부동 소수점, 분수 일이 필요하기 때문입니다.
+3. 일련 번호에 문자와 숫자가 포함된 경우 문자열, 그렇지 않으면 일련 번호가 숫자로만 구성된 경우 정수입니다.
+4. 이것은 다를 것입니다! 표본의 나이를 어떻게 정의합니까? 수집 후 전체 일수(정수)? 날짜 및 시간(문자열)?
+5. 인구를 큰 집계(예: 백만)로 나타내려면 부동 소수점을 선택하거나 개인 단위로 인구를 나타내려면 정수를 선택합니다.
+6. 부동 소수점 숫자, 평균은 소수 부분을 가질 가능성이 높기 때문입니다.
   
-  
-
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Division Types
+## 나누기 유형
 
-In Python 3, the `//` operator performs integer (whole-number) floor division, the `/` operator performs floating-point
-division, and the `%` (or *modulo*) operator calculates and returns the remainder from integer division:
+파이썬 3에서 `//` 연산자는 정수(정수) 바닥 나누기를 수행하고, `/` 연산자는 부동 소수점 나누기를 수행하며, `%`(또는 *모듈로*) 연산자는 정수 나누기에서 나머지를 계산하고 반환합니다.
 
 ```python
 print('5 // 3:', 5 // 3)
@@ -300,20 +292,13 @@ print('5 % 3:', 5 % 3)
 5 % 3: 2
 ```
 
-If `num_subjects` is the number of subjects taking part in a study,
-and `num_per_survey` is the number that can take part in a single survey,
-write an expression that calculates the number of surveys needed
-to reach everyone once.
+`num_subjects`가 연구에 참여하는 피험자 수이고 `num_per_survey`가 단일 설문 조사에 참여할 수 있는 수인 경우 모든 사람에게 한 번 도달하는 데 필요한 설문 조사 수를 계산하는 표현식을 작성하십시오.
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-We want the minimum number of surveys that reaches everyone once, which is
-the rounded up value of `num_subjects/ num_per_survey`. This is
-equivalent to performing a floor division with `//` and adding 1. Before
-the division we need to subtract 1 from the number of subjects to deal with
-the case where `num_subjects` is evenly divisible by `num_per_survey`.
+모든 사람에게 한 번 도달하는 최소 설문 조사 수를 원하며, 이는 `num_subjects/ num_per_survey`를 올림한 값입니다. 이는 `//`로 바닥 나누기를 수행하고 1을 더하는 것과 같습니다. 나누기 전에 `num_subjects`가 `num_per_survey`로 균등하게 나누어지는 경우를 처리하기 위해 피험자 수에서 1을 빼야 합니다.
 
 ```python
 num_subjects = 600
@@ -333,10 +318,9 @@ print(num_subjects, 'subjects,', num_per_survey, 'per survey:', num_surveys)
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Strings to Numbers
+## 문자열을 숫자로
 
-Where reasonable, `float()` will convert a string to a floating point number,
-and `int()` will convert a floating point number to an integer:
+합리적인 경우 `float()`는 문자열을 부동 소수점 숫자로 변환하고 `int()`는 부동 소수점 숫자를 정수로 변환합니다.
 
 ```python
 print("string to float:", float("3.4"))
@@ -348,7 +332,7 @@ string to float: 3.4
 float to int: 3
 ```
 
-If the conversion doesn't make sense, however, an error message will occur.
+그러나 변환이 의미가 없으면 오류 메시지가 발생합니다.
 
 ```python
 print("string to float:", float("Hello world!"))
@@ -363,11 +347,11 @@ ValueError                                Traceback (most recent call last)
 ValueError: could not convert string to float: 'Hello world!'
 ```
 
-Given this information, what do you expect the following program to do?
+이 정보를 감안할 때 다음 프로그램이 무엇을 할 것으로 예상합니까?
 
-What does it actually do?
+실제로 무엇을 합니까?
 
-Why do you think it does that?
+왜 그렇게 한다고 생각합니까?
 
 ```python
 print("fractional string to int:", int("3.4"))
@@ -375,11 +359,9 @@ print("fractional string to int:", int("3.4"))
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-What do you expect this program to do? It would not be so unreasonable to expect the Python 3 `int` command to
-convert the string "3.4" to 3.4 and an additional type conversion to 3. After all, Python 3 performs a lot of other
-magic - isn't that part of its charm?
+이 프로그램이 무엇을 할 것으로 예상합니까? 파이썬 3 `int` 명령이 문자열 "3.4"를 3.4로 변환하고 추가 유형 변환을 3으로 변환할 것으로 예상하는 것은 그리 무리가 아닙니다. 결국 파이썬 3은 다른 많은 마법을 수행합니다. 그것이 매력의 일부가 아닙니까?
 
 ```python
 int("3.4")
@@ -393,8 +375,7 @@ ValueError                                Traceback (most recent call last)
 ValueError: invalid literal for int() with base 10: '3.4'
 ```
 
-However, Python 3 throws an error. Why? To be consistent, possibly. If you ask Python to perform two consecutive
-typecasts, you must convert it explicitly in code.
+그러나 파이썬 3은 오류를 발생시킵니다. 왜? 일관성을 유지하기 위해서일 수 있습니다. 파이썬에게 두 번의 연속적인 유형 변환을 수행하도록 요청하면 코드에서 명시적으로 변환해야 합니다.
 
 ```python
 int(float("3.4"))
@@ -410,10 +391,10 @@ int(float("3.4"))
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Arithmetic with Different Types
+## 다른 유형의 산술
 
-Which of the following will return the floating point number `2.0`?
-Note: there may be more than one right answer.
+다음 중 부동 소수점 숫자 `2.0`을 반환하는 것은 무엇입니까?
+참고: 정답이 두 개 이상 있을 수 있습니다.
 
 ```python
 first = 1.0
@@ -430,11 +411,9 @@ third = "1.1"
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-Answer: 1 and 4
-
-
+답: 1과 4
 
 :::::::::::::::::::::::::
 
@@ -442,13 +421,10 @@ Answer: 1 and 4
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Complex Numbers
+## 복소수
 
-Python provides complex numbers,
-which are written as `1.0+2.0j`.
-If `val` is a complex number,
-its real and imaginary parts can be accessed using *dot notation*
-as `val.real` and `val.imag`.
+파이썬은 `1.0+2.0j`로 작성되는 복소수를 제공합니다.
+`val`이 복소수인 경우 실수부와 허수부는 *점 표기법*을 사용하여 `val.real` 및 `val.imag`로 액세스할 수 있습니다.
 
 ```python
 a_complex_number = 6 + 2j
@@ -461,39 +437,31 @@ print(a_complex_number.imag)
 2.0
 ```
 
-1. Why do you think Python uses `j` instead of `i` for the imaginary part?
-2. What do you expect `1 + 2j + 3` to produce?
-3. What do you expect `4j` to be?  What about `4 j` or `4 + j`?
+1. 파이썬이 허수부에 `i` 대신 `j`를 사용하는 이유가 무엇이라고 생각합니까?
+2. `1 + 2j + 3`이 무엇을 생성할 것으로 예상합니까?
+3. `4j`는 무엇이라고 예상합니까? `4 j` 또는 `4 + j`는 어떻습니까?
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-1. Standard mathematics treatments typically use `i` to denote an imaginary number. However, from media reports it
-  was an early convention established from electrical engineering that now presents a technically expensive area to
-  change. [Stack Overflow provides additional explanation and
-  discussion.](https://stackoverflow.com/questions/24812444/why-are-complex-numbers-in-python-denoted-with-j-instead-of-i)
+1. 표준 수학 처리에서는 일반적으로 허수를 나타내는 데 `i`를 사용합니다. 그러나 언론 보도에 따르면 전기 공학에서 확립된 초기 관례였으며 지금은 기술적으로 변경하기 어려운 영역입니다. [Stack Overflow는 추가 설명과 토론을 제공합니다.](https://stackoverflow.com/questions/24812444/why-are-complex-numbers-in-python-denoted-with-j-instead-of-i)
 2. `(4+2j)`
-3. `4j` and `Syntax Error: invalid syntax`. In the latter cases, `j` is considered a variable and the statement
-  depends on if `j` is defined and if so, its assigned value.
+3. `4j` 및 `Syntax Error: invalid syntax`. 후자의 경우 `j`는 변수로 간주되며 문은 `j`가 정의되었는지 여부와 정의된 경우 할당된 값에 따라 달라집니다.
   
-  
-
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- Every value has a type.
-- Use the built-in function `type` to find the type of a value.
-- Types control what operations can be done on values.
-- Strings can be added and multiplied.
-- Strings have a length (but numbers don't).
-- Must convert numbers to strings or vice versa when operating on them.
-- Can mix integers and floats freely in operations.
-- Variables only change value when something is assigned to them.
+- 모든 값에는 유형이 있습니다.
+- 내장 함수 `type`을 사용하여 값의 유형을 찾습니다.
+- 유형은 값에 대해 수행할 수 있는 작업을 제어합니다.
+- 문자열은 더하고 곱할 수 있습니다.
+- 문자열에는 길이가 있지만 숫자에는 없습니다.
+- 숫자와 문자열을 연산할 때는 숫자를 문자열로 또는 그 반대로 변환해야 합니다.
+- 연산에서 정수와 실수를 자유롭게 혼합할 수 있습니다.
+- 변수는 무언가 할당될 때만 값이 변경됩니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-

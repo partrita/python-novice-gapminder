@@ -1,33 +1,32 @@
 ---
-title: Reading Tabular Data into DataFrames
+title: 표 형식 데이터를 데이터프레임으로 읽기
 teaching: 10
 exercises: 10
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Import the Pandas library.
-- Use Pandas to load a simple CSV data set.
-- Get some basic information about a Pandas DataFrame.
+- Pandas 라이브러리를 가져옵니다.
+- Pandas를 사용하여 간단한 CSV 데이터 세트를 로드합니다.
+- Pandas 데이터프레임에 대한 몇 가지 기본 정보를 얻습니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How can I read tabular data?
+- 표 형식 데이터는 어떻게 읽을 수 있나요?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Use the Pandas library to do statistics on tabular data.
+## Pandas 라이브러리를 사용하여 표 형식 데이터에 대한 통계를 수행합니다.
 
-- [Pandas](https://pandas.pydata.org/) is a widely-used Python library for statistics, particularly on tabular data.
-- Borrows many features from R's dataframes.
-  - A 2-dimensional table whose columns have names
-    and potentially have different data types.
-- Load Pandas with `import pandas as pd`. The alias `pd` is commonly used to refer to the Pandas library in code.
-- Read a Comma Separated Values (CSV) data file with `pd.read_csv`.
-  - Argument is the name of the file to be read.
-  - Returns a dataframe that you can assign to a variable
+- [Pandas](https://pandas.pydata.org/)는 통계, 특히 표 형식 데이터에 널리 사용되는 파이썬 라이브러리입니다.
+- R의 데이터프레임에서 많은 기능을 차용했습니다.
+  - 열에 이름이 있고 잠재적으로 다른 데이터 유형을 가질 수 있는 2차원 테이블입니다.
+- `import pandas as pd`로 Pandas를 로드합니다. 별칭 `pd`는 코드에서 Pandas 라이브러리를 참조하는 데 일반적으로 사용됩니다.
+- `pd.read_csv`로 쉼표로 구분된 값(CSV) 데이터 파일을 읽습니다.
+  - 인수는 읽을 파일의 이름입니다.
+  - 변수에 할당할 수 있는 데이터프레임을 반환합니다.
 
 ```python
 import pandas as pd
@@ -54,20 +53,16 @@ print(data_oceania)
 1     25185.00911
 ```
 
-- The columns in a dataframe are the observed variables, and the rows are the observations.
-- Pandas uses backslash `\` to show wrapped lines when output is too wide to fit the screen.
-- Using descriptive dataframe names helps us distinguish between multiple dataframes so we won't accidentally overwrite a dataframe or read from the wrong one.
+- 데이터프레임의 열은 관찰된 변수이고 행은 관찰입니다.
+- Pandas는 출력이 화면에 맞지 않을 때 줄 바꿈된 줄을 표시하기 위해 백슬래시 `\`를 사용합니다.
+- 설명적인 데이터프레임 이름을 사용하면 여러 데이터프레임을 구별하는 데 도움이 되므로 실수로 데이터프레임을 덮어쓰거나 잘못된 데이터프레임에서 읽는 것을 방지할 수 있습니다.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## File Not Found
+## 파일을 찾을 수 없음
 
-Our lessons store their data files in a `data` sub-directory,
-which is why the path to the file is `data/gapminder_gdp_oceania.csv`.
-If you forget to include `data/`,
-or if you include it but your copy of the file is somewhere else,
-you will get a [runtime error](04-built-in.md)
-that ends with a line like this:
+우리 수업은 데이터 파일을 `data` 하위 디렉토리에 저장하므로 파일 경로는 `data/gapminder_gdp_oceania.csv`입니다.
+`data/`를 포함하는 것을 잊어버리거나, 포함했지만 파일 복사본이 다른 곳에 있는 경우 다음과 같은 줄로 끝나는 [런타임 오류](04-built-in.md)가 발생합니다.
 
 ```error
 FileNotFoundError: [Errno 2] No such file or directory: 'data/gapminder_gdp_oceania.csv'
@@ -75,12 +70,12 @@ FileNotFoundError: [Errno 2] No such file or directory: 'data/gapminder_gdp_ocea
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Use `index_col` to specify that a column's values should be used as row headings.
+## `index_col`을 사용하여 열의 값을 행 머리글로 사용해야 함을 지정합니다.
 
-- Row headings are numbers (0 and 1 in this case).
-- Really want to index by country.
-- Pass the name of the column to `read_csv` as its `index_col` parameter to do this.
-- Naming the dataframe `data_oceania_country` tells us which region the data includes (`oceania`) and how it is indexed (`country`).
+- 행 머리글은 숫자입니다(이 경우 0과 1).
+- 실제로 국가별로 인덱싱하고 싶습니다.
+- 이를 위해 `read_csv`에 열 이름을 `index_col` 매개변수로 전달합니다.
+- 데이터프레임 이름을 `data_oceania_country`로 지정하면 데이터가 포함된 지역(`oceania`)과 인덱싱 방법(`country`)을 알 수 있습니다.
 
 ```python
 data_oceania_country = pd.read_csv('data/gapminder_gdp_oceania.csv', index_col='country')
@@ -104,7 +99,7 @@ Australia       23424.76683     26997.93657     30687.75473     34435.36744
 New Zealand     18363.32494     21050.41377     23189.80135     25185.00911
 ```
 
-## Use the `DataFrame.info()` method to find out more about a dataframe.
+## `DataFrame.info()` 메서드를 사용하여 데이터프레임에 대해 자세히 알아봅니다.
 
 ```python
 data_oceania_country.info()
@@ -130,18 +125,18 @@ dtypes: float64(12)
 memory usage: 208.0+ bytes
 ```
 
-- This is a `DataFrame`
-- Two rows named `'Australia'` and `'New Zealand'`
-- Twelve columns, each of which has two actual 64-bit floating point values.
-  - We will talk later about null values, which are used to represent missing observations.
-- Uses 208 bytes of memory.
+- 이것은 `DataFrame`입니다.
+- `'Australia'`와 `'New Zealand'`라는 이름의 두 행
+- 12개의 열, 각각 2개의 실제 64비트 부동 소수점 값을 가짐.
+  - 나중에 누락된 관측치를 나타내는 데 사용되는 null 값에 대해 이야기하겠습니다.
+- 208바이트의 메모리를 사용합니다.
 
-## The `DataFrame.columns` variable stores information about the dataframe's columns.
+## `DataFrame.columns` 변수는 데이터프레임의 열에 대한 정보를 저장합니다.
 
-- Note that this is data, *not* a method.  (It doesn't have parentheses.)
-  - Like `math.pi`.
-  - So do not use `()` to try to call it.
-- Called a *member variable*, or just *member*.
+- 이것은 메서드가 아닌 데이터입니다. (괄호가 없습니다.)
+  - `math.pi`와 같습니다.
+  - 따라서 호출하려고 `()`를 사용하지 마십시오.
+- *멤버 변수* 또는 그냥 *멤버*라고 합니다.
 
 ```python
 print(data_oceania_country.columns)
@@ -154,11 +149,11 @@ Index(['gdpPercap_1952', 'gdpPercap_1957', 'gdpPercap_1962', 'gdpPercap_1967',
       dtype='object')
 ```
 
-## Use `DataFrame.T` to transpose a dataframe.
+## `DataFrame.T`를 사용하여 데이터프레임을 전치합니다.
 
-- Sometimes want to treat columns as rows and vice versa.
-- Transpose (written `.T`) doesn't copy the data, just changes the program's view of it.
-- Like `columns`, it is a member variable.
+- 때로는 열을 행으로, 행을 열로 처리하고 싶을 때가 있습니다.
+- 전치( `.T`로 작성)는 데이터를 복사하지 않고 프로그램의 보기만 변경합니다.
+- `columns`와 마찬가지로 멤버 변수입니다.
 
 ```python
 print(data_oceania_country.T)
@@ -180,10 +175,10 @@ gdpPercap_2002  30687.75473  23189.80135
 gdpPercap_2007  34435.36744  25185.00911
 ```
 
-## Use `DataFrame.describe()` to get summary statistics about data.
+## `DataFrame.describe()`를 사용하여 데이터에 대한 요약 통계를 얻습니다.
 
-`DataFrame.describe()` gets the summary statistics of only the columns that have numerical data.
-All other columns are ignored, unless you use the argument `include='all'`.
+`DataFrame.describe()`는 숫자 데이터가 있는 열의 요약 통계만 가져옵니다.
+`include='all'` 인수를 사용하지 않는 한 다른 모든 열은 무시됩니다.
 
 ```python
 print(data_oceania_country.describe())
@@ -221,25 +216,21 @@ min      18363.324940    21050.413770    23189.801350    25185.009110
 max      23424.766830    26997.936570    30687.754730    34435.367440
 ```
 
-- Not particularly useful with just two records,
-  but very helpful when there are thousands.
+- 두 개의 레코드만으로는 특별히 유용하지 않지만 수천 개가 있을 때는 매우 유용합니다.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Reading Other Data
+## 다른 데이터 읽기
 
-Read the data in `gapminder_gdp_americas.csv`
-(which should be in the same directory as `gapminder_gdp_oceania.csv`)
-into a variable called `data_americas`
-and display its summary statistics.
+`gapminder_gdp_americas.csv`( `gapminder_gdp_oceania.csv`와 동일한 디렉토리에 있어야 함)의 데이터를 `data_americas`라는 변수로 읽고 요약 통계를 표시합니다.
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-To read in a CSV, we use `pd.read_csv` and pass the filename `'data/gapminder_gdp_americas.csv'` to it.
-We also once again pass the column name `'country'` to the parameter `index_col` in order to index by country.
-The summary statistics can be displayed with the `DataFrame.describe()` method.
+CSV를 읽으려면 `pd.read_csv`를 사용하고 파일 이름 `'data/gapminder_gdp_americas.csv'`를 전달합니다.
+또한 국가별로 인덱싱하기 위해 매개변수 `index_col`에 열 이름 `'country'`를 다시 전달합니다.
+요약 통계는 `DataFrame.describe()` 메서드로 표시할 수 있습니다.
 
 ```python
 data_americas = pd.read_csv('data/gapminder_gdp_americas.csv', index_col='country')
@@ -252,24 +243,21 @@ data_americas.describe()
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Inspecting Data
+## 데이터 검사
 
-After reading the data for the Americas,
-use `help(data_americas.head)` and `help(data_americas.tail)`
-to find out what `DataFrame.head` and `DataFrame.tail` do.
+아메리카 대륙의 데이터를 읽은 후 `help(data_americas.head)` 및 `help(data_americas.tail)`를 사용하여 `DataFrame.head` 및 `DataFrame.tail`이 무엇을 하는지 알아보십시오.
 
-1. What method call will display the first three rows of this data?
-2. What method call will display the last three columns of this data?
-  (Hint: you may need to change your view of the data.)
+1. 이 데이터의 처음 세 행을 표시하는 메서드 호출은 무엇입니까?
+2. 이 데이터의 마지막 세 열을 표시하는 메서드 호출은 무엇입니까?
+  (힌트: 데이터 보기를 변경해야 할 수도 있습니다.)
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-1. We can check out the first five rows of `data_americas` by executing `data_americas.head()`
-  which lets us view the beginning of the DataFrame. We can specify the number of rows we wish
-  to see by specifying the parameter `n` in our call to `data_americas.head()`.
-  To view the first three rows, execute:
+1. `data_americas.head()`를 실행하여 `data_americas`의 처음 다섯 행을 확인할 수 있습니다.
+  이를 통해 데이터프레임의 시작 부분을 볼 수 있습니다. `data_americas.head()` 호출에서 매개변수 `n`을 지정하여 보고 싶은 행 수를 지정할 수 있습니다.
+  처음 세 행을 보려면 다음을 실행하십시오.
   
   ```python
   data_americas.head(n=3)
@@ -301,17 +289,13 @@ to find out what `DataFrame.head` and `DataFrame.tail` do.
   Brazil        9065.800825
   ```
 
-2. To check out the last three rows of `data_americas`, we would use the command,
-  `americas.tail(n=3)`, analogous to `head()` used above. However, here we want to look at
-  the last three columns so we need to change our view and then use `tail()`. To do so, we
-  create a new DataFrame in which rows and columns are switched:
+2. `data_americas`의 마지막 세 행을 확인하려면 위에서 사용한 `head()`와 유사하게 `americas.tail(n=3)` 명령을 사용합니다. 그러나 여기서는 마지막 세 열을 보려고 하므로 보기를 변경한 다음 `tail()`을 사용해야 합니다. 그렇게 하려면 행과 열이 바뀐 새 데이터프레임을 만듭니다.
   
   ```python
   americas_flipped = data_americas.T
   ```
   
-  We can then view the last three columns of `americas` by viewing the last three rows
-  of `americas_flipped`:
+  그런 다음 `americas_flipped`의 마지막 세 행을 봄으로써 `americas`의 마지막 세 열을 볼 수 있습니다.
   
   ```python
   americas_flipped.tail(n=3)
@@ -339,14 +323,13 @@ to find out what `DataFrame.head` and `DataFrame.tail` do.
   gdpPercap_2007             18008.5       42951.7  10611.5   11415.8
   ```
   
-  This shows the data that we want, but we may prefer to display three columns instead of three rows,
-  so we can flip it back:
+  이렇게 하면 원하는 데이터가 표시되지만 세 행 대신 세 열을 표시하는 것을 선호할 수 있으므로 다시 뒤집을 수 있습니다.
   
   ```python
   americas_flipped.tail(n=3).T    
   ```
   
-  **Note:** we could have done the above in a single line of code by 'chaining' the commands:
+  **참고:** 명령을 '연결'하여 한 줄의 코드로 위의 작업을 수행할 수 있습니다.
   
   ```python
   data_americas.T.tail(n=3).T
@@ -358,12 +341,10 @@ to find out what `DataFrame.head` and `DataFrame.tail` do.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Reading Files in Other Directories
+## 다른 디렉토리의 파일 읽기
 
-The data for your current project is stored in a file called `microbes.csv`,
-which is located in a folder called `field_data`.
-You are doing analysis in a notebook called `analysis.ipynb`
-in a sibling folder called `thesis`:
+현재 프로젝트의 데이터는 `field_data`라는 폴더에 있는 `microbes.csv`라는 파일에 저장되어 있습니다.
+`thesis`라는 형제 폴더의 `analysis.ipynb`라는 노트북에서 분석을 수행하고 있습니다.
 
 ```output
 your_home_directory
@@ -373,15 +354,14 @@ your_home_directory
     +-- analysis.ipynb
 ```
 
-What value(s) should you pass to `read_csv` to read `microbes.csv` in `analysis.ipynb`?
+`analysis.ipynb`에서 `microbes.csv`를 읽기 위해 `read_csv`에 어떤 값을 전달해야 합니까?
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-We need to specify the path to the file of interest in the call to `pd.read_csv`. We first need to 'jump' out of
-the folder `thesis` using '../' and then into the folder `field_data` using 'field\_data/'. Then we can specify the filename \`microbes.csv.
-The result is as follows:
+`pd.read_csv` 호출에서 관심 있는 파일의 경로를 지정해야 합니다. 먼저 `../`를 사용하여 `thesis` 폴더에서 '점프'한 다음 'field_data/'를 사용하여 `field_data` 폴더로 들어가야 합니다. 그런 다음 파일 이름 `microbes.csv`를 지정할 수 있습니다.
+결과는 다음과 같습니다.
 
 ```python
 data_microbes = pd.read_csv('../field_data/microbes.csv')
@@ -393,36 +373,31 @@ data_microbes = pd.read_csv('../field_data/microbes.csv')
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Writing Data
+## 데이터 쓰기
 
-As well as the `read_csv` function for reading data from a file,
-Pandas provides a `to_csv` function to write dataframes to files.
-Applying what you've learned about reading from files,
-write one of your dataframes to a file called `processed.csv`.
-You can use `help` to get information on how to use `to_csv`.
+파일에서 데이터를 읽기 위한 `read_csv` 함수뿐만 아니라 Pandas는 데이터프레임을 파일에 쓰기 위한 `to_csv` 함수를 제공합니다.
+파일에서 읽는 것에 대해 배운 내용을 적용하여 데이터프레임 중 하나를 `processed.csv`라는 파일에 쓰십시오.
+`help`를 사용하여 `to_csv` 사용 방법에 대한 정보를 얻을 수 있습니다.
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-In order to write the DataFrame `data_americas` to a file called `processed.csv`, execute the following command:
+`data_americas` 데이터프레임을 `processed.csv`라는 파일에 쓰려면 다음 명령을 실행하십시오.
 
 ```python
 data_americas.to_csv('processed.csv')
 ```
 
-For help on `read_csv` or `to_csv`, you could execute, for example:
+`read_csv` 또는 `to_csv`에 대한 도움말을 보려면 예를 들어 다음을 실행할 수 있습니다.
 
 ```python
 help(data_americas.to_csv)
 help(pd.read_csv)
 ```
 
-Note that `help(to_csv)` or `help(pd.to_csv)` throws an error! This is due to the fact that `to_csv` is not a global Pandas function, but
-a member function of DataFrames. This means you can only call it on an instance of a DataFrame
-e.g., `data_americas.to_csv` or `data_oceania.to_csv`
-
-
+`help(to_csv)` 또는 `help(pd.to_csv)`는 오류를 발생시킵니다! 이는 `to_csv`가 전역 Pandas 함수가 아니라 데이터프레임의 멤버 함수라는 사실 때문입니다. 즉, 데이터프레임의 인스턴스에서만 호출할 수 있습니다.
+예: `data_americas.to_csv` 또는 `data_oceania.to_csv`
 
 :::::::::::::::::::::::::
 
@@ -430,13 +405,11 @@ e.g., `data_americas.to_csv` or `data_oceania.to_csv`
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- Use the Pandas library to get basic statistics out of tabular data.
-- Use `index_col` to specify that a column's values should be used as row headings.
-- Use `DataFrame.info` to find out more about a dataframe.
-- The `DataFrame.columns` variable stores information about the dataframe's columns.
-- Use `DataFrame.T` to transpose a dataframe.
-- Use `DataFrame.describe` to get summary statistics about data.
+- Pandas 라이브러리를 사용하여 표 형식 데이터에서 기본 통계를 얻습니다.
+- `index_col`을 사용하여 열의 값을 행 머리글로 사용해야 함을 지정합니다.
+- `DataFrame.info`를 사용하여 데이터프레임에 대해 자세히 알아봅니다.
+- `DataFrame.columns` 변수는 데이터프레임의 열에 대한 정보를 저장합니다.
+- `DataFrame.T`를 사용하여 데이터프레임을 전치합니다.
+- `DataFrame.describe`를 사용하여 데이터에 대한 요약 통계를 얻습니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-

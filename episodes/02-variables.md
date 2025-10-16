@@ -1,56 +1,54 @@
 ---
-title: Variables and Assignment
+title: 변수와 할당
 teaching: 10
 exercises: 10
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Write programs that assign scalar values to variables and perform calculations with those values.
-- Correctly trace value changes in programs that use scalar assignment.
+- 스칼라 값을 변수에 할당하고 해당 값으로 계산을 수행하는 프로그램을 작성합니다.
+- 스칼라 할당을 사용하는 프로그램에서 값 변경을 올바르게 추적합니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How can I store data in programs?
+- 프로그램에 데이터를 어떻게 저장할 수 있나요?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Use variables to store values.
+## 변수를 사용하여 값을 저장합니다.
 
-- **Variables** are names for values.
+- **변수**는 값의 이름입니다.
 
-- Variable names
+- 변수 이름
   
-  - can **only** contain letters, digits, and underscore `_` (typically used to separate words in long variable names)
-  - cannot start with a digit
-  - are **case sensitive** (age, Age and AGE are three different variables)
+  - 문자, 숫자, 밑줄 `_`만 포함할 수 있습니다(일반적으로 긴 변수 이름에서 단어를 구분하는 데 사용됨).
+  - 숫자로 시작할 수 없습니다.
+  - **대소문자를 구분합니다**(age, Age, AGE는 세 가지 다른 변수입니다).
 
-- The name should also be meaningful so you or another programmer know what it is
+- 이름은 또한 의미가 있어야 귀하 또는 다른 프로그래머가 그것이 무엇인지 알 수 있습니다.
 
-- Variable names that start with underscores like `__alistairs_real_age` have a special meaning
-  so we won't do that until we understand the convention.
+- `__alistairs_real_age`와 같이 밑줄로 시작하는 변수 이름은 특별한 의미가 있으므로 관례를 이해할 때까지는 그렇게 하지 않을 것입니다.
 
-- In Python the `=` symbol assigns the value on the right to the name on the left.
+- 파이썬에서 `=` 기호는 오른쪽의 값을 왼쪽의 이름에 할당합니다.
 
-- The variable is created when a value is assigned to it.
+- 변수는 값이 할당될 때 생성됩니다.
 
-- Here, Python assigns an age to a variable `age`
-  and a name in quotes to a variable `first_name`.
+- 여기서 파이썬은 나이를 변수 `age`에 할당하고 따옴표 안의 이름을 변수 `first_name`에 할당합니다.
   
   ```python
   age = 42
   first_name = 'Ahmed'
   ```
 
-## Use `print` to display values.
+## `print`를 사용하여 값을 표시합니다.
 
-- Python has a built-in function called `print` that prints things as text.
-- Call the function (i.e., tell Python to run it) by using its name.
-- Provide values to the function (i.e., the things to print) in parentheses.
-- To add a string to the printout, wrap the string in single or double quotes.
-- The values passed to the function are called **arguments**
+- 파이썬에는 텍스트로 사물을 인쇄하는 `print`라는 내장 함수가 있습니다.
+- 이름을 사용하여 함수를 호출합니다(즉, 파이썬에게 실행하도록 지시).
+- 괄호 안에 함수에 값을 제공합니다(즉, 인쇄할 것).
+- 인쇄물에 문자열을 추가하려면 문자열을 작은따옴표나 큰따옴표로 묶습니다.
+- 함수에 전달되는 값을 **인수**라고 합니다.
 
 ```python
 print(first_name, 'is', age, 'years old')
@@ -60,13 +58,12 @@ print(first_name, 'is', age, 'years old')
 Ahmed is 42 years old
 ```
 
-- `print` automatically puts a single space between items to separate them.
-- And wraps around to a new line at the end.
+- `print`는 항목을 구분하기 위해 자동으로 항목 사이에 단일 공백을 넣습니다.
+- 그리고 끝에서 새 줄로 줄 바꿈합니다.
 
-## Variables must be created before they are used.
+## 변수는 사용하기 전에 생성해야 합니다.
 
-- If a variable doesn't exist yet, or if the name has been mis-spelled,
-  Python reports an error. (Unlike some languages, which "guess" a default value.)
+- 변수가 아직 존재하지 않거나 이름이 잘못 입력된 경우 파이썬은 오류를 보고합니다. (기본값을 "추측"하는 일부 언어와 달리)
 
 ```python
 print(last_name)
@@ -81,18 +78,14 @@ NameError                                 Traceback (most recent call last)
 NameError: name 'last_name' is not defined
 ```
 
-- The last line of an error message is usually the most informative.
-- We will look at error messages in detail [later](17-scope.md#reading-error-messages).
+- 오류 메시지의 마지막 줄이 일반적으로 가장 유익합니다.
+- 오류 메시지는 [나중에](17-scope.md#reading-error-messages) 자세히 살펴보겠습니다.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Variables Persist Between Cells
+## 변수는 셀 간에 유지됩니다.
 
-Be aware that it is the *order* of execution of cells that is important in a Jupyter notebook, not the order
-in which they appear. Python will remember *all* the code that was run previously, including any variables you have
-defined, irrespective of the order in the notebook. Therefore if you define variables lower down the notebook and then
-(re)run cells further up, those defined further down will still be present. As an example, create two cells with the
-following content, in this order:
+주피터 노트북에서는 셀의 실행 *순서*가 중요하며 나타나는 순서가 아니라는 점에 유의하십시오. 파이썬은 이전에 실행된 모든 코드를 기억하며, 여기에는 정의한 변수도 포함됩니다. 노트북의 순서에 관계없이 말입니다. 따라서 노트북 아래쪽에서 변수를 정의한 다음 위쪽 셀을 (다시) 실행하면 아래쪽에 정의된 변수가 여전히 존재합니다. 예를 들어 다음 내용으로 두 개의 셀을 이 순서대로 만듭니다.
 
 ```python
 print(myval)
@@ -102,17 +95,14 @@ print(myval)
 myval = 1
 ```
 
-If you execute this in order, the first cell will give an error. However, if you run the first cell *after* the second
-cell it will print out `1`. To prevent confusion, it can be helpful to use the `Kernel` -> `Restart & Run All` option which
-clears the interpreter and runs everything from a clean slate going top to bottom.
-
+이것을 순서대로 실행하면 첫 번째 셀에서 오류가 발생합니다. 그러나 두 번째 셀 *뒤에* 첫 번째 셀을 실행하면 `1`이 인쇄됩니다. 혼동을 방지하기 위해 `Kernel` -> `Restart & Run All` 옵션을 사용하면 인터프리터를 지우고 위에서 아래로 모든 것을 새로 실행하는 데 도움이 될 수 있습니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Variables can be used in calculations.
+## 변수는 계산에 사용할 수 있습니다.
 
-- We can use variables in calculations just as if they were values.
-  - Remember, we assigned the value `42` to `age` a few lines ago.
+- 마치 값인 것처럼 계산에 변수를 사용할 수 있습니다.
+  - 몇 줄 전에 `age`에 `42`라는 값을 할당했음을 기억하십시오.
 
 ```python
 age = age + 3
@@ -123,18 +113,14 @@ print('Age in three years:', age)
 Age in three years: 45
 ```
 
-## Use an index to get a single character from a string.
+## 인덱스를 사용하여 문자열에서 단일 문자를 가져옵니다.
 
-- The characters (individual letters, numbers, and so on) in a string are
-  ordered. For example, the string `'AB'` is not the same as `'BA'`. Because of
-  this ordering, we can treat the string as a list of characters.
-- Each position in the string (first, second, etc.) is given a number. This
-  number is called an **index** or sometimes a subscript.
-- Indices are numbered from 0.
-- Use the position's index in square brackets to get the character at that
-  position.
+- 문자열의 문자(개별 문자, 숫자 등)는 순서가 있습니다. 예를 들어 문자열 `'AB'`는 `'BA'`와 같지 않습니다. 이 순서 때문에 문자열을 문자 목록으로 취급할 수 있습니다.
+- 문자열의 각 위치(첫 번째, 두 번째 등)에는 번호가 부여됩니다. 이 번호를 **인덱스** 또는 때로는 아래 첨자라고 합니다.
+- 인덱스는 0부터 번호가 매겨집니다.
+- 대괄호 안에 위치의 인덱스를 사용하여 해당 위치의 문자를 가져옵니다.
 
-![A line of Python code, print(atom\_name[0]), demonstrates that using the zero index will output just the initial letter, in this case 'h' for helium.](fig/2_indexing.svg)
+![print(atom_name[0])라는 파이썬 코드 한 줄은 0 인덱스를 사용하면 초기 문자만 출력됨을 보여줍니다. 이 경우 헬륨의 'h'입니다.](fig/2_indexing.svg)
 
 ```python
 atom_name = 'helium'
@@ -145,19 +131,14 @@ print(atom_name[0])
 h
 ```
 
-## Use a slice to get a substring.
+## 슬라이스를 사용하여 하위 문자열을 가져옵니다.
 
-- A part of a string is called a **substring**. A substring can be as short as a
-  single character.
-- An item in a list is called an element. Whenever we treat a string as if it
-  were a list, the string's elements are its individual characters.
-- A slice is a part of a string (or, more generally, a part of any list-like thing).
-- We take a slice with the notation `[start:stop]`, where `start` is the integer
-  index of the first element we want and `stop` is the integer index of
-  the element *just after* the last element we want.
-- The difference between `stop` and `start` is the slice's length.
-- Taking a slice does not change the contents of the original string. Instead,
-  taking a slice returns a copy of part of the original string.
+- 문자열의 일부를 **하위 문자열**이라고 합니다. 하위 문자열은 단일 문자만큼 짧을 수 있습니다.
+- 목록의 항목을 요소라고 합니다. 문자열을 목록처럼 취급할 때마다 문자열의 요소는 개별 문자입니다.
+- 슬라이스는 문자열의 일부입니다(또는 더 일반적으로 목록과 유사한 모든 것의 일부).
+- `[start:stop]` 표기법으로 슬라이스를 가져옵니다. 여기서 `start`는 원하는 첫 번째 요소의 정수 인덱스이고 `stop`은 원하는 마지막 요소 *바로 다음* 요소의 정수 인덱스입니다.
+- `stop`과 `start`의 차이는 슬라이스의 길이입니다.
+- 슬라이스를 가져와도 원본 문자열의 내용은 변경되지 않습니다. 대신 슬라이스를 가져오면 원본 문자열의 일부 복사본이 반환됩니다.
 
 ```python
 atom_name = 'sodium'
@@ -168,7 +149,7 @@ print(atom_name[0:3])
 sod
 ```
 
-## Use the built-in function `len` to find the length of a string.
+## 내장 함수 `len`을 사용하여 문자열의 길이를 찾습니다.
 
 ```python
 print(len('helium'))
@@ -178,19 +159,16 @@ print(len('helium'))
 6
 ```
 
-- Nested functions are evaluated from the inside out,
-  like in mathematics.
+- 중첩 함수는 수학에서와 같이 안쪽에서 바깥쪽으로 평가됩니다.
 
-## Python is case-sensitive.
+## 파이썬은 대소문자를 구분합니다.
 
-- Python thinks that upper- and lower-case letters are different,
-  so `Name` and `name` are different variables.
-- There are conventions for using upper-case letters at the start of variable names so we will use lower-case letters for now.
+- 파이썬은 대문자와 소문자를 다른 것으로 생각하므로 `Name`과 `name`은 다른 변수입니다.
+- 변수 이름 시작 부분에 대문자를 사용하는 관례가 있으므로 지금은 소문자를 사용합니다.
 
-## Use meaningful variable names.
+## 의미 있는 변수 이름을 사용합니다.
 
-- Python doesn't care what you call variables as long as they obey the rules
-  (alphanumeric characters and the underscore).
+- 파이썬은 규칙(영숫자 문자와 밑줄)을 따르는 한 변수 이름을 무엇으로 부르든 상관하지 않습니다.
 
 ```python
 flabadab = 42
@@ -198,42 +176,38 @@ ewr_422_yY = 'Ahmed'
 print(ewr_422_yY, 'is', flabadab, 'years old')
 ```
 
-- Use meaningful variable names to help other people understand what the program does.
-- The most important "other person" is your future self.
+- 다른 사람들이 프로그램이 무엇을 하는지 이해하는 데 도움이 되도록 의미 있는 변수 이름을 사용합니다.
+- 가장 중요한 "다른 사람"은 미래의 자신입니다.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Swapping Values
+## 값 바꾸기
 
-Fill the table showing the values of the variables in this program
-*after* each statement is executed.
+이 프로그램의 변수 값을 보여주는 표를 채우십시오. *각* 문이 실행된 후.
 
 ```python
-# Command  # Value of x   # Value of y   # Value of swap #
-x = 1.0    #              #              #               #
-y = 3.0    #              #              #               #
-swap = x   #              #              #               #
-x = y      #              #              #               #
-y = swap   #              #              #               #
+# 명령      # x 값      # y 값      # swap 값 #
+x = 1.0    #           #           #         #
+y = 3.0    #           #           #         #
+swap = x   #           #           #         #
+x = y      #           #           #         #
+y = swap   #           #           #         #
 ```
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
 ```output
-# Command  # Value of x   # Value of y   # Value of swap #
-x = 1.0    # 1.0          # not defined  # not defined   #
-y = 3.0    # 1.0          # 3.0          # not defined   #
-swap = x   # 1.0          # 3.0          # 1.0           #
-x = y      # 3.0          # 3.0          # 1.0           #
-y = swap   # 3.0          # 1.0          # 1.0           #
+# 명령      # x 값      # y 값      # swap 값 #
+x = 1.0    # 1.0       # 정의되지 않음 # 정의되지 않음 #
+y = 3.0    # 1.0       # 3.0       # 정의되지 않음 #
+swap = x   # 1.0       # 3.0       # 1.0       #
+x = y      # 3.0       # 3.0       # 1.0       #
+y = swap   # 3.0       # 1.0       # 1.0       #
 ```
 
-These three lines exchange the values in `x` and `y` using the `swap`
-variable for temporary storage. This is a fairly common programming idiom.
-
-
+이 세 줄은 `swap` 변수를 임시 저장소로 사용하여 `x`와 `y`의 값을 교환합니다. 이것은 상당히 일반적인 프로그래밍 관용구입니다.
 
 :::::::::::::::::::::::::
 
@@ -241,11 +215,10 @@ variable for temporary storage. This is a fairly common programming idiom.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Predicting Values
+## 값 예측
 
-What is the final value of `position` in the program below?
-(Try to predict the value without running the program,
-then check your prediction.)
+아래 프로그램에서 `position`의 최종 값은 무엇입니까?
+(프로그램을 실행하지 않고 값을 예측한 다음 예측을 확인하십시오.)
 
 ```python
 initial = 'left'
@@ -255,7 +228,7 @@ initial = 'right'
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
 ```python
 print(position)
@@ -265,13 +238,8 @@ print(position)
 left
 ```
 
-The `initial` variable is assigned the value `'left'`.
-In the second line, the `position` variable also receives
-the string value `'left'`. In third line, the `initial` variable is given the
-value `'right'`, but the `position` variable retains its string value
-of `'left'`.
-
-
+`initial` 변수에는 `'left'` 값이 할당됩니다.
+두 번째 줄에서 `position` 변수도 문자열 값 `'left'`를 받습니다. 세 번째 줄에서 `initial` 변수에는 `'right'` 값이 주어지지만 `position` 변수는 문자열 값 `'left'`를 유지합니다.
 
 :::::::::::::::::::::::::
 
@@ -279,19 +247,15 @@ of `'left'`.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Challenge
+## 도전
 
-If you assign `a = 123`,
-what happens if you try to get the second digit of `a` via `a[1]`?
+`a = 123`을 할당하면 `a[1]`을 통해 `a`의 두 번째 숫자를 가져오려고 하면 어떻게 됩니까?
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-Numbers are not strings or sequences and Python will raise an error if you try to perform an index operation on a
-number. In the [next lesson on types and type conversion](03-types-conversion.md)
-we will learn more about types and how to convert between different types. If you want the Nth digit of a number you
-can convert it into a string using the `str` built-in function and then perform an index operation on that string.
+숫자는 문자열이나 시퀀스가 아니며 숫자에 대해 인덱스 작업을 수행하려고 하면 파이썬에서 오류가 발생합니다. [유형 및 유형 변환에 대한 다음 단원](03-types-conversion.md)에서는 유형에 대해 자세히 알아보고 다른 유형 간에 변환하는 방법을 배웁니다. 숫자의 N번째 숫자를 원하면 `str` 내장 함수를 사용하여 문자열로 변환한 다음 해당 문자열에 대해 인덱스 작업을 수행할 수 있습니다.
 
 ```python
 a = 123
@@ -317,12 +281,11 @@ print(a[1])
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Choosing a Name
+## 이름 선택
 
-Which is a better variable name, `m`, `min`, or `minutes`?
-Why?
-Hint: think about which code you would rather inherit
-from someone who is leaving the lab:
+어떤 변수 이름이 더 좋습니까? `m`, `min` 또는 `minutes`?
+왜요?
+힌트: 실험실을 떠나는 사람에게서 어떤 코드를 물려받고 싶은지 생각해보십시오.
 
 1. `ts = m * 60 + s`
 2. `tot_sec = min * 60 + sec`
@@ -330,12 +293,9 @@ from someone who is leaving the lab:
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-`minutes` is better because `min` might mean something like "minimum"
-(and actually is an existing built-in function in Python that we will cover later).
-
-
+`minutes`가 더 좋습니다. 왜냐하면 `min`은 "최소"와 같은 것을 의미할 수 있기 때문입니다(그리고 실제로 나중에 다룰 파이썬의 기존 내장 함수입니다).
 
 :::::::::::::::::::::::::
 
@@ -343,9 +303,9 @@ from someone who is leaving the lab:
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Slicing practice
+## 슬라이싱 연습
 
-What does the following program print?
+다음 프로그램은 무엇을 인쇄합니까?
 
 ```python
 atom_name = 'carbon'
@@ -354,7 +314,7 @@ print('atom_name[1:3] is:', atom_name[1:3])
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
 ```output
 atom_name[1:3] is: ar
@@ -366,55 +326,51 @@ atom_name[1:3] is: ar
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Slicing concepts
+## 슬라이싱 개념
 
-Given the following string:
+다음 문자열이 주어졌을 때:
 
 ```python
 species_name = "Acacia buxifolia"
 ```
 
-What would these expressions return?
+이러한 표현식은 무엇을 반환합니까?
 
 1. `species_name[2:8]`
-2. `species_name[11:]` (without a value after the colon)
-3. `species_name[:4]` (without a value before the colon)
-4. `species_name[:]` (just a colon)
+2. `species_name[11:]` (콜론 뒤에 값이 없음)
+3. `species_name[:4]` (콜론 앞에 값이 없음)
+4. `species_name[:]` (콜론만 있음)
 5. `species_name[11:-3]`
 6. `species_name[-5:-3]`
-7. What happens when you choose a `stop` value which is out of range? (i.e., try `species_name[0:20]` or `species_name[:103]`)
+7. 범위를 벗어난 `stop` 값을 선택하면 어떻게 됩니까? (예: `species_name[0:20]` 또는 `species_name[:103]` 시도)
 
 :::::::::::::::  solution
 
-## Solutions
+## 해결책
 
-1. `species_name[2:8]` returns the substring `'acia b'`
-2. `species_name[11:]` returns the substring `'folia'`, from position 11 until the end
-3. `species_name[:4]` returns the substring `'Acac'`, from the start up to but not including position 4
-4. `species_name[:]` returns the entire string `'Acacia buxifolia'`
-5. `species_name[11:-3]` returns the substring `'fo'`, from the 11th position to the third last position
-6. `species_name[-5:-3]` also returns the substring `'fo'`, from the fifth last position to the third last
-7. If a part of the slice is out of range, the operation does not fail. `species_name[0:20]` gives the same result as `species_name[0:]`, and `species_name[:103]` gives the same result as `species_name[:]`
+1. `species_name[2:8]`은 하위 문자열 `'acia b'`를 반환합니다.
+2. `species_name[11:]`은 11번째 위치부터 끝까지 하위 문자열 `'folia'`를 반환합니다.
+3. `species_name[:4]`는 시작부터 4번째 위치를 포함하지 않는 하위 문자열 `'Acac'`를 반환합니다.
+4. `species_name[:]`은 전체 문자열 `'Acacia buxifolia'`를 반환합니다.
+5. `species_name[11:-3]`은 11번째 위치부터 세 번째 마지막 위치까지 하위 문자열 `'fo'`를 반환합니다.
+6. `species_name[-5:-3]`도 다섯 번째 마지막 위치부터 세 번째 마지막 위치까지 하위 문자열 `'fo'`를 반환합니다.
+7. 슬라이스의 일부가 범위를 벗어나도 작업은 실패하지 않습니다. `species_name[0:20]`은 `species_name[0:]`과 동일한 결과를 제공하고 `species_name[:103]`은 `species_name[:]`과 동일한 결과를 제공합니다.
   
-  
-
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- Use variables to store values.
-- Use `print` to display values.
-- Variables persist between cells.
-- Variables must be created before they are used.
-- Variables can be used in calculations.
-- Use an index to get a single character from a string.
-- Use a slice to get a substring.
-- Use the built-in function `len` to find the length of a string.
-- Python is case-sensitive.
-- Use meaningful variable names.
+- 변수를 사용하여 값을 저장합니다.
+- `print`를 사용하여 값을 표시합니다.
+- 변수는 셀 간에 유지됩니다.
+- 변수는 사용하기 전에 생성해야 합니다.
+- 변수는 계산에 사용할 수 있습니다.
+- 인덱스를 사용하여 문자열에서 단일 문자를 가져옵니다.
+- 슬라이스를 사용하여 하위 문자열을 가져옵니다.
+- 내장 함수 `len`을 사용하여 문자열의 길이를 찾습니다.
+- 파이썬은 대소문자를 구분합니다.
+- 의미 있는 변수 이름을 사용합니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-

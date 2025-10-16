@@ -1,18 +1,14 @@
 ---
-title: Afternoon Coffee
+title: 오후 커피
 teaching: 0
 exercises: 0
 break: 15
 ---
 
-## Reflection exercise
+## 성찰 활동
 
-Over break, reflect on and discuss the following:
+쉬는 시간에 다음 사항에 대해 성찰하고 토론해 보세요.
 
-- A common refrain in software engineering is "Don't Repeat Yourself". How do the techniques we've learned in the last
-  lessons help us avoid repeating ourselves? *Note that in practice there is some nuance to this and should be balanced
-  with doing the simplest thing that could possibly work.*
-- What are the pros / cons of making a variable global or local to a function?
-- When would you consider turning a block of code into a function definition?
-
-
+- 소프트웨어 공학에서 흔히 하는 말은 "자신을 반복하지 말라"입니다. 지난 수업에서 배운 기술이 자신을 반복하는 것을 피하는 데 어떻게 도움이 되나요? *실제로 여기에는 약간의 미묘한 차이가 있으며 가능한 가장 간단한 작업을 수행하는 것과 균형을 이루어야 한다는 점에 유의하십시오.*
+- 변수를 전역 또는 함수에 로컬로 만드는 것의 장단점은 무엇입니까?
+- 언제 코드 블록을 함수 정의로 전환하는 것을 고려하시겠습니까?

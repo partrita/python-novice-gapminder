@@ -1,16 +1,14 @@
 ---
-title: Morning Coffee
+title: 모닝 커피
 teaching: 0
 exercises: 0
 break: 15
 ---
 
-## Reflection exercise
+## 성찰 활동
 
-Over coffee, reflect on and discuss the following:
+커피를 마시며 다음 사항에 대해 성찰하고 토론해 보세요.
 
-- What are the different kinds of errors Python will report?
-- Did the code always produce the results you expected? If not, why?
-- Is there something we can do to prevent errors when we write code?
-
-
+- 파이썬이 보고하는 오류에는 어떤 종류가 있나요?
+- 코드가 항상 예상한 결과를 생성했나요? 그렇지 않다면 왜 그런가요?
+- 코드를 작성할 때 오류를 방지하기 위해 할 수 있는 일이 있나요?

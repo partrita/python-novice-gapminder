@@ -1,104 +1,89 @@
 ---
-title: Running and Quitting
+title: 실행과 종료
 teaching: 15
 exercises: 0
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Launch the JupyterLab server.
-- Create a new Python script.
-- Create a Jupyter notebook.
-- Shutdown the JupyterLab server.
-- Understand the difference between a Python script and a Jupyter notebook.
-- Create Markdown cells in a notebook.
-- Create and run Python cells in a notebook.
+- JupyterLab 서버를 실행합니다.
+- 새로운 파이썬 스크립트를 생성합니다.
+- 주피터 노트북을 생성합니다.
+- JupyterLab 서버를 종료합니다.
+- 파이썬 스크립트와 주피터 노트북의 차이점을 이해합니다.
+- 노트북에 마크다운 셀을 생성합니다.
+- 노트북에서 파이썬 셀을 생성하고 실행합니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How can I run Python programs?
+- 파이썬 프로그램은 어떻게 실행할 수 있나요?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-To run Python, we are going to use [Jupyter Notebooks][jupyter] via [JupyterLab][jupyterlab] for the remainder of this workshop. Jupyter notebooks are common in data science and visualization and serve as a convenient common-denominator experience for running Python code interactively where we can easily view and share the results of our Python code.
+파이썬을 실행하기 위해, 이번 워크숍의 나머지 부분에서는 [JupyterLab][jupyterlab]을 통해 [주피터 노트북][jupyter]을 사용할 것입니다. 주피터 노트북은 데이터 과학 및 시각화에서 흔히 사용되며, 파이썬 코드를 대화식으로 실행하고 그 결과를 쉽게 보고 공유할 수 있는 편리한 공통 환경을 제공합니다.
 
-There are other ways of editing, managing, and running code. Software developers often use an integrated development environment (IDE) like [PyCharm](https://www.jetbrains.com/pycharm/) or [Visual Studio Code](https://code.visualstudio.com/), or text editors like Vim or Emacs, to create and edit their Python programs. After editing and saving your Python programs you can execute those programs within the IDE itself or directly on the command line. In contrast, Jupyter notebooks let us execute and view the results of our Python code immediately within the notebook.
+코드를 편집, 관리, 실행하는 다른 방법도 있습니다. 소프트웨어 개발자는 종종 [PyCharm](https://www.jetbrains.com/pycharm/)이나 [Visual Studio Code](https://code.visualstudio.com/)와 같은 통합 개발 환경(IDE)이나 Vim 또는 Emacs와 같은 텍스트 편집기를 사용하여 파이썬 프로그램을 만들고 편집합니다. 파이썬 프로그램을 편집하고 저장한 후에는 IDE 자체 또는 명령줄에서 직접 해당 프로그램을 실행할 수 있습니다. 반면에 주피터 노트북을 사용하면 노트북 내에서 즉시 파이썬 코드를 실행하고 결과를 볼 수 있습니다.
 
-JupyterLab has several other handy features:
+JupyterLab에는 몇 가지 다른 편리한 기능이 있습니다:
 
-- You can easily type, edit, and copy and paste blocks of code.
-- Tab complete allows you to easily access the names of things you are using
-  and learn more about them.
-- It allows you to annotate your code with links, different sized text, bullets, etc.
-  to make it more accessible to you and your collaborators.
-- It allows you to display figures next to the code that produces them
-  to tell a complete story of the analysis.
+- 코드 블록을 쉽게 입력, 편집, 복사 및 붙여넣기 할 수 있습니다.
+- 탭 완성을 사용하면 사용 중인 것들의 이름에 쉽게 접근하고 그것들에 대해 더 많이 배울 수 있습니다.
+- 링크, 다양한 크기의 텍스트, 글머리 기호 등으로 코드에 주석을 달아 귀하와 협력자들이 더 쉽게 접근할 수 있도록 합니다.
+- 분석의 전체 스토리를 전달하기 위해 그림을 생성하는 코드 옆에 그림을 표시할 수 있습니다.
 
-Each notebook contains one or more cells that contain code, text, or images.
+각 노트북에는 코드, 텍스트 또는 이미지를 포함하는 하나 이상의 셀이 포함되어 있습니다.
 
-## Getting Started with JupyterLab
+## JupyterLab 시작하기
 
-JupyterLab is an application server with a web user interface from [Project Jupyter][jupyter] that
-enables one to work with documents and activities such as Jupyter notebooks, text editors, terminals,
-and even custom components in a flexible, integrated, and extensible manner. JupyterLab requires a
-reasonably up-to-date browser (ideally a current version of Chrome, Safari, or Firefox); Internet
-Explorer versions 9 and below are *not* supported.
+JupyterLab은 [Project Jupyter][jupyter]에서 제공하는 웹 사용자 인터페이스를 갖춘 애플리케이션 서버로, 주피터 노트북, 텍스트 편집기, 터미널 및 사용자 정의 구성 요소와 같은 문서 및 활동을 유연하고 통합적이며 확장 가능한 방식으로 작업할 수 있게 해줍니다. JupyterLab은 상당히 최신 버전의 브라우저(이상적으로는 최신 버전의 Chrome, Safari 또는 Firefox)가 필요하며, Internet Explorer 버전 9 이하는 지원되지 *않습니다*.
 
-JupyterLab is included as part of the Anaconda Python distribution. If you have not already
-installed the Anaconda Python distribution, see [the setup instructions](../learners/setup.md)
-for installation instructions.
+JupyterLab은 Anaconda 파이썬 배포판에 포함되어 있습니다. 아직 Anaconda 파이썬 배포판을 설치하지 않았다면 [설치 지침](../learners/setup.md)을 참조하십시오.
 
-In this lesson we will run JupyterLab locally on our own machines so it will not require an internet connection besides
-the initial connection to download and install Anaconda and JupyterLab
+이 수업에서는 우리 자신의 컴퓨터에서 로컬로 JupyterLab을 실행하므로 Anaconda와 JupyterLab을 다운로드하고 설치하기 위한 초기 연결 외에는 인터넷 연결이 필요하지 않습니다.
 
-- Start the JupyterLab server on your machine
-- Use a web browser to open a special localhost URL that connects to your JupyterLab server
-- The JupyterLab server does the work and the web browser renders the result
-- Type code into the browser and see the results after your JupyterLab server has finished executing your code
+- 컴퓨터에서 JupyterLab 서버를 시작합니다.
+- 웹 브라우저를 사용하여 JupyterLab 서버에 연결하는 특수 localhost URL을 엽니다.
+- JupyterLab 서버가 작업을 수행하고 웹 브라우저가 결과를 렌더링합니다.
+- 브라우저에 코드를 입력하고 JupyterLab 서버가 코드 실행을 마친 후 결과를 확인합니다.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## JupyterLab? What about Jupyter notebooks?
+## JupyterLab? 주피터 노트북은요?
 
-JupyterLab is the [next stage in the evolution of the Jupyter Notebook](https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html#overview).
-If you have prior experience working with Jupyter notebooks, then you will have a good idea of what to expect from JupyterLab.
+JupyterLab은 [주피터 노트북 진화의 다음 단계](https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html#overview)입니다.
+주피터 노트북 작업 경험이 있다면 JupyterLab에서 무엇을 기대할 수 있는지 잘 알 것입니다.
 
-Experienced users of Jupyter notebooks interested in a more detailed discussion of the similarities and differences
-between the JupyterLab and Jupyter notebook user interfaces can find more information in the
-[JupyterLab user interface documentation][jupyterlab-ui].
-
+JupyterLab과 주피터 노트북 사용자 인터페이스 간의 유사점과 차이점에 대한 더 자세한 논의에 관심이 있는 숙련된 주피터 노트북 사용자는 [JupyterLab 사용자 인터페이스 문서][jupyterlab-ui]에서 더 많은 정보를 찾을 수 있습니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Starting JupyterLab
+## JupyterLab 시작하기
 
-You can start the JupyterLab server through the command line or through an application called
-`Anaconda Navigator`. Anaconda Navigator is included as part of the Anaconda Python distribution.
+명령줄이나 `Anaconda Navigator`라는 애플리케이션을 통해 JupyterLab 서버를 시작할 수 있습니다. Anaconda Navigator는 Anaconda 파이썬 배포판의 일부로 포함되어 있습니다.
 
-### macOS - Command Line
+### macOS - 명령줄
 
-To start the JupyterLab server you will need to access the command line through the Terminal.
-There are two ways to open Terminal on Mac.
+JupyterLab 서버를 시작하려면 터미널을 통해 명령줄에 접근해야 합니다.
+Mac에서 터미널을 여는 방법은 두 가지입니다.
 
-1. In your Applications folder, open Utilities and double-click on Terminal
-2. Press <kbd>Command</kbd> + <kbd>spacebar</kbd> to launch Spotlight. Type `Terminal` and then
-  double-click the search result or hit <kbd>Enter</kbd>
+1. 응용 프로그램 폴더에서 유틸리티를 열고 터미널을 두 번 클릭합니다.
+2. <kbd>Command</kbd> + <kbd>스페이스바</kbd>를 눌러 Spotlight를 실행합니다. `Terminal`을 입력한 다음 검색 결과를 두 번 클릭하거나 <kbd>Enter</kbd>를 누릅니다.
 
-After you have launched Terminal, type the command to launch the JupyterLab server.
+터미널을 실행한 후 JupyterLab 서버를 시작하는 명령을 입력합니다.
 
 ```bash
 $ jupyter lab
 ```
 
-### Windows Users - Command Line
+### Windows 사용자 - 명령줄
 
-To start the JupyterLab server you will need to access the Anaconda Prompt.
+JupyterLab 서버를 시작하려면 Anaconda 프롬프트에 접근해야 합니다.
 
-Press <kbd>Windows Logo Key</kbd> and search for `Anaconda Prompt`, click the result or press enter.
+<kbd>Windows 로고 키</kbd>를 누르고 `Anaconda Prompt`를 검색한 다음 결과를 클릭하거나 Enter를 누릅니다.
 
-After you have launched the Anaconda Prompt, type the command:
+Anaconda 프롬프트를 실행한 후 다음 명령을 입력합니다.
 
 ```bash
 $ jupyter lab
@@ -106,157 +91,127 @@ $ jupyter lab
 
 ### Anaconda Navigator
 
-To start a JupyterLab server from Anaconda Navigator you must first [start Anaconda Navigator (click for detailed instructions on macOS, Windows, and Linux)](https://docs.anaconda.com/free/navigator/getting-started/#navigator-starting-navigator). You can search for Anaconda Navigator via Spotlight on macOS (<kbd>Command</kbd> + <kbd>spacebar</kbd>), the Windows search function (<kbd>Windows Logo Key</kbd>) or opening a terminal shell and executing the `anaconda-navigator` executable from the command line.
+Anaconda Navigator에서 JupyterLab 서버를 시작하려면 먼저 [Anaconda Navigator를 시작해야 합니다(macOS, Windows, Linux에 대한 자세한 지침은 클릭)](https://docs.anaconda.com/free/navigator/getting-started/#navigator-starting-navigator). macOS의 Spotlight(<kbd>Command</kbd> + <kbd>스페이스바</kbd>), Windows 검색 기능(<kbd>Windows 로고 키</kbd>)을 통해 Anaconda Navigator를 검색하거나 터미널 셸을 열고 명령줄에서 `anaconda-navigator` 실행 파일을 실행할 수 있습니다.
 
-After you have launched Anaconda Navigator, click the `Launch` button under JupyterLab. You may need
-to scroll down to find it.
+Anaconda Navigator를 실행한 후 JupyterLab 아래의 `Launch` 버튼을 클릭합니다. 찾으려면 아래로 스크롤해야 할 수도 있습니다.
 
-Here is a screenshot of an Anaconda Navigator page similar to the one that should open on either macOS
-or Windows.
+다음은 macOS 또는 Windows에서 열리는 것과 유사한 Anaconda Navigator 페이지의 스크린샷입니다.
 
 <p align='center'>
-  <img alt="Anaconda Navigator landing page" src="fig/0_anaconda_navigator_landing_page.png" width="750"/>
+  <img alt="Anaconda Navigator 시작 페이지" src="fig/0_anaconda_navigator_landing_page.png" width="750"/>
 </p>
 
-And here is a screenshot of a JupyterLab landing page that should be similar to the one that opens in your
-default web browser after starting the JupyterLab server on either macOS or Windows.
+그리고 다음은 macOS 또는 Windows에서 JupyterLab 서버를 시작한 후 기본 웹 브라우저에서 열리는 것과 유사한 JupyterLab 시작 페이지의 스크린샷입니다.
 
 <p align='center'>
-  <img alt="JupyterLab landing page" src="fig/0_jupyterlab_landing_page.png" width="750"/>
+  <img alt="JupyterLab 시작 페이지" src="fig/0_jupyterlab_landing_page.png" width="750"/>
 </p>
 
-## The JupyterLab Interface
+## JupyterLab 인터페이스
 
-JupyterLab has many features found in traditional integrated development environments (IDEs) but
-is focused on providing flexible building blocks for interactive, exploratory computing.
+JupyterLab에는 기존 통합 개발 환경(IDE)에서 볼 수 있는 많은 기능이 있지만 대화형, 탐색적 컴퓨팅을 위한 유연한 구성 요소를 제공하는 데 중점을 둡니다.
 
-The [JupyterLab Interface][jupyterlab-ui]
-consists of the Menu Bar, a collapsable Left Side Bar, and the Main Work Area which contains tabs
-of documents and activities.
+[JupyterLab 인터페이스][jupyterlab-ui]는 메뉴 모음, 축소 가능한 왼쪽 사이드바, 문서 및 활동 탭이 포함된 주 작업 영역으로 구성됩니다.
 
-### Menu Bar
+### 메뉴 모음
 
-The Menu Bar at the top of JupyterLab has the top-level menus that expose various actions
-available in JupyterLab along with their keyboard shortcuts (where applicable). The following
-menus are included by default.
+JupyterLab 상단의 메뉴 모음에는 JupyterLab에서 사용할 수 있는 다양한 작업과 해당 키보드 단축키(해당하는 경우)를 노출하는 최상위 메뉴가 있습니다. 기본적으로 다음 메뉴가 포함됩니다.
 
-- **File:** Actions related to files and directories such as *New*, *Open*, *Close*, *Save*, etc. The *File* menu also includes the *Shut Down* action used to shutdown the JupyterLab server.
-- **Edit:** Actions related to editing documents and other activities such as *Undo*, *Cut*, *Copy*, *Paste*, etc.
-- **View:** Actions that alter the appearance of JupyterLab.
-- **Run:** Actions for running code in different activities such as notebooks and code consoles (discussed below).
-- **Kernel:** Actions for managing kernels. Kernels in Jupyter will be explained in more detail below.
-- **Tabs:** A list of the open documents and activities in the main work area.
-- **Settings:** Common JupyterLab settings can be configured using this menu. There is also an *Advanced Settings Editor* option in the dropdown menu that provides more fine-grained control of JupyterLab settings and configuration options.
-- **Help:** A list of JupyterLab and kernel help links.
+- **파일:** *새로 만들기*, *열기*, *닫기*, *저장* 등과 같은 파일 및 디렉토리 관련 작업. *파일* 메뉴에는 JupyterLab 서버를 종료하는 데 사용되는 *종료* 작업도 포함됩니다.
+- **편집:** *실행 취소*, *잘라내기*, *복사*, *붙여넣기* 등과 같은 문서 및 기타 활동 편집과 관련된 작업.
+- **보기:** JupyterLab의 모양을 변경하는 작업.
+- **실행:** 노트북 및 코드 콘솔(아래에서 설명)과 같은 다양한 활동에서 코드를 실행하기 위한 작업.
+- **커널:** 커널 관리를 위한 작업. Jupyter의 커널은 아래에서 더 자세히 설명합니다.
+- **탭:** 주 작업 영역에 열려 있는 문서 및 활동 목록.
+- **설정:** 이 메뉴를 사용하여 일반적인 JupyterLab 설정을 구성할 수 있습니다. 드롭다운 메뉴에는 JupyterLab 설정 및 구성 옵션을 더 세밀하게 제어할 수 있는 *고급 설정 편집기* 옵션도 있습니다.
+- **도움말:** JupyterLab 및 커널 도움말 링크 목록.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Kernels
+## 커널
 
-The JupyterLab [docs](https://jupyterlab.readthedocs.io/en/stable/user/documents_kernels.html)
-define kernels as "separate processes started by the server that runs your code in different programming languages and environments."
-When we open a Jupyter Notebook, that starts a kernel - a process - that is going to run the code.
-In this lesson, we'll be using the Jupyter ipython kernel which lets us run Python 3 code interactively.
+JupyterLab [문서](https://jupyterlab.readthedocs.io/en/stable/user/documents_kernels.html)에서는 커널을 "서버에서 시작하여 다른 프로그래밍 언어 및 환경에서 코드를 실행하는 별도의 프로세스"로 정의합니다.
+주피터 노트북을 열면 코드를 실행할 프로세스인 커널이 시작됩니다.
+이 수업에서는 파이썬 3 코드를 대화식으로 실행할 수 있는 주피터 ipython 커널을 사용합니다.
 
-Using other Jupyter [kernels for other programming languages](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) would let us
-write and execute code in other programming languages in the same JupyterLab interface, like R, Java, Julia, Ruby, JavaScript, Fortran,
-etc.
+다른 프로그래밍 언어용 [다른 주피터 커널](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels)을 사용하면 R, Java, Julia, Ruby, JavaScript, Fortran 등과 같은 다른 프로그래밍 언어로 된 코드를 동일한 JupyterLab 인터페이스에서 작성하고 실행할 수 있습니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-A screenshot of the default Menu Bar is provided below.
+기본 메뉴 모음의 스크린샷은 다음과 같습니다.
 
-<p align='center'>   <img alt="JupyterLab Menu Bar" src="fig/0_jupyterlab_menu_bar.png" width="750"/>
+<p align='center'>   <img alt="JupyterLab 메뉴 모음" src="fig/0_jupyterlab_menu_bar.png" width="750"/>
 </p>
 
-### Left Sidebar
+### 왼쪽 사이드바
 
-The left sidebar contains a number of commonly used tabs, such as a file browser (showing the
-contents of the directory where the JupyterLab server was launched), a list of running kernels
-and terminals, the command palette, and a list of open tabs in the main work area. A screenshot of
-the default Left Side Bar is provided below.
+왼쪽 사이드바에는 파일 브라우저(JupyterLab 서버가 시작된 디렉토리의 내용 표시), 실행 중인 커널 및 터미널 목록, 명령 팔레트, 주 작업 영역에 열려 있는 탭 목록과 같은 여러 일반적으로 사용되는 탭이 포함되어 있습니다. 기본 왼쪽 사이드바의 스크린샷은 다음과 같습니다.
 
-<p align='center'>   <img alt="JupyterLab Left Side Bar" src="fig/0_jupyterlab_left_side_bar.png" width="250"/>
+<p align='center'>   <img alt="JupyterLab 왼쪽 사이드바" src="fig/0_jupyterlab_left_side_bar.png" width="250"/>
 </p>
 
-The left sidebar can be collapsed or expanded by selecting "Show Left Sidebar" in the View menu or
-by clicking on the active sidebar tab.
+왼쪽 사이드바는 보기 메뉴에서 "왼쪽 사이드바 표시"를 선택하거나 활성 사이드바 탭을 클릭하여 축소하거나 확장할 수 있습니다.
 
-### Main Work Area
+### 주 작업 영역
 
-The main work area in JupyterLab enables you to arrange documents (notebooks, text files, etc.)
-and other activities (terminals, code consoles, etc.) into panels of tabs that can be resized or
-subdivided. A screenshot of the default Main Work Area is provided below.
+JupyterLab의 주 작업 영역을 사용하면 문서(노트북, 텍스트 파일 등) 및 기타 활동(터미널, 코드 콘솔 등)을 크기를 조절하거나 세분화할 수 있는 탭 패널로 정렬할 수 있습니다. 기본 주 작업 영역의 스크린샷은 다음과 같습니다.
 
-If you do not see the Launcher tab, click the blue plus sign under the "File" and "Edit" menus and it will appear.
+시작 관리자 탭이 보이지 않으면 "파일" 및 "편집" 메뉴 아래의 파란색 더하기 기호를 클릭하면 나타납니다.
 
-<p align='center'>   <img alt="JupyterLab Main Work Area" src="fig/0_jupyterlab_main_work_area.png" width="750"/>
+<p align='center'>   <img alt="JupyterLab 주 작업 영역" src="fig/0_jupyterlab_main_work_area.png" width="750"/>
 </p>
 
-Drag a tab to the center of a tab panel to move the tab to the panel. Subdivide a tab panel by
-dragging a tab to the left, right, top, or bottom of the panel. The work area has a single current
-activity. The tab for the current activity is marked with a colored top border (blue by default).
+탭을 탭 패널 중앙으로 드래그하여 탭을 패널로 이동합니다. 탭을 패널의 왼쪽, 오른쪽, 위 또는 아래로 드래그하여 탭 패널을 세분화합니다. 작업 영역에는 단일 현재 활동이 있습니다. 현재 활동의 탭은 색상 있는 위쪽 테두리(기본적으로 파란색)로 표시됩니다.
 
-## Creating a Python script
+## 파이썬 스크립트 만들기
 
-- To start writing a new Python program click the Text File icon under the *Other* header in the Launcher tab of the Main Work Area.
-  - You can also create a new plain text file by selecting the *New -> Text File* from the *File* menu in the Menu Bar.
-- To convert this plain text file to a Python program, select the *Save File As* action from the *File* menu in the Menu Bar and give your new text file a name that ends with the `.py` extension.
-  - The `.py` extension lets everyone (including the operating system) know that this text file is a Python program.
-  - This is convention, not a requirement.
+- 새 파이썬 프로그램 작성을 시작하려면 주 작업 영역의 시작 관리자 탭에 있는 *기타* 헤더 아래의 텍스트 파일 아이콘을 클릭합니다.
+  - 메뉴 모음의 *파일* 메뉴에서 *새로 만들기 -> 텍스트 파일*을 선택하여 새 일반 텍스트 파일을 만들 수도 있습니다.
+- 이 일반 텍스트 파일을 파이썬 프로그램으로 변환하려면 메뉴 모음의 *파일* 메뉴에서 *다른 이름으로 파일 저장* 작업을 선택하고 새 텍스트 파일에 `.py` 확장자로 끝나는 이름을 지정합니다.
+  - `.py` 확장자는 모든 사람(운영 체제 포함)에게 이 텍스트 파일이 파이썬 프로그램임을 알립니다.
+  - 이것은 관례이며 필수는 아닙니다.
 
-## Creating a Jupyter Notebook
+## 주피터 노트북 만들기
 
-To open a new notebook click the Python 3 icon under the *Notebook* header in the Launcher tab in
-the main work area. You can also create a new notebook by selecting *New -> Notebook* from the *File* menu in the Menu Bar.
+새 노트북을 열려면 주 작업 영역의 시작 관리자 탭에 있는 *노트북* 헤더 아래의 Python 3 아이콘을 클릭합니다. 메뉴 모음에서 *새로 만들기 -> 노트북*을 선택하여 새 노트북을 만들 수도 있습니다.
 
-Additional notes on Jupyter notebooks.
+주피터 노트북에 대한 추가 참고 사항.
 
-- Notebook files have the extension `.ipynb` to distinguish them from plain-text Python programs.
-- Notebooks can be exported as Python scripts that can be run from the command line.
+- 노트북 파일에는 일반 텍스트 파이썬 프로그램과 구별하기 위해 `.ipynb` 확장자가 있습니다.
+- 노트북은 명령줄에서 실행할 수 있는 파이썬 스크립트로 내보낼 수 있습니다.
 
-Below is a screenshot of a Jupyter notebook running inside JupyterLab. If you are interested in
-more details, then see the [official notebook documentation][jupyterlab-notebook-docs].
+다음은 JupyterLab 내에서 실행 중인 주피터 노트북의 스크린샷입니다. 자세한 내용에 관심이 있으면 [공식 노트북 문서][jupyterlab-notebook-docs]를 참조하십시오.
 
-<p align='center'>   <img alt="Example Jupyter Notebook" src="fig/0_jupyterlab_notebook_screenshot.png" width="750"/>
+<p align='center'>   <img alt="예제 주피터 노트북" src="fig/0_jupyterlab_notebook_screenshot.png" width="750"/>
 </p>
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## How It's Stored
+## 저장 방식
 
-- The notebook file is stored in a format called JSON.
-- Just like a webpage, what's saved looks different from what you see in your browser.
-- But this format allows Jupyter to mix source code, text, and images, all in one file.
+- 노트북 파일은 JSON이라는 형식으로 저장됩니다.
+- 웹페이지처럼 저장된 내용은 브라우저에서 보는 것과 다릅니다.
+- 그러나 이 형식을 사용하면 Jupyter가 소스 코드, 텍스트, 이미지를 모두 하나의 파일에 혼합할 수 있습니다.
   
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Arranging Documents into Panels of Tabs
+## 문서를 탭 패널로 정렬하기
 
-In the JupyterLab Main Work Area you can arrange documents into panels of tabs. Here is an
-example from the [official documentation][jupyterlab].
+JupyterLab 주 작업 영역에서 문서를 탭 패널로 정렬할 수 있습니다. 다음은 [공식 문서][jupyterlab]의 예입니다.
 
-<p align='center'>   <img alt="Multi-panel JupyterLab" src="fig/0_multipanel_jupyterlab_screenshot.png" width="750"/>
+<p align='center'>   <img alt="다중 패널 JupyterLab" src="fig/0_multipanel_jupyterlab_screenshot.png" width="750"/>
 </p>
 
-First, create a text file, Python console, and terminal window and arrange them into three
-panels in the main work area. Next, create a notebook, terminal window, and text file and
-arrange them into three panels in the main work area. Finally, create your own combination of
-panels and tabs. What combination of panels and tabs do you think will be most useful for your
-workflow?
+먼저 텍스트 파일, 파이썬 콘솔, 터미널 창을 만들고 주 작업 영역의 세 패널로 정렬합니다. 다음으로 노트북, 터미널 창, 텍스트 파일을 만들고 주 작업 영역의 세 패널로 정렬합니다. 마지막으로 자신만의 패널과 탭 조합을 만듭니다. 워크플로에 가장 유용한 패널과 탭 조합은 무엇이라고 생각하십니까?
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-After creating the necessary tabs, you can drag one of the tabs to the center of a panel to
-move the tab to the panel; next you can subdivide a tab panel by dragging a tab to the left,
-right, top, or bottom of the panel.
-
-
+필요한 탭을 만든 후 탭 중 하나를 패널 중앙으로 드래그하여 탭을 패널로 이동할 수 있습니다. 그런 다음 탭을 패널의 왼쪽, 오른쪽, 위 또는 아래로 드래그하여 탭 패널을 세분화할 수 있습니다.
 
 :::::::::::::::::::::::::
 
@@ -264,134 +219,123 @@ right, top, or bottom of the panel.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Code vs. Text
+## 코드 대 텍스트
 
-Jupyter mixes code and text in different types of blocks, called cells. We often use the term
-"code" to mean "the source code of software written in a language such as Python".
-A "code cell" in a Notebook is a cell that contains software;
-a "text cell" is one that contains ordinary prose written for human beings.
-
+Jupyter는 셀이라는 다른 유형의 블록에 코드와 텍스트를 혼합합니다. 우리는 종종 "코드"라는 용어를 "파이썬과 같은 언어로 작성된 소프트웨어의 소스 코드"를 의미하는 데 사용합니다.
+노트북의 "코드 셀"은 소프트웨어를 포함하는 셀입니다.
+"텍스트 셀"은 인간을 위해 작성된 일반 산문을 포함하는 셀입니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## The Notebook has Command and Edit modes.
+## 노트북에는 명령 모드와 편집 모드가 있습니다.
 
-- If you press <kbd>Esc</kbd> and <kbd>Return</kbd> alternately, the outer border of your code cell will change from gray to blue.
-- These are the **Command** (gray) and **Edit** (blue) modes of your notebook.
-- Command mode allows you to edit notebook-level features, and Edit mode changes the content of cells.
-- When in Command mode (esc/gray),
-  - The <kbd>b</kbd> key will make a new cell below the currently selected cell.
-  - The <kbd>a</kbd> key will make one above.
-  - The <kbd>x</kbd> key will delete the current cell.
-  - The <kbd>z</kbd> key will undo your last cell operation (which could be a deletion, creation, etc).
-- All actions can be done using the menus, but there are lots of keyboard shortcuts to speed things up.
+- <kbd>Esc</kbd>와 <kbd>Return</kbd>을 번갈아 누르면 코드 셀의 바깥쪽 테두리가 회색에서 파란색으로 바뀝니다.
+- 이것은 노트북의 **명령** (회색) 및 **편집** (파란색) 모드입니다.
+- 명령 모드를 사용하면 노트북 수준 기능을 편집할 수 있고 편집 모드는 셀의 내용을 변경합니다.
+- 명령 모드(esc/회색)일 때,
+  - <kbd>b</kbd> 키는 현재 선택된 셀 아래에 새 셀을 만듭니다.
+  - <kbd>a</kbd> 키는 위에 하나를 만듭니다.
+  - <kbd>x</kbd> 키는 현재 셀을 삭제합니다.
+  - <kbd>z</kbd> 키는 마지막 셀 작업을 취소합니다(삭제, 생성 등일 수 있음).
+- 모든 작업은 메뉴를 사용하여 수행할 수 있지만 속도를 높이는 많은 키보드 단축키가 있습니다.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Command Vs. Edit
+## 명령 대 편집
 
-In the Jupyter notebook page are you currently in Command or Edit mode?  
-Switch between the modes.
-Use the shortcuts to generate a new cell.
-Use the shortcuts to delete a cell.
-Use the shortcuts to undo the last cell operation you performed.
+주피터 노트북 페이지에서 현재 명령 모드에 있습니까, 아니면 편집 모드에 있습니까?
+모드 간에 전환합니다.
+단축키를 사용하여 새 셀을 생성합니다.
+단축키를 사용하여 셀을 삭제합니다.
+단축키를 사용하여 수행한 마지막 셀 작업을 취소합니다.
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-Command mode has a grey border and Edit mode has a blue border.
-Use <kbd>Esc</kbd> and <kbd>Return</kbd> to switch between modes.
-You need to be in Command mode (Press <kbd>Esc</kbd> if your cell is blue).  Type <kbd>b</kbd> or <kbd>a</kbd>.
-You need to be in Command mode (Press <kbd>Esc</kbd> if your cell is blue).  Type <kbd>x</kbd>.
-You need to be in Command mode (Press <kbd>Esc</kbd> if your cell is blue).  Type <kbd>z</kbd>.
-
-
+명령 모드는 회색 테두리가 있고 편집 모드는 파란색 테두리가 있습니다.
+<kbd>Esc</kbd>와 <kbd>Return</kbd>을 사용하여 모드 간에 전환합니다.
+명령 모드에 있어야 합니다(셀이 파란색이면 <kbd>Esc</kbd>를 누름). <kbd>b</kbd> 또는 <kbd>a</kbd>를 입력합니다.
+명령 모드에 있어야 합니다(셀이 파란색이면 <kbd>Esc</kbd>를 누름). <kbd>x</kbd>를 입력합니다.
+명령 모드에 있어야 합니다(셀이 파란색이면 <kbd>Esc</kbd>를 누름). <kbd>z</kbd>를 입력합니다.
 
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-### Use the keyboard and mouse to select and edit cells.
+### 키보드와 마우스를 사용하여 셀을 선택하고 편집합니다.
 
-- Pressing the <kbd>Return</kbd> key turns the border blue and engages Edit mode, which allows
-  you to type within the cell.
-- Because we want to be able to write many lines of code in a single cell,
-  pressing the <kbd>Return</kbd> key when in Edit mode (blue) moves the cursor to the next line
-  in the cell just like in a text editor.
-- We need some other way to tell the Notebook we want to run what's in the cell.
-- Pressing <kbd>Shift</kbd>\+<kbd>Return</kbd> together will execute the contents of the cell.
-- Notice that the <kbd>Return</kbd> and <kbd>Shift</kbd> keys on the right of the keyboard are
-  right next to each other.
+- <kbd>Return</kbd> 키를 누르면 테두리가 파란색으로 바뀌고 편집 모드가 되어 셀 내에 입력할 수 있습니다.
+- 단일 셀에 여러 줄의 코드를 작성할 수 있어야 하므로,
+  편집 모드(파란색)에서 <kbd>Return</kbd> 키를 누르면 텍스트 편집기에서처럼 커서가 셀의 다음 줄로 이동합니다.
+- 노트북에 셀의 내용을 실행하라고 지시하는 다른 방법이 필요합니다.
+- <kbd>Shift</kbd>+<kbd>Return</kbd>을 함께 누르면 셀의 내용이 실행됩니다.
+- 키보드 오른쪽의 <kbd>Return</kbd>과 <kbd>Shift</kbd> 키는 서로 바로 옆에 있습니다.
 
-### The Notebook will turn Markdown into pretty-printed documentation.
+### 노트북은 마크다운을 예쁘게 인쇄된 문서로 변환합니다.
 
-- Notebooks can also render [Markdown][markdown].
-  - A simple plain-text format for writing lists, links,
-    and other things that might go into a web page.
-  - Equivalently, a subset of HTML that looks like what you'd send in an old-fashioned email.
-- Turn the current cell into a Markdown cell by entering the Command mode (<kbd>Esc</kbd>/gray)
-  and press the <kbd>M</kbd> key.
-- `In [ ]:` will disappear to show it is no longer a code cell and you will be able to write in
-  Markdown.
-- Turn the current cell into a Code cell by entering the Command mode (<kbd>Esc</kbd>/gray) and
-  press the <kbd>y</kbd> key.
+- 노트북은 [마크다운][markdown]도 렌더링할 수 있습니다.
+  - 목록, 링크 및 웹 페이지에 들어갈 수 있는 기타 항목을 작성하기 위한 간단한 일반 텍스트 형식입니다.
+  - 또는 구식 이메일에서 보낼 것과 같은 HTML의 하위 집합입니다.
+- 명령 모드(<kbd>Esc</kbd>/회색)로 들어가 <kbd>M</kbd> 키를 눌러 현재 셀을 마크다운 셀로 변환합니다.
+- `In [ ]:`가 사라져 더 이상 코드 셀이 아님을 표시하고 마크다운으로 작성할 수 있습니다.
+- 명령 모드(<kbd>Esc</kbd>/회색)로 들어가 <kbd>y</kbd> 키를 눌러 현재 셀을 코드 셀로 변환합니다.
 
-### Markdown does most of what HTML does.
+### 마크다운은 HTML이 하는 대부분의 작업을 수행합니다.
 
-Table: Showing some markdown syntax and its rendered output.
+표: 일부 마크다운 구문과 렌더링된 출력을 보여줍니다.
 
 +---------------------------------------+------------------------------------------------+
-| Markdown code                         | Rendered output                                |
+| 마크다운 코드                         | 렌더링된 출력                                  |
 +=======================================+================================================+
 +---------------------------------------+------------------------------------------------+
 | ```                                   | <p></p>                                        |
-| *   Use asterisks                     | -   Use asterisks                              |
-| *   to create                         | -   to create                                  |
-| *   bullet lists.                     | -   bullet lists.                              |
+| *   별표 사용                         | -   별표 사용                                  |
+| *   생성하기                          | -   생성하기                                   |
+| *   글머리 기호 목록.                 | -   글머리 기호 목록.                          |
 | ```                                   |                                                |
 +---------------------------------------+------------------------------------------------+
 +---------------------------------------+------------------------------------------------+
 | ```                                   | <p></p>                                        |
-| 1.   Use numbers                      | 1.   Use numbers                               |
-| 1.   to create                        | 2.   to create                                 |
-| 1.   bullet lists.                    | 3.   numbered lists.                           |
+| 1.   숫자 사용                        | 1.   숫자 사용                                 |
+| 1.   생성하기                         | 2.   생성하기                                  |
+| 1.   번호 매기기 목록.                | 3.   번호 매기기 목록.                         |
 | ```                                   |                                                |
 +---------------------------------------+------------------------------------------------+
 +---------------------------------------+------------------------------------------------+
 | ```                                   | <p></p>                                        |
-| *  You can use indents                | - You can use indents                          |
-|   *  To create sublists               |   - To create sublists                         |
-|   *  of the same type                 |   - of the same type                           |
-| *  Or sublists                        | - Or sublists                                  |
-|   1. Of different                     |   1. Of different                              |
-|   1. types                            |   2. types                                     |
+| *  들여쓰기 사용 가능                 | - 들여쓰기 사용 가능                           |
+|   *  하위 목록 생성                   |   - 하위 목록 생성                             |
+|   *  동일한 유형의                    |   - 동일한 유형의                              |
+| *  또는 하위 목록                     | - 또는 하위 목록                               |
+|   1. 다른                             |   1. 다른                                      |
+|   1. 유형의                           |   2. 유형의                                    |
 | ```                                   |                                                |
 +---------------------------------------+------------------------------------------------+
 +---------------------------------------+------------------------------------------------+
 | ```                                   | <p></p>                                        |
-| # A Level-1 Heading                   | ## A Level-1 Heading                           |
+| # 수준 1 제목                         | ## 수준 1 제목                                 |
 | ```                                   |                                                |
 +---------------------------------------+------------------------------------------------+
 +---------------------------------------+------------------------------------------------+
 | ```                                   | <p></p>                                        |
-| ## A Level-2 Heading (etc.)           | ### A Level-2 Heading (etc.)                   |
+| ## 수준 2 제목 (등)                   | ### 수준 2 제목 (등)                           |
 | ```                                   |                                                |
 +---------------------------------------+------------------------------------------------+
 +---------------------------------------+------------------------------------------------+
 | ```                                   | <p></p>                                        |
-| Line breaks                           | Line breaks                                    |
-| don't matter.                         | don't matter.                                  |
+| 줄 바꿈은                             | 줄 바꿈은                                      |
+| 중요하지 않습니다.                    | 중요하지 않습니다.                             |
 |                                       |                                                |
-| But blank lines                       | But blank lines                                |
-| create new paragraphs.                | create new paragraphs.                         |
+| 그러나 빈 줄은                        | 그러나 빈 줄은                                 |
+| 새 단락을 만듭니다.                   | 새 단락을 만듭니다.                            |
 | ```                                   |                                                |
 +---------------------------------------+------------------------------------------------+
 +---------------------------------------+------------------------------------------------+
 | ```                                   | <p></p>                                        |
-| [Links](http://software-carpentry.org)| [Links](https://software-carpentry.org)        |
-| are created with `[...](...)`.        | are created with `[...](...)`.                 |
-| Or use [named links][data-carp].      | Or use [named links][data_carpentry].          |
+| [링크](http://software-carpentry.org) | [링크](https://software-carpentry.org)         |
+| 는 `[...](...)`로 생성됩니다.         | 는 `[...](...)`로 생성됩니다.                  |
+| 또는 [이름 있는 링크][data-carp] 사용.| 또는 [이름 있는 링크][data_carpentry] 사용.    |
 |                                       |                                                |
 | [data-carp]: http://datacarpentry.org |                                                |
 | ```                                   |                                                |
@@ -400,33 +344,33 @@ Table: Showing some markdown syntax and its rendered output.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Creating Lists in Markdown
+## 마크다운으로 목록 만들기
 
-Create a nested list in a Markdown cell in a notebook that looks like this:
+노트북의 마크다운 셀에 다음과 같은 중첩 목록을 만듭니다.
 
-1. Get funding.
-2. Do work.
-  - Design experiment.
-  - Collect data.
-  - Analyze.
-3. Write up.
-4. Publish.
+1. 자금 확보.
+2. 작업 수행.
+  - 실험 설계.
+  - 데이터 수집.
+  - 분석.
+3. 작성.
+4. 게시.
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-This challenge integrates both the numbered list and bullet list.
-Note that the bullet list is indented 2 spaces so that it is inline with the items of the numbered list.
+이 도전 과제는 번호 매기기 목록과 글머리 기호 목록을 모두 통합합니다.
+글머리 기호 목록은 번호 매기기 목록의 항목과 인라인이 되도록 2칸 들여쓰기됩니다.
 
 ```
-1.  Get funding.
-2.  Do work.
-    *   Design experiment.
-    *   Collect data.
-    *   Analyze.
-3.  Write up.
-4.  Publish.
+1.  자금 확보.
+2.  작업 수행.
+    *   실험 설계.
+    *   데이터 수집.
+    *   분석.
+3.  작성.
+4.  게시.
 ```
 
 :::::::::::::::::::::::::
@@ -435,11 +379,10 @@ Note that the bullet list is indented 2 spaces so that it is inline with the ite
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## More Math
+## 추가 수학
 
-What is displayed when a Python cell in a notebook
-that contains several calculations is executed?
-For example, what happens when this cell is executed?
+여러 계산이 포함된 노트북의 파이썬 셀이 실행될 때 무엇이 표시됩니까?
+예를 들어, 이 셀이 실행되면 어떻게 됩니까?
 
 ```python
 7 * 3
@@ -448,9 +391,9 @@ For example, what happens when this cell is executed?
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-Python returns the output of the last calculation.
+파이썬은 마지막 계산의 출력을 반환합니다.
 
 ```python
 3
@@ -462,30 +405,27 @@ Python returns the output of the last calculation.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Change an Existing Cell from Code to Markdown
+## 기존 셀을 코드에서 마크다운으로 변경
 
-What happens if you write some Python in a code cell
-and then you switch it to a Markdown cell?
-For example,
-put the following in a code cell:
+코드 셀에 일부 파이썬을 작성한 다음 마크다운 셀로 전환하면 어떻게 됩니까?
+예를 들어, 코드 셀에 다음을 넣습니다.
 
 ```python
 x = 6 * 7 + 12
 print(x)
 ```
 
-And then run it with <kbd>Shift</kbd>\+<kbd>Return</kbd> to be sure that it works as a code cell.
-Now go back to the cell and use <kbd>Esc</kbd> then <kbd>m</kbd> to switch the cell to Markdown
-and "run" it with <kbd>Shift</kbd>\+<kbd>Return</kbd>.
-What happened and how might this be useful?
+그런 다음 <kbd>Shift</kbd>+<kbd>Return</kbd>으로 실행하여 코드 셀로 작동하는지 확인합니다.
+이제 셀로 돌아가서 <kbd>Esc</kbd> 다음 <kbd>m</kbd>을 사용하여 셀을 마크다운으로 전환하고 <kbd>Shift</kbd>+<kbd>Return</kbd>으로 "실행"합니다.
+무슨 일이 일어났으며 이것이 어떻게 유용할 수 있습니까?
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-The Python code gets treated like Markdown text.
-The lines appear as if they are part of one contiguous paragraph.
-This could be useful to temporarily turn on and off cells in notebooks that get used for multiple purposes.
+파이썬 코드는 마크다운 텍스트처럼 처리됩니다.
+줄은 하나의 연속적인 단락의 일부인 것처럼 나타납니다.
+이것은 여러 용도로 사용되는 노트북의 셀을 일시적으로 켜고 끄는 데 유용할 수 있습니다.
 
 ```python
 x = 6 * 7 + 12 print(x)
@@ -497,42 +437,38 @@ x = 6 * 7 + 12 print(x)
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Equations
+## 방정식
 
-Standard Markdown (such as we're using for these notes) won't render equations,
-but the Notebook will.
-Create a new Markdown cell
-and enter the following:
+표준 마크다운(이 노트에 사용하는 것과 같은)은 방정식을 렌더링하지 않지만 노트북은 렌더링합니다.
+새 마크다운 셀을 만들고 다음을 입력합니다.
 
 ```
 $\sum_{i=1}^{N} 2^{-i} \approx 1$
 ```
 
-(It's probably easier to copy and paste.)
-What does it display?
-What do you think the underscore, `_`, circumflex, `^`, and dollar sign, `$`, do?
+(복사하여 붙여넣는 것이 더 쉬울 것입니다.)
+무엇을 표시합니까?
+밑줄, `_`, 곡절 부호, `^`, 달러 기호, `$`는 무엇을 한다고 생각하십니까?
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-The notebook shows the equation as it would be rendered from LaTeX equation syntax.
-The dollar sign, `$`, is used to tell Markdown that the text in between is a LaTeX equation.
-If you're not familiar with LaTeX,  underscore, `_`, is used for subscripts and circumflex, `^`, is used for superscripts.
-A pair of curly braces, `{` and `}`, is used to group text together so that the statement `i=1` becomes the subscript and `N` becomes the superscript.
-Similarly, `-i` is in curly braces to make the whole statement the superscript for `2`.
-`\sum` and `\approx` are LaTeX commands for "sum over" and "approximate" symbols.
-
-
+노트북은 LaTeX 방정식 구문에서 렌더링되는 것처럼 방정식을 표시합니다.
+달러 기호, `$`,는 마크다운에게 그 사이의 텍스트가 LaTeX 방정식임을 알리는 데 사용됩니다.
+LaTeX에 익숙하지 않은 경우 밑줄, `_`,은 아래 첨자에 사용되고 곡절 부호, `^`,은 위 첨자에 사용됩니다.
+한 쌍의 중괄호, `{` 및 `}`,는 텍스트를 함께 그룹화하는 데 사용되므로 `i=1` 문이 아래 첨자가 되고 `N`이 위 첨자가 됩니다.
+마찬가지로 `-i`는 전체 문을 `2`의 위 첨자로 만들기 위해 중괄호 안에 있습니다.
+`\sum` 및 `\approx`는 "합계" 및 "근사" 기호에 대한 LaTeX 명령입니다.
 
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Closing JupyterLab
+## JupyterLab 닫기
 
-- From the Menu Bar select the "File" menu and then choose "Shut Down" at the bottom of the dropdown menu. You will be prompted to confirm that you wish to shutdown the JupyterLab server (don't forget to save your work!). Click "Shut Down" to shutdown the JupyterLab server.
-- To restart the JupyterLab server you will need to re-run the following command from a shell.
+- 메뉴 모음에서 "파일" 메뉴를 선택한 다음 드롭다운 메뉴 하단의 "종료"를 선택합니다. JupyterLab 서버를 종료할지 확인하는 메시지가 표시됩니다(작업을 저장하는 것을 잊지 마십시오!). "종료"를 클릭하여 JupyterLab 서버를 종료합니다.
+- JupyterLab 서버를 다시 시작하려면 셸에서 다음 명령을 다시 실행해야 합니다.
 
 ```
 $ jupyter lab
@@ -540,14 +476,11 @@ $ jupyter lab
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Closing JupyterLab
+## JupyterLab 닫기
 
-Practice closing and restarting the JupyterLab server.
-
+JupyterLab 서버를 닫고 다시 시작하는 연습을 하십시오.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
 
 [jupyterlab]: https://jupyterlab.readthedocs.io/en/stable/
 [jupyterlab-ui]: https://jupyterlab.readthedocs.io/en/stable/user/interface.html
@@ -555,16 +488,13 @@ Practice closing and restarting the JupyterLab server.
 [markdown]: https://en.wikipedia.org/wiki/Markdown
 [data_carpentry]: https://datacarpentry.org
 
-
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- Python scripts are plain text files.
-- Use the Jupyter Notebook for editing and running Python.
-- The Notebook has Command and Edit modes.
-- Use the keyboard and mouse to select and edit cells.
-- The Notebook will turn Markdown into pretty-printed documentation.
-- Markdown does most of what HTML does.
+- 파이썬 스크립트는 일반 텍스트 파일입니다.
+- 파이썬 편집 및 실행에는 주피터 노트북을 사용합니다.
+- 노트북에는 명령 모드와 편집 모드가 있습니다.
+- 키보드와 마우스를 사용하여 셀을 선택하고 편집합니다.
+- 노트북은 마크다운을 예쁘게 인쇄된 문서로 변환합니다.
+- 마크다운은 HTML이 하는 대부분의 작업을 수행합니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-

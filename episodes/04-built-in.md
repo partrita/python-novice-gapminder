@@ -1,44 +1,43 @@
 ---
-title: Built-in Functions and Help
+title: 내장 함수 및 도움말
 teaching: 15
 exercises: 10
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain the purpose of functions.
-- Correctly call built-in Python functions.
-- Correctly nest calls to built-in functions.
-- Use help to display documentation for built-in functions.
-- Correctly describe situations in which SyntaxError and NameError occur.
+- 함수의 목적을 설명합니다.
+- 내장 파이썬 함수를 올바르게 호출합니다.
+- 내장 함수 호출을 올바르게 중첩합니다.
+- 도움말을 사용하여 내장 함수의 설명서를 표시합니다.
+- SyntaxError 및 NameError가 발생하는 상황을 올바르게 설명합니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How can I use built-in functions?
-- How can I find out what they do?
-- What kind of errors can occur in programs?
+- 내장 함수는 어떻게 사용할 수 있나요?
+- 내장 함수가 무엇을 하는지 어떻게 알 수 있나요?
+- 프로그램에서 어떤 종류의 오류가 발생할 수 있나요?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Use comments to add documentation to programs.
+## 주석을 사용하여 프로그램에 문서를 추가합니다.
 
 ```python
-# This sentence isn't executed by Python.
-adjustment = 0.5   # Neither is this - anything after '#' is ignored.
+# 이 문장은 파이썬에서 실행되지 않습니다.
+adjustment = 0.5   # 이것도 마찬가지입니다. '#' 뒤의 모든 것은 무시됩니다.
 ```
 
-## A function may take zero or more arguments.
+## 함수는 0개 이상의 인수를 가질 수 있습니다.
 
-- We have seen some functions already --- now let's take a closer look.
-- An *argument* is a value passed into a function.
-- `len` takes exactly one.
-- `int`, `str`, and `float` create a new value from an existing one.
-- `print` takes zero or more.
-- `print` with no arguments prints a blank line.
-  - Must always use parentheses, even if they're empty,
-    so that Python knows a function is being called.
+- 이미 일부 함수를 보았습니다. 이제 더 자세히 살펴보겠습니다.
+- *인수*는 함수에 전달되는 값입니다.
+- `len`은 정확히 하나를 사용합니다.
+- `int`, `str`, `float`는 기존 값에서 새 값을 만듭니다.
+- `print`는 0개 이상을 사용합니다.
+- 인수가 없는 `print`는 빈 줄을 인쇄합니다.
+  - 파이썬이 함수가 호출되고 있음을 알 수 있도록 괄호가 비어 있더라도 항상 사용해야 합니다.
 
 ```python
 print('before')
@@ -52,12 +51,10 @@ before
 after
 ```
 
-## Every function returns something.
+## 모든 함수는 무언가를 반환합니다.
 
-- Every function call produces some result.
-- If the function doesn't have a useful result to return,
-  it usually returns the special value `None`. `None` is a Python
-  object that stands in anytime there is no value.
+- 모든 함수 호출은 어떤 결과를 생성합니다.
+- 함수가 반환할 유용한 결과가 없는 경우 일반적으로 특수 값 `None`을 반환합니다. `None`은 값이 없을 때마다 대신 사용되는 파이썬 객체입니다.
 
 ```python
 result = print('example')
@@ -69,12 +66,12 @@ example
 result of print is None
 ```
 
-## Commonly-used built-in functions include `max`, `min`, and `round`.
+## 일반적으로 사용되는 내장 함수에는 `max`, `min`, `round`가 있습니다.
 
-- Use `max` to find the largest value of one or more values.
-- Use `min` to find the smallest.
-- Both work on character strings as well as numbers.
-  - "Larger" and "smaller" use (0-9, A-Z, a-z) to compare letters.
+- `max`를 사용하여 하나 이상의 값 중 가장 큰 값을 찾습니다.
+- `min`을 사용하여 가장 작은 값을 찾습니다.
+- 둘 다 숫자뿐만 아니라 문자열에서도 작동합니다.
+  - "더 큼"과 "더 작음"은 (0-9, A-Z, a-z)를 사용하여 문자를 비교합니다.
 
 ```python
 print(max(1, 2, 3))
@@ -86,11 +83,11 @@ print(min('a', 'A', '0'))
 0
 ```
 
-## Functions may only work for certain (combinations of) arguments.
+## 함수는 특정 인수(조합)에 대해서만 작동할 수 있습니다.
 
-- `max` and `min` must be given at least one argument.
-  - "Largest of the empty set" is a meaningless question.
-- And they must be given things that can meaningfully be compared.
+- `max`와 `min`에는 적어도 하나의 인수가 주어져야 합니다.
+  - "빈 집합의 가장 큰 값"은 의미 없는 질문입니다.
+- 그리고 의미 있게 비교할 수 있는 것이 주어져야 합니다.
 
 ```python
 print(max(1, 'a'))
@@ -104,10 +101,10 @@ TypeError                                 Traceback (most recent call last)
 TypeError: '>' not supported between instances of 'str' and 'int'
 ```
 
-## Functions may have default values for some arguments.
+## 함수에는 일부 인수에 대한 기본값이 있을 수 있습니다.
 
-- `round` will round off a floating-point number.
-- By default, rounds to zero decimal places.
+- `round`는 부동 소수점 숫자를 반올림합니다.
+- 기본적으로 소수점 이하 0자리로 반올림합니다.
 
 ```python
 round(3.712)
@@ -117,7 +114,7 @@ round(3.712)
 4
 ```
 
-- We can specify the number of decimal places we want.
+- 원하는 소수 자릿수를 지정할 수 있습니다.
 
 ```python
 round(3.712, 1)
@@ -127,20 +124,20 @@ round(3.712, 1)
 3.7
 ```
 
-## Functions attached to objects are called methods
+## 객체에 연결된 함수를 메서드라고 합니다.
 
-- Functions take another form that will be common in the pandas episodes.
-- Methods have parentheses like functions, but come after the variable.
-- Some methods are used for internal Python operations, and are marked with double underlines.
+- 함수는 판다스 에피소드에서 흔히 볼 수 있는 또 다른 형태를 취합니다.
+- 메서드는 함수처럼 괄호가 있지만 변수 뒤에 옵니다.
+- 일부 메서드는 내부 파이썬 작업에 사용되며 이중 밑줄로 표시됩니다.
 
 ```python
-my_string = 'Hello world!'  # creation of a string object 
+my_string = 'Hello world!'  # 문자열 객체 생성
 
-print(len(my_string))       # the len function takes a string as an argument and returns the length of the string
+print(len(my_string))       # len 함수는 문자열을 인수로 받아 문자열의 길이를 반환합니다.
 
-print(my_string.swapcase()) # calling the swapcase method on the my_string object
+print(my_string.swapcase()) # my_string 객체에서 swapcase 메서드 호출
 
-print(my_string.__len__())  # calling the internal __len__ method on the my_string object, used by len(my_string)
+print(my_string.__len__())  # my_string 객체에서 내부 __len__ 메서드 호출, len(my_string)에서 사용됨
 
 ```
 
@@ -150,13 +147,13 @@ hELLO WORLD!
 12
 ```
 
-- You might even see them chained together.  They operate left to right.
+- 체인으로 연결된 것을 볼 수도 있습니다. 왼쪽에서 오른쪽으로 작동합니다.
 
 ```python
-print(my_string.isupper())          # Not all the letters are uppercase
-print(my_string.upper())            # This capitalizes all the letters
+print(my_string.isupper())          # 모든 글자가 대문자는 아닙니다.
+print(my_string.upper())            # 모든 글자를 대문자로 바꿉니다.
 
-print(my_string.upper().isupper())  # Now all the letters are uppercase
+print(my_string.upper().isupper())  # 이제 모든 글자가 대문자입니다.
 ```
 
 ```output
@@ -165,9 +162,9 @@ HELLO WORLD
 True
 ```
 
-## Use the built-in function `help` to get help for a function.
+## 내장 함수 `help`를 사용하여 함수에 대한 도움말을 얻습니다.
 
-- Every built-in function has online documentation.
+- 모든 내장 함수에는 온라인 설명서가 있습니다.
 
 ```python
 help(round)
@@ -183,20 +180,19 @@ round(number, ndigits=None)
     the return value has the same type as the number.  ndigits may be negative.
 ```
 
-## The Jupyter Notebook has two ways to get help.
+## 주피터 노트북에는 도움말을 얻는 두 가지 방법이 있습니다.
 
-- Option 1: Place the cursor near where the function is invoked in a cell
-  (i.e., the function name or its parameters),
-  - Hold down <kbd>Shift</kbd>, and press <kbd>Tab</kbd>.
-  - Do this several times to expand the information returned.
-- Option 2: Type the function name in a cell with a question mark after it. Then run the cell.
+- 옵션 1: 셀에서 함수가 호출되는 위치 근처에 커서를 놓습니다(즉, 함수 이름 또는 해당 매개변수).
+  - <kbd>Shift</kbd>를 누른 상태에서 <kbd>Tab</kbd>을 누릅니다.
+  - 반환된 정보를 확장하려면 이 작업을 여러 번 수행하십시오.
+- 옵션 2: 셀에 함수 이름을 입력하고 그 뒤에 물음표를 붙입니다. 그런 다음 셀을 실행합니다.
 
-## Python reports a syntax error when it can't understand the source of a program.
+## 파이썬은 프로그램의 소스를 이해할 수 없을 때 구문 오류를 보고합니다.
 
-- Won't even try to run the program if it can't be parsed.
+- 구문 분석할 수 없으면 프로그램을 실행하려고 시도조차 하지 않습니다.
 
 ```python
-# Forgot to close the quote marks around the string.
+# 문자열 주위의 따옴표를 닫는 것을 잊었습니다.
 name = 'Feng
 ```
 
@@ -208,7 +204,7 @@ SyntaxError: EOL while scanning string literal
 ```
 
 ```python
-# An extra '=' in the assignment.
+# 할당에 추가 '='.
 age = = 52
 ```
 
@@ -219,7 +215,7 @@ age = = 52
 SyntaxError: invalid syntax
 ```
 
-- Look more closely at the error message:
+- 오류 메시지를 더 자세히 살펴보십시오.
 
 ```python
 print("hello world"
@@ -232,99 +228,93 @@ print("hello world"
 SyntaxError: unexpected EOF while parsing
 ```
 
-- The message indicates a problem on first line of the input ("line 1").
-  - In this case the "ipython-input" section of the file name tells us that
-    we are working with input into IPython,
-    the Python interpreter used by the Jupyter Notebook.
-- The `-6-` part of the filename indicates that
-  the error occurred in cell 6 of our Notebook.
-- Next is the problematic line of code,
-  indicating the problem with a `^` pointer.
+- 메시지는 입력의 첫 번째 줄("line 1")에 문제가 있음을 나타냅니다.
+  - 이 경우 파일 이름의 "ipython-input" 섹션은 우리가 주피터 노트북에서 사용하는 파이썬 인터프리터인 IPython으로의 입력으로 작업하고 있음을 알려줍니다.
+- 파일 이름의 `-6-` 부분은 노트북의 셀 6에서 오류가 발생했음을 나타냅니다.
+- 다음은 문제가 있는 코드 줄이며 `^` 포인터로 문제를 나타냅니다.
 
-## Python reports a runtime error when something goes wrong while a program is executing. {#runtime-error}
+## 파이썬은 프로그램 실행 중에 문제가 발생하면 런타임 오류를 보고합니다. {#runtime-error}
 
 ```python
 age = 53
-remaining = 100 - aege # mis-spelled 'age'
+remaining = 100 - aege # 'age'를 잘못 입력했습니다.
 ```
 
 ```error
 NameError                                 Traceback (most recent call last)
 <ipython-input-59-1214fb6c55fc> in <module>
       1 age = 53
-----> 2 remaining = 100 - aege # mis-spelled 'age'
+----> 2 remaining = 100 - aege # 'age'를 잘못 입력했습니다.
 
 NameError: name 'aege' is not defined
 ```
 
-- Fix syntax errors by reading the source and runtime errors by tracing execution.
+- 소스를 읽어 구문 오류를 수정하고 실행을 추적하여 런타임 오류를 수정합니다.
 
-## Other ways to get help
-There are several other ways that people often get help when they are stuck with their Python code.
+## 도움을 받는 다른 방법
+사람들이 파이썬 코드로 막혔을 때 도움을 받는 다른 여러 가지 방법이 있습니다.
 
-* Search the internet: 
-  paste the last line of your error message or the word "python" and a short description of what you want to do into your favourite search engine 
-  and you will usually find several examples where other people have encountered the same problem and came looking for help.
-    * [StackOverflow](https://stackoverflow.com/questions) can be particularly helpful for this: answers to questions are presented as a ranked thread ordered according to how useful other users found them to be.
-    * **Take care:** copying and pasting code written by somebody else is risky unless you understand exactly what it is doing!
-* ask somebody "in the real world". 
-  If you have a colleague or friend with more expertise in Python than you have, show them the problem you are having and ask them for help.
-* Sometimes, the act of articulating your question can help you to identify what is going wrong.
-  This is known as ["rubber duck debugging"](https://en.wikipedia.org/wiki/Rubber_duck_debugging) among programmers.
+* 인터넷 검색:
+  오류 메시지의 마지막 줄이나 "python"이라는 단어와 하고 싶은 일에 대한 간단한 설명을 좋아하는 검색 엔진에 붙여넣으면 다른 사람들이 동일한 문제에 직면하여 도움을 요청한 여러 예를 보통 찾을 수 있습니다.
+    * [StackOverflow](https://stackoverflow.com/questions)는 특히 이 점에 도움이 될 수 있습니다. 질문에 대한 답변은 다른 사용자가 얼마나 유용하다고 생각했는지에 따라 순위가 매겨진 스레드로 제공됩니다.
+    * **주의:** 다른 사람이 작성한 코드를 복사하여 붙여넣는 것은 그것이 무엇을 하는지 정확히 이해하지 않는 한 위험합니다!
+* "실제 세계"에서 누군가에게 물어보십시오.
+  자신보다 파이썬에 더 많은 전문 지식을 가진 동료나 친구가 있다면 겪고 있는 문제를 보여주고 도움을 요청하십시오.
+* 때로는 질문을 명확하게 표현하는 행위 자체가 무엇이 잘못되었는지 파악하는 데 도움이 될 수 있습니다.
+  이것은 프로그래머들 사이에서 ["고무 오리 디버깅"](https://en.wikipedia.org/wiki/Rubber_duck_debugging)으로 알려져 있습니다.
 
-### Generative AI
+### 생성형 AI
 
-::::::::::::::::::::::::::::: instructor
+::::::::::::::::::::::::::::: 강사
 
-### Choose how to teach this section
-The section on generative AI is intended to be concise but Instructors may choose to devote more time to the topic in a workshop.
-Depending on your own level of experience and comfort with talking about and using these tools, you could choose to do any of the following:
+### 이 섹션을 가르치는 방법 선택
+생성형 AI에 대한 섹션은 간결하게 작성되었지만 강사는 워크숍에서 이 주제에 더 많은 시간을 할애할 수 있습니다.
+이러한 도구에 대해 이야기하고 사용하는 것에 대한 자신의 경험 수준과 편안함에 따라 다음 중 하나를 선택할 수 있습니다.
 
-* Explain how large language models work and are trained, and/or the difference between generative AI, other forms of AI that currently exist, and the limits of what LLMs can do (e.g., they can't "reason").
-* Demonstrate how you recommend that learners use generative AI.
-* Discuss the ethical concerns listed below, as well as others that you are aware of, to help learners make an informed choice about whether or not to use generative AI tools.
+* 대규모 언어 모델이 어떻게 작동하고 훈련되는지, 그리고/또는 생성형 AI, 현재 존재하는 다른 형태의 AI 간의 차이점, LLM이 할 수 있는 일의 한계(예: "추론"할 수 없음)를 설명합니다.
+* 학습자에게 생성형 AI를 사용하는 방법을 시연합니다.
+* 아래에 나열된 윤리적 문제와 자신이 알고 있는 다른 문제를 논의하여 학습자가 생성형 AI 도구 사용 여부에 대해 정보에 입각한 선택을 하도록 돕습니다.
 
-This is a fast-moving technology. 
-If you are preparing to teach this section and you feel it has become outdated, please open an issue on the lesson repository to let the Maintainers know and/or a pull request to suggest updates and improvements.
+이것은 빠르게 움직이는 기술입니다.
+이 섹션을 가르칠 준비를 하고 있고 오래되었다고 생각되면 수업 리포지토리에서 문제를 열어 유지 관리자에게 알리거나 업데이트 및 개선 사항을 제안하는 풀 리퀘스트를 여십시오.
 
 ::::::::::::::::::::::::::::::::::::::::
 
-It is increasingly common for people to use _generative AI_ chatbots such as ChatGPT to get help while coding. 
-You will probably receive some useful guidance by presenting your error message to the chatbot and asking it what went wrong. 
-However, the way this help is provided by the chatbot is different. 
-Answers on StackOverflow have (probably) been given by a human as a direct response to the question asked. 
-But generative AI chatbots, which are based on an advanced statistical model, respond by generating the _most likely_ sequence of text that would follow the prompt they are given.
+코딩하는 동안 도움을 받기 위해 ChatGPT와 같은 _생성형 AI_ 챗봇을 사용하는 것이 점점 더 보편화되고 있습니다.
+오류 메시지를 챗봇에 제시하고 무엇이 잘못되었는지 물어보면 아마도 유용한 지침을 받을 수 있을 것입니다.
+그러나 이 도움말이 챗봇에 의해 제공되는 방식은 다릅니다.
+StackOverflow의 답변은 (아마도) 질문에 대한 직접적인 응답으로 인간이 제공했을 것입니다.
+그러나 고급 통계 모델을 기반으로 하는 생성형 AI 챗봇은 주어진 프롬프트 다음에 올 _가장 가능성 있는_ 텍스트 시퀀스를 생성하여 응답합니다.
 
-While responses from generative AI tools can often be helpful, they are not always reliable. 
-These tools sometimes generate plausible but incorrect or misleading information, so (just as with an answer found on the internet) it is essential to verify their accuracy.
-You need the knowledge and skills to be able to understand these responses, to judge whether or not they are accurate, and to fix any errors in the code it offers you.
+생성형 AI 도구의 응답은 종종 도움이 될 수 있지만 항상 신뢰할 수 있는 것은 아닙니다.
+이러한 도구는 때때로 그럴듯하지만 부정확하거나 오해의 소지가 있는 정보를 생성하므로 (인터넷에서 찾은 답변과 마찬가지로) 정확성을 확인하는 것이 중요합니다.
+이러한 응답을 이해하고 정확한지 여부를 판단하고 제공하는 코드의 오류를 수정할 수 있는 지식과 기술이 필요합니다.
 
-In addition to asking for help, programmers can use generative AI tools to generate code from scratch; extend, improve and reorganise existing code; translate code between programming languages; figure out what terms to use in a search of the internet; and more.
-However, there are drawbacks that you should be aware of.
+도움을 요청하는 것 외에도 프로그래머는 생성형 AI 도구를 사용하여 처음부터 코드를 생성하고, 기존 코드를 확장, 개선 및 재구성하고, 프로그래밍 언어 간에 코드를 번역하고, 인터넷 검색에 사용할 용어를 파악하는 등의 작업을 수행할 수 있습니다.
+그러나 알아야 할 단점이 있습니다.
 
-The models used by these tools have been "trained" on very large volumes of data, much of it taken from the internet, and the responses they produce reflect that training data, and may recapitulate its inaccuracies or biases.
-The environmental costs (energy and water use) of LLMs are a lot higher than other technologies, both during development (known as training) and when an individual user uses one (also called inference). For more information see the [AI Environmental Impact Primer](https://huggingface.co/blog/sasha/ai-environment-primer) developed by researchers at HuggingFace, an AI hosting platform. 
-Concerns also exist about the way the data for this training was obtained, with questions raised about whether the people developing the LLMs had permission to use it.
-Other ethical concerns have also been raised, such as reports that workers were exploited during the training process.
+이러한 도구에서 사용하는 모델은 대부분 인터넷에서 가져온 매우 많은 양의 데이터로 "훈련"되었으며, 생성하는 응답은 해당 훈련 데이터를 반영하며 부정확성이나 편견을 되풀이할 수 있습니다.
+LLM의 환경 비용(에너지 및 물 사용량)은 개발(훈련이라고 함) 중과 개별 사용자가 사용할 때(추론이라고도 함) 모두 다른 기술보다 훨씬 높습니다. 자세한 내용은 AI 호스팅 플랫폼인 HuggingFace의 연구원이 개발한 [AI 환경 영향 입문서](https://huggingface.co/blog/sasha/ai-environment-primer)를 참조하십시오.
+이 훈련을 위한 데이터가 어떻게 획득되었는지에 대한 우려도 존재하며, LLM을 개발하는 사람들이 그것을 사용할 권한이 있었는지에 대한 의문이 제기되었습니다.
+훈련 과정에서 노동자가 착취되었다는 보고와 같은 다른 윤리적 문제도 제기되었습니다.
 
-**We recommend that you avoid getting help from generative AI during the workshop** for several reasons:
+**워크숍 중에는 생성형 AI의 도움을 받지 않는 것이 좋습니다.** 몇 가지 이유가 있습니다.
 
-1. For most problems you will encounter at this stage, help and answers can be found among the first results returned by searching the internet.
-2. The foundational knowledge and skills you will learn in this lesson by writing and fixing your own programs  are essential to be able to evaluate the correctness and safety of any code you receive from online help or a generative AI chatbot. 
-   If you choose to use these tools in the future, the expertise you gain from learning and practising these fundamentals on your own will help you use them more effectively.
-3. As you start out with programming, the mistakes you make will be the kinds that have also been made -- and overcome! -- by everybody else who learned to program before you. 
-  Since these mistakes and the questions you are likely to have at this stage are common, they are also better represented than other, more specialised problems and tasks in the data that was used to train generative AI tools.
-  This means that a generative AI chatbot is _more likely to produce accurate responses_ to questions that novices ask, which could give you a false impression of how reliable they will be when you are ready to do things that are more advanced.
-
+1. 이 단계에서 접하게 될 대부분의 문제는 인터넷을 검색하여 얻은 첫 번째 결과 중에서 도움말과 답변을 찾을 수 있습니다.
+2. 이 수업에서 자신의 프로그램을 작성하고 수정하여 배우게 될 기본 지식과 기술은 온라인 도움말이나 생성형 AI 챗봇에서 받은 모든 코드의 정확성과 안전성을 평가할 수 있는 데 필수적입니다.
+   나중에 이러한 도구를 사용하기로 선택하면 이러한 기본 사항을 스스로 배우고 연습하여 얻은 전문 지식이 도구를 더 효과적으로 사용하는 데 도움이 될 것입니다.
+3. 프로그래밍을 시작하면서 저지르는 실수는 여러분 이전에 프로그래밍을 배운 다른 모든 사람들도 저질렀고 극복한 종류의 실수일 것입니다!
+  이러한 실수와 이 단계에서 가질 가능성이 있는 질문은 일반적이므로 생성형 AI 도구를 훈련하는 데 사용된 데이터에서 다른 더 전문화된 문제 및 작업보다 더 잘 표현됩니다.
+  이것은 생성형 AI 챗봇이 초보자가 묻는 질문에 _더 정확한 응답을 생성할 가능성이 더 높다는 것_을 의미하며, 이는 더 고급 작업을 할 준비가 되었을 때 얼마나 신뢰할 수 있는지에 대한 잘못된 인상을 줄 수 있습니다.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## What Happens When
+## 무슨 일이 일어날 때
 
-1. Explain in simple terms the order of operations in the following program:
-  when does the addition happen, when does the subtraction happen,
-  when is each function called, etc.
-2. What is the final value of `radiance`?
+1. 다음 프로그램의 연산 순서를 간단한 용어로 설명하십시오.
+  덧셈은 언제 일어나고, 뺄셈은 언제 일어나며,
+  각 함수는 언제 호출됩니까? 등
+2. `radiance`의 최종 값은 무엇입니까?
 
 ```python
 radiance = 1.0
@@ -333,29 +323,27 @@ radiance = max(2.1, 2.0 + min(radiance, 1.1 * radiance - 0.5))
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-1. Order of operations:
+1. 연산 순서:
   1. `1.1 * radiance = 1.1`
   2. `1.1 - 0.5 = 0.6`
   3. `min(radiance, 0.6) = 0.6`
   4. `2.0 + 0.6 = 2.6`
   5. `max(2.1, 2.6) = 2.6`
-2. At the end, `radiance = 2.6`
+2. 마지막에 `radiance = 2.6`
   
-  
-
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Spot the Difference
+## 차이점 찾기
 
-1. Predict what each of the `print` statements in the program below will print.
-2. Does `max(len(rich), poor)` run or produce an error message?
-  If it runs, does its result make any sense?
+1. 아래 프로그램의 각 `print` 문이 무엇을 인쇄할지 예측하십시오.
+2. `max(len(rich), poor)`는 실행됩니까, 아니면 오류 메시지를 생성합니까?
+  실행된다면 그 결과가 의미가 있습니까?
 
 ```python
 easy_string = "abc"
@@ -368,7 +356,7 @@ print(max(len(rich), len(poor)))
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
 ```python
 print(max(easy_string))
@@ -394,8 +382,7 @@ print(max(len(rich), len(poor)))
 4
 ```
 
-`max(len(rich), poor)` throws a TypeError. This turns into `max(4, 'tin')` and
-as we discussed earlier a string and integer cannot meaningfully be compared.
+`max(len(rich), poor)`는 TypeError를 발생시킵니다. 이것은 `max(4, 'tin')`으로 바뀌고 이전에 논의했듯이 문자열과 정수는 의미 있게 비교할 수 없습니다.
 
 ```error 
 TypeError                                 Traceback (most recent call last)
@@ -411,20 +398,15 @@ TypeError: '>' not supported between instances of 'str' and 'int'
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Why Not?
+## 왜 안되나요?
 
-Why is it that `max` and `min` do not return `None` when they are called with no arguments?
+`max`와 `min`이 인수가 없을 때 `None`을 반환하지 않는 이유는 무엇입니까?
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-`max` and `min` return TypeErrors in this case because the correct number of parameters
-was not supplied. If it just returned `None`, the error would be much harder to trace as it
-would likely be stored into a variable and used later in the program, only to likely throw
-a runtime error.
-
-
+`max`와 `min`은 올바른 수의 매개변수가 제공되지 않았기 때문에 이 경우 TypeError를 반환합니다. 만약 `None`만 반환했다면 오류를 추적하기가 훨씬 더 어려웠을 것입니다. 왜냐하면 변수에 저장되어 나중에 프로그램에서 사용될 가능성이 높으며 런타임 오류를 발생시킬 가능성이 높기 때문입니다.
 
 :::::::::::::::::::::::::
 
@@ -432,20 +414,15 @@ a runtime error.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Last Character of a String
+## 문자열의 마지막 문자
 
-If Python starts counting from zero,
-and `len` returns the number of characters in a string,
-what index expression will get the last character in the string `name`?
-(Note: we will see a simpler way to do this in a later episode.)
+파이썬이 0부터 세기 시작하고 `len`이 문자열의 문자 수를 반환한다면 어떤 인덱스 표현식이 문자열 `name`의 마지막 문자를 가져올까요? (참고: 나중 에피소드에서 더 간단한 방법을 보게 될 것입니다.)
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
 `name[len(name) - 1]`
-
-
 
 :::::::::::::::::::::::::
 
@@ -453,30 +430,24 @@ what index expression will get the last character in the string `name`?
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Explore the Python docs!
+## 파이썬 문서를 탐색하세요!
 
-The [official Python documentation](https://docs.python.org/3/) is arguably the most complete
-source of information about the language. It is available in different languages and contains a lot of useful
-resources. The [Built-in Functions page](https://docs.python.org/3/library/functions.html) contains a catalogue of
-all of these functions, including the ones that we've covered in this lesson. Some of these are more advanced and
-unnecessary at the moment, but others are very simple and useful.
+[공식 파이썬 문서](https://docs.python.org/3/)는 언어에 대한 가장 완벽한 정보 소스라고 할 수 있습니다. 다른 언어로 제공되며 많은 유용한 리소스가 포함되어 있습니다. [내장 함수 페이지](https://docs.python.org/3/library/functions.html)에는 이 수업에서 다룬 함수를 포함하여 모든 내장 함수 카탈로그가 포함되어 있습니다. 일부는 더 고급스럽고 현재는 불필요하지만 다른 일부는 매우 간단하고 유용합니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- Use comments to add documentation to programs.
-- A function may take zero or more arguments.
-- Commonly-used built-in functions include `max`, `min`, and `round`.
-- Functions may only work for certain (combinations of) arguments.
-- Functions may have default values for some arguments.
-- Use the built-in function `help` to get help for a function.
-- The Jupyter Notebook has two ways to get help.
-- Every function returns something.
-- Python reports a syntax error when it can't understand the source of a program.
-- Python reports a runtime error when something goes wrong while a program is executing.
-- Fix syntax errors by reading the source code, and runtime errors by tracing the program's execution.
+- 주석을 사용하여 프로그램에 문서를 추가합니다.
+- 함수는 0개 이상의 인수를 가질 수 있습니다.
+- 일반적으로 사용되는 내장 함수에는 `max`, `min`, `round`가 있습니다.
+- 함수는 특정 인수(조합)에 대해서만 작동할 수 있습니다.
+- 함수에는 일부 인수에 대한 기본값이 있을 수 있습니다.
+- 내장 함수 `help`를 사용하여 함수에 대한 도움말을 얻습니다.
+- 주피터 노트북에는 도움말을 얻는 두 가지 방법이 있습니다.
+- 모든 함수는 무언가를 반환합니다.
+- 파이썬은 프로그램의 소스를 이해할 수 없을 때 구문 오류를 보고합니다.
+- 파이썬은 프로그램 실행 중에 문제가 발생하면 런타임 오류를 보고합니다.
+- 소스 코드를 읽어 구문 오류를 수정하고 프로그램 실행을 추적하여 런타임 오류를 수정합니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-

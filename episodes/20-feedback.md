@@ -1,27 +1,25 @@
 ---
-title: Feedback
+title: 피드백
 teaching: 0
 exercises: 15
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Gather feedback on the class
+- 수업에 대한 피드백 수집
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How did the class go?
+- 수업은 어땠나요?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Gather feedback from participants.
+참가자들로부터 피드백을 수집합니다.
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- We are constantly seeking to improve this course.
+- 우리는 이 과정을 개선하기 위해 끊임없이 노력하고 있습니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-

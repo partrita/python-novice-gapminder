@@ -1,14 +1,12 @@
 ---
-title: Lunch
+title: 점심
 teaching: 0
 exercises: 0
 break: 45
 ---
 
-Over lunch, reflect on and discuss the following:
+점심을 먹으면서 다음 사항에 대해 성찰하고 토론해 보세요.
 
-- What sort of packages might you use in Python and why would you use them?
-- How would data need to be formatted to be used in Pandas data frames? Would the data you have meet these requirements?
-- What limitations or problems might you run into when thinking about how to apply what we've learned to your own projects or data?
-
-
+- 파이썬에서 어떤 종류의 패키지를 사용할 수 있으며 왜 사용해야 할까요?
+- 판다스 데이터 프레임에서 사용하려면 데이터를 어떻게 포맷해야 할까요? 가지고 있는 데이터가 이러한 요구 사항을 충족합니까?
+- 배운 내용을 자신의 프로젝트나 데이터에 적용하는 방법을 생각할 때 어떤 제한이나 문제에 부딪힐 수 있습니까?

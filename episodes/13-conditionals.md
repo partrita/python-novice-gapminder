@@ -1,29 +1,28 @@
 ---
-title: Conditionals
+title: 조건문
 teaching: 10
 exercises: 15
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Correctly write programs that use if and else statements and simple Boolean expressions (without logical operators).
-- Trace the execution of unnested conditionals and conditionals inside loops.
+- if 및 else 문과 간단한 부울 표현식(논리 연산자 없이)을 사용하는 프로그램을 올바르게 작성합니다.
+- 중첩되지 않은 조건문 및 루프 내부의 조건문 실행을 추적합니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How can programs do different things for different data?
+- 프로그램이 다른 데이터에 대해 다른 작업을 수행하도록 하려면 어떻게 해야 하나요?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Use `if` statements to control whether or not a block of code is executed.
+## `if` 문을 사용하여 코드 블록 실행 여부를 제어합니다.
 
-- An `if` statement (more properly called a *conditional* statement)
-  controls whether some block of code is executed or not.
-- Structure is similar to a `for` statement:
-  - First line opens with `if` and ends with a colon
-  - Body containing one or more statements is indented (usually by 4 spaces)
+- `if` 문(더 정확하게는 *조건문*이라고 함)은 일부 코드 블록이 실행되는지 여부를 제어합니다.
+- 구조는 `for` 문과 유사합니다.
+  - 첫 번째 줄은 `if`로 시작하고 콜론으로 끝납니다.
+  - 하나 이상의 문을 포함하는 본문은 들여쓰기됩니다(보통 4칸).
 
 ```python
 mass = 3.54
@@ -39,10 +38,10 @@ if mass > 3.0:
 3.54 is large
 ```
 
-## Conditionals are often used inside loops.
+## 조건문은 종종 루프 내부에서 사용됩니다.
 
-- Not much point using a conditional when we know the value (as above).
-- But useful when we have a collection to process.
+- 위와 같이 값을 알 때 조건문을 사용하는 것은 별 의미가 없습니다.
+- 그러나 처리할 컬렉션이 있을 때 유용합니다.
 
 ```python
 masses = [3.54, 2.07, 9.22, 1.86, 1.71]
@@ -56,10 +55,10 @@ for m in masses:
 9.22 is large
 ```
 
-## Use `else` to execute a block of code when an `if` condition is *not* true.
+## `if` 조건이 참이 *아닐* 때 코드 블록을 실행하려면 `else`를 사용합니다.
 
-- `else` can be used following an `if`.
-- Allows us to specify an alternative to execute when the `if` *branch* isn't taken.
+- `if` 뒤에 `else`를 사용할 수 있습니다.
+- `if` *분기*가 선택되지 않았을 때 실행할 대안을 지정할 수 있습니다.
 
 ```python
 masses = [3.54, 2.07, 9.22, 1.86, 1.71]
@@ -78,12 +77,12 @@ for m in masses:
 1.71 is small
 ```
 
-## Use `elif` to specify additional tests.
+## 추가 테스트를 지정하려면 `elif`를 사용합니다.
 
-- May want to provide several alternative choices, each with its own test.
-- Use `elif` (short for "else if") and a condition to specify these.
-- Always associated with an `if`.
-- Must come before the `else` (which is the "catch all").
+- 각각 고유한 테스트가 있는 여러 대안을 제공하고 싶을 수 있습니다.
+- 이를 지정하려면 `elif`("else if"의 줄임말)와 조건을 사용합니다.
+- 항상 `if`와 연결됩니다.
+- `else`("모든 것을 포괄하는" 것) 앞에 와야 합니다.
 
 ```python
 masses = [3.54, 2.07, 9.22, 1.86, 1.71]
@@ -104,10 +103,10 @@ for m in masses:
 1.71 is small
 ```
 
-## Conditions are tested once, in order.
+## 조건은 순서대로 한 번 테스트됩니다.
 
-- Python steps through the branches of the conditional in order, testing each in turn.
-- So ordering matters.
+- 파이썬은 조건문의 분기를 순서대로 단계별로 실행하며 각 분기를 차례로 테스트합니다.
+- 따라서 순서가 중요합니다.
 
 ```python
 grade = 85
@@ -123,7 +122,7 @@ elif grade >= 70:
 grade is B
 ```
 
-- Does *not* automatically go back and re-evaluate if values change.
+- 값이 변경되면 자동으로 돌아가서 다시 평가하지 *않습니다*.
 
 ```python
 velocity = 10.0
@@ -138,11 +137,11 @@ else:
 adjusting velocity
 ```
 
-- Often use conditionals in a loop to "evolve" the values of variables.
+- 변수의 값을 "진화"시키기 위해 루프에서 조건문을 자주 사용합니다.
 
 ```python
 velocity = 10.0
-for i in range(5): # execute the loop 5 times
+for i in range(5): # 루프를 5번 실행
     print(i, ':', velocity)
     if velocity > 20.0:
         print('moving too fast')
@@ -167,7 +166,7 @@ moving too slow
 final velocity: 30.0
 ```
 
-## Create a table showing variables' values to trace a program's execution.
+## 변수 값을 보여주는 표를 만들어 프로그램 실행을 추적합니다.
 
 <table>
   <tr>   <td><strong>i</strong></td>   <td>0</td>   <td>.</td>   <td>1</td>   <td>.</td>   <td>2</td>   <td>.</td>   <td>3</td>   <td>.</td>   <td>4</td>   <td>.</td>
@@ -176,17 +175,14 @@ final velocity: 30.0
   </tr>
 </table>
 
-- The program must have a `print` statement *outside* the body of the loop
-  to show the final value of `velocity`,
-  since its value is updated by the last iteration of the loop.
+- 프로그램은 루프 본문 *외부*에 `print` 문이 있어야 최종 `velocity` 값을 표시할 수 있습니다.
+  왜냐하면 그 값은 루프의 마지막 반복에 의해 업데이트되기 때문입니다.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Compound Relations Using `and`, `or`, and Parentheses
+## `and`, `or` 및 괄호를 사용한 복합 관계
 
-Often, you want some combination of things to be true.  You can combine
-relations within a conditional using `and` and `or`.  Continuing the example
-above, suppose you have
+종종 어떤 것들의 조합이 참이 되기를 원합니다. `and`와 `or`를 사용하여 조건문 내의 관계를 결합할 수 있습니다. 위의 예제를 계속해서 다음과 같다고 가정합니다.
 
 ```python
 mass     = [ 3.54,  2.07,  9.22,  1.86,  1.71]
@@ -204,31 +200,28 @@ for i in range(5):
         print("Whoa!  Something is up with the data.  Check it")
 ```
 
-Just like with arithmetic, you can and should use parentheses whenever there
-is possible ambiguity.  A good general rule is to *always* use parentheses
-when mixing `and` and `or` in the same condition.  That is, instead of:
+산술과 마찬가지로 모호할 수 있는 경우에는 괄호를 사용할 수 있고 사용해야 합니다. 좋은 일반적인 규칙은 동일한 조건에서 `and`와 `or`를 혼합할 때 *항상* 괄호를 사용하는 것입니다. 즉, 다음과 같이 하는 대신:
 
 ```python
 if mass[i] <= 2 or mass[i] >= 5 and velocity[i] > 20:
 ```
 
-write one of these:
+다음 중 하나를 작성하십시오.
 
 ```python
 if (mass[i] <= 2 or mass[i] >= 5) and velocity[i] > 20:
 if mass[i] <= 2 or (mass[i] >= 5 and velocity[i] > 20):
 ```
 
-so it is perfectly clear to a reader (and to Python) what you really mean.
-
+이렇게 하면 독자(그리고 파이썬)에게 당신이 정말로 의미하는 바가 완벽하게 명확해집니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Tracing Execution
+## 실행 추적
 
-What does this program print?
+이 프로그램은 무엇을 인쇄합니까?
 
 ```python
 pressure = 71.9
@@ -241,7 +234,7 @@ print(pressure)
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
 ```output
 25.0
@@ -253,11 +246,9 @@ print(pressure)
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Trimming Values
+## 값 다듬기
 
-Fill in the blanks so that this program creates a new list
-containing zeroes where the original list's values were negative
-and ones where the original list's values were positive.
+이 프로그램이 원래 리스트의 값이 음수였던 곳에는 0을, 원래 리스트의 값이 양수였던 곳에는 1을 포함하는 새 리스트를 만들도록 빈칸을 채우십시오.
 
 ```python
 original = [-1.5, 0.2, 0.4, 0.0, -1.3, 0.4]
@@ -276,7 +267,7 @@ print(result)
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
 ```python
 original = [-1.5, 0.2, 0.4, 0.0, -1.3, 0.4]
@@ -295,9 +286,9 @@ print(result)
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Processing Small Files
+## 작은 파일 처리
 
-Modify this program so that it only processes files with fewer than 50 records.
+이 프로그램을 수정하여 50개 미만의 레코드가 있는 파일만 처리하도록 하십시오.
 
 ```python
 import glob
@@ -310,7 +301,7 @@ for filename in glob.glob('data/*.csv'):
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
 ```python
 import glob
@@ -327,10 +318,9 @@ for filename in glob.glob('data/*.csv'):
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Initializing
+## 초기화
 
-Modify this program so that it finds the largest and smallest values in the list
-no matter what the range of values originally is.
+원래 값의 범위에 관계없이 리스트에서 가장 큰 값과 가장 작은 값을 찾도록 이 프로그램을 수정하십시오.
 
 ```python
 values = [...some test data...]
@@ -344,12 +334,11 @@ for v in values:
 print(smallest, largest)
 ```
 
-What are the advantages and disadvantages of using this method
-to find the range of the data?
+데이터의 범위를 찾는 데 이 방법을 사용하는 것의 장점과 단점은 무엇입니까?
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
 ```python
 values = [-2,1,65,78,-54,-24,100]
@@ -363,13 +352,10 @@ for v in values:
 print(smallest, largest)
 ```
 
-If you wrote `== None` instead of `is None`, that works too, but Python programmers always
-write `is None` because of the special way `None` works in the language.
+`== None` 대신 `is None`을 작성했다면 그것도 작동하지만, 파이썬 프로그래머는 `None`이 언어에서 작동하는 특별한 방식 때문에 항상 `is None`을 작성합니다.
 
-It can be argued that an advantage of using this method would be to make the code more readable.
-However, a disadvantage is that this code is not efficient because within each iteration of the
-`for` loop statement, there are two more loops that run over two numbers each (the `min` and
-`max` functions). It would be more efficient to iterate over each number just once:
+이 방법을 사용하는 장점은 코드를 더 읽기 쉽게 만드는 것이라고 주장할 수 있습니다.
+그러나 단점은 `for` 루프 문의 각 반복 내에 각각 두 개의 숫자에 대해 실행되는 두 개의 루프( `min` 및 `max` 함수)가 더 있기 때문에 이 코드가 효율적이지 않다는 것입니다. 각 숫자를 한 번만 반복하는 것이 더 효율적입니다.
 
 ```python
 values = [-2,1,65,78,-54,-24,100]
@@ -382,9 +368,9 @@ for v in values:
 print(smallest, largest)
 ```
 
-Now we have one loop, but four comparison tests. There are two ways we could improve it further:
-either use fewer comparisons in each iteration, or use two loops that each contain only one
-comparison test. The simplest solution is often the best:
+이제 하나의 루프가 있지만 네 개의 비교 테스트가 있습니다. 더 개선할 수 있는 두 가지 방법이 있습니다.
+각 반복에서 비교를 더 적게 사용하거나, 각각 하나의 비교 테스트만 포함하는 두 개의 루프를 사용합니다.
+가장 간단한 해결책이 종종 최선입니다.
 
 ```python
 values = [-2,1,65,78,-54,-24,100]
@@ -399,13 +385,11 @@ print(smallest, largest)
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- Use `if` statements to control whether or not a block of code is executed.
-- Conditionals are often used inside loops.
-- Use `else` to execute a block of code when an `if` condition is *not* true.
-- Use `elif` to specify additional tests.
-- Conditions are tested once, in order.
-- Create a table showing variables' values to trace a program's execution.
+- `if` 문을 사용하여 코드 블록 실행 여부를 제어합니다.
+- 조건문은 종종 루프 내부에서 사용됩니다.
+- `if` 조건이 참이 *아닐* 때 코드 블록을 실행하려면 `else`를 사용합니다.
+- 추가 테스트를 지정하려면 `elif`를 사용합니다.
+- 조건은 순서대로 한 번 테스트됩니다.
+- 변수 값을 보여주는 표를 만들어 프로그램 실행을 추적합니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-

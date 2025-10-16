@@ -1,38 +1,35 @@
 ---
-title: For Loops
+title: For 루프
 teaching: 10
 exercises: 15
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain what for loops are normally used for.
-- Trace the execution of a simple (unnested) loop and correctly state the values of variables in each iteration.
-- Write for loops that use the Accumulator pattern to aggregate values.
+- for 루프가 일반적으로 무엇에 사용되는지 설명합니다.
+- 간단한 (중첩되지 않은) 루프의 실행을 추적하고 각 반복에서 변수의 값을 올바르게 명시합니다.
+- 누산기 패턴을 사용하여 값을 집계하는 for 루프를 작성합니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How can I make a program do many things?
+- 프로그램이 많은 일을 하도록 하려면 어떻게 해야 하나요?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## A *for loop* executes commands once for each value in a collection.
+## *for 루프*는 컬렉션의 각 값에 대해 한 번씩 명령을 실행합니다.
 
-- Doing calculations on the values in a list one by one
-  is as painful as working with `pressure_001`, `pressure_002`, etc.
-- A *for loop* tells Python to execute some statements once for each value in a list,
-  a character string,
-  or some other collection.
-- "for each thing in this group, do these operations"
+- 리스트의 값에 대해 하나씩 계산을 수행하는 것은 `pressure_001`, `pressure_002` 등으로 작업하는 것만큼 고통스럽습니다.
+- *for 루프*는 파이썬에게 리스트, 문자열 또는 다른 컬렉션의 각 값에 대해 일부 문을 한 번씩 실행하도록 지시합니다.
+- "이 그룹의 각 항목에 대해 이러한 작업을 수행하십시오."
 
 ```python
 for number in [2, 3, 5]:
     print(number)
 ```
 
-- This `for` loop is equivalent to:
+- 이 `for` 루프는 다음과 같습니다.
 
 ```python
 print(2)
@@ -40,7 +37,7 @@ print(3)
 print(5)
 ```
 
-- And the `for` loop's output is:
+- 그리고 `for` 루프의 출력은 다음과 같습니다.
 
 ```output
 2
@@ -48,23 +45,23 @@ print(5)
 5
 ```
 
-## A `for` loop is made up of a collection, a loop variable, and a body.
+## `for` 루프는 컬렉션, 루프 변수 및 본문으로 구성됩니다.
 
 ```python
 for number in [2, 3, 5]:
     print(number)
 ```
 
-- The collection, `[2, 3, 5]`, is what the loop is being run on.
-- The body, `print(number)`, specifies what to do for each value in the collection.
-- The loop variable, `number`, is what changes for each *iteration* of the loop.
-  - The "current thing".
+- 컬렉션 `[2, 3, 5]`는 루프가 실행되는 대상입니다.
+- 본문 `print(number)`는 컬렉션의 각 값에 대해 수행할 작업을 지정합니다.
+- 루프 변수 `number`는 루프의 각 *반복*에 대해 변경되는 것입니다.
+  - "현재 항목".
 
-## The first line of the `for` loop must end with a colon, and the body must be indented.
+## `for` 루프의 첫 번째 줄은 콜론으로 끝나야 하며 본문은 들여쓰기해야 합니다.
 
-- The colon at the end of the first line signals the start of a *block* of statements.
-- Python uses indentation rather than `{}` or `begin`/`end` to show *nesting*.
-  - Any consistent indentation is legal, but almost everyone uses four spaces.
+- 첫 번째 줄 끝에 있는 콜론은 문 *블록*의 시작을 알립니다.
+- 파이썬은 *중첩*을 표시하기 위해 `{}` 또는 `begin`/`end` 대신 들여쓰기를 사용합니다.
+  - 일관된 들여쓰기는 합법적이지만 거의 모든 사람이 4개의 공백을 사용합니다.
 
 ```python
 for number in [2, 3, 5]:
@@ -75,7 +72,7 @@ print(number)
 IndentationError: expected an indented block
 ```
 
-- Indentation is always meaningful in Python.
+- 파이썬에서 들여쓰기는 항상 의미가 있습니다.
 
 ```python
 firstName = "Jon"
@@ -89,24 +86,23 @@ firstName = "Jon"
 IndentationError: unexpected indent
 ```
 
-- This error can be fixed by removing the extra spaces
-  at the beginning of the second line.
+- 이 오류는 두 번째 줄 시작 부분의 추가 공백을 제거하여 해결할 수 있습니다.
 
-## Loop variables can be called anything.
+## 루프 변수는 무엇이든 호출할 수 있습니다.
 
-- As with all variables, loop variables are:
-  - Created on demand.
-  - Meaningless: their names can be anything at all.
+- 모든 변수와 마찬가지로 루프 변수는 다음과 같습니다.
+  - 필요에 따라 생성됩니다.
+  - 의미 없음: 이름은 무엇이든 될 수 있습니다.
 
 ```python
 for kitten in [2, 3, 5]:
     print(kitten)
 ```
 
-## The body of a loop can contain many statements.
+## 루프의 본문에는 많은 문이 포함될 수 있습니다.
 
-- But no loop should be more than a few lines long.
-- Hard for human beings to keep larger chunks of code in mind.
+- 그러나 어떤 루프도 몇 줄보다 길어서는 안 됩니다.
+- 인간이 더 큰 코드 덩어리를 염두에 두기는 어렵습니다.
 
 ```python
 primes = [2, 3, 5]
@@ -122,13 +118,12 @@ for p in primes:
 5 25 125
 ```
 
-## Use `range` to iterate over a sequence of numbers.
+## `range`를 사용하여 숫자 시퀀스를 반복합니다.
 
-- The built-in function [`range`](https://docs.python.org/3/library/stdtypes.html#range) produces a sequence of numbers.
-  - *Not* a list: the numbers are produced on demand
-    to make looping over large ranges more efficient.
-- `range(N)` is the numbers 0..N-1
-  - Exactly the legal indices of a list or character string of length N
+- 내장 함수 [`range`](https://docs.python.org/3/library/stdtypes.html#range)는 숫자 시퀀스를 생성합니다.
+  - 리스트가 *아님*: 숫자는 필요에 따라 생성되어 큰 범위에 대한 루프를 더 효율적으로 만듭니다.
+- `range(N)`은 0..N-1까지의 숫자입니다.
+  - 길이 N의 리스트 또는 문자열의 정확한 법적 인덱스입니다.
 
 ```python
 print('a range is not a list: range(0, 3)')
@@ -143,14 +138,14 @@ a range is not a list: range(0, 3)
 2
 ```
 
-## The Accumulator pattern turns many values into one.
+## 누산기 패턴은 많은 값을 하나로 바꿉니다.
 
-- A common pattern in programs is to:
-  1. Initialize an *accumulator* variable to zero, the empty string, or the empty list.
-  2. Update the variable with values from a collection.
+- 프로그램에서 일반적인 패턴은 다음과 같습니다.
+  1. *누산기* 변수를 0, 빈 문자열 또는 빈 리스트로 초기화합니다.
+  2. 컬렉션의 값으로 변수를 업데이트합니다.
 
 ```python
-# Sum the first 10 integers.
+# 처음 10개 정수의 합을 구합니다.
 total = 0
 for number in range(10):
    total = total + (number + 1)
@@ -161,26 +156,24 @@ print(total)
 55
 ```
 
-- Read `total = total + (number + 1)` as:
-  - Add 1 to the current value of the loop variable `number`.
-  - Add that to the current value of the accumulator variable `total`.
-  - Assign that to `total`, replacing the current value.
-- We have to add `number + 1` because `range` produces 0..9, not 1..10.
+- `total = total + (number + 1)`을 다음과 같이 읽습니다.
+  - 루프 변수 `number`의 현재 값에 1을 더합니다.
+  - 그것을 누산기 변수 `total`의 현재 값에 더합니다.
+  - 그것을 `total`에 할당하여 현재 값을 바꿉니다.
+- `range`가 1..10이 아닌 0..9를 생성하기 때문에 `number + 1`을 더해야 합니다.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Classifying Errors
+## 오류 분류
 
-Is an indentation error a syntax error or a runtime error?
+들여쓰기 오류는 구문 오류입니까, 아니면 런타임 오류입니까?
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-An IndentationError is a syntax error. Programs with syntax errors cannot be started.
-A program with a runtime error will start but an error will be thrown under certain conditions.
-
-
+IndentationError는 구문 오류입니다. 구문 오류가 있는 프로그램은 시작할 수 없습니다.
+런타임 오류가 있는 프로그램은 시작되지만 특정 조건에서 오류가 발생합니다.
 
 :::::::::::::::::::::::::
 
@@ -188,10 +181,9 @@ A program with a runtime error will start but an error will be thrown under cert
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Tracing Execution
+## 실행 추적
 
-Create a table showing the numbers of the lines that are executed when this program runs,
-and the values of the variables after each line is executed.
+이 프로그램이 실행될 때 실행되는 줄의 번호와 각 줄이 실행된 후 변수의 값을 보여주는 표를 만듭니다.
 
 ```python
 total = 0
@@ -201,9 +193,9 @@ for char in "tin":
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-| Line no | Variables            | 
+| 줄 번호 | 변수                 |
 | ------- | -------------------- |
 | 1       | total = 0            | 
 | 2       | total = 0 char = 't' | 
@@ -219,10 +211,9 @@ for char in "tin":
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Reversing a String
+## 문자열 뒤집기
 
-Fill in the blanks in the program below so that it prints "nit"
-(the reverse of the original character string "tin").
+아래 프로그램의 빈칸을 채워 "nit"("tin"의 역순)를 인쇄하도록 합니다.
 
 ```python
 original = "tin"
@@ -234,7 +225,7 @@ print(result)
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
 ```python
 original = "tin"
@@ -250,13 +241,12 @@ print(result)
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Practice Accumulating
+## 누적 연습
 
-Fill in the blanks in each of the programs below
-to produce the indicated result.
+아래 각 프로그램의 빈칸을 채워 표시된 결과를 생성하십시오.
 
 ```python
-# Total length of the strings in the list: ["red", "green", "blue"] => 12
+# 리스트에 있는 문자열의 총 길이: ["red", "green", "blue"] => 12
 total = 0
 for word in ["red", "green", "blue"]:
     ____ = ____ + len(word)
@@ -265,7 +255,7 @@ print(total)
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
 ```python
 total = 0
@@ -277,7 +267,7 @@ print(total)
 :::::::::::::::::::::::::
 
 ```python
-# List of word lengths: ["red", "green", "blue"] => [3, 5, 4]
+# 단어 길이 리스트: ["red", "green", "blue"] => [3, 5, 4]
 lengths = ____
 for word in ["red", "green", "blue"]:
     lengths.____(____)
@@ -286,7 +276,7 @@ print(lengths)
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
 ```python
 lengths = []
@@ -298,7 +288,7 @@ print(lengths)
 :::::::::::::::::::::::::
 
 ```python
-# Concatenate all words: ["red", "green", "blue"] => "redgreenblue"
+# 모든 단어 연결: ["red", "green", "blue"] => "redgreenblue"
 words = ["red", "green", "blue"]
 result = ____
 for ____ in ____:
@@ -308,7 +298,7 @@ print(result)
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
 ```python
 words = ["red", "green", "blue"]
@@ -320,14 +310,13 @@ print(result)
 
 :::::::::::::::::::::::::
 
-**Create an acronym:** Starting from the list `["red", "green", "blue"]`, create the acronym `"RGB"` using
-a for loop.
+**약어 만들기:** `["red", "green", "blue"]` 리스트에서 시작하여 for 루프를 사용하여 약어 `"RGB"`를 만듭니다.
 
-**Hint:** You may need to use a string method to properly format the acronym.
+**힌트:** 약어를 올바르게 포맷하려면 문자열 메서드를 사용해야 할 수 있습니다.
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
 ```python
 acronym = ""
@@ -342,11 +331,10 @@ print(acronym)
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Cumulative Sum
+## 누적 합계
 
-Reorder and properly indent the lines of code below
-so that they print a list with the cumulative sum of data.
-The result should be `[1, 3, 5, 10]`.
+아래 코드 줄을 재정렬하고 올바르게 들여쓰기하여 데이터의 누적 합계가 있는 리스트를 인쇄하도록 합니다.
+결과는 `[1, 3, 5, 10]`이어야 합니다.
 
 ```python
 cumulative.append(total)
@@ -360,7 +348,7 @@ data = [1,2,2,5]
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
 ```python
 total = 0
@@ -378,20 +366,18 @@ print(cumulative)
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Identifying Variable Name Errors
+## 변수 이름 오류 식별
 
-1. Read the code below and try to identify what the errors are
-  *without* running it.
-2. Run the code and read the error message.
-  What type of `NameError` do you think this is?
-  Is it a string with no quotes, a misspelled variable, or a
-  variable that should have been defined but was not?
-3. Fix the error.
-4. Repeat steps 2 and 3, until you have fixed all the errors.
+1. 아래 코드를 읽고 실행하지 않고 오류가 무엇인지 확인해 보십시오.
+2. 코드를 실행하고 오류 메시지를 읽으십시오.
+  어떤 유형의 `NameError`라고 생각하십니까?
+  따옴표가 없는 문자열, 잘못된 변수 또는 정의되었어야 했지만 정의되지 않은 변수입니까?
+3. 오류를 수정하십시오.
+4. 모든 오류를 수정할 때까지 2단계와 3단계를 반복하십시오.
 
 ```python
 for number in range(10):
-    # use a if the number is a multiple of 3, otherwise use b
+    # 숫자가 3의 배수이면 a를 사용하고 그렇지 않으면 b를 사용합니다.
     if (Number % 3) == 0:
         message = message + a
     else:
@@ -401,16 +387,16 @@ print(message)
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-- Python variable names are case sensitive: `number` and `Number` refer to different variables.
-- The variable `message` needs to be initialized as an empty string.
-- We want to add the string `"a"` to `message`, not the undefined variable `a`.
+- 파이썬 변수 이름은 대소문자를 구분합니다. `number`와 `Number`는 다른 변수를 참조합니다.
+- `message` 변수는 빈 문자열로 초기화해야 합니다.
+- `message`에 정의되지 않은 변수 `a`가 아닌 문자열 `"a"`를 추가하려고 합니다.
 
 ```python
 message = ""
 for number in range(10):
-    # use a if the number is a multiple of 3, otherwise use b
+    # 숫자가 3의 배수이면 a를 사용하고 그렇지 않으면 b를 사용합니다.
     if (number % 3) == 0:
         message = message + "a"
     else:
@@ -424,12 +410,11 @@ print(message)
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Identifying Item Errors
+## 항목 오류 식별
 
-1. Read the code below and try to identify what the errors are
-  *without* running it.
-2. Run the code, and read the error message. What type of error is it?
-3. Fix the error.
+1. 아래 코드를 읽고 실행하지 않고 오류가 무엇인지 확인해 보십시오.
+2. 코드를 실행하고 오류 메시지를 읽으십시오. 어떤 유형의 오류입니까?
+3. 오류를 수정하십시오.
 
 ```python
 seasons = ['Spring', 'Summer', 'Fall', 'Winter']
@@ -438,9 +423,9 @@ print('My favorite season is ', seasons[4])
 
 :::::::::::::::  solution
 
-## Solution
+## 해결책
 
-This list has 4 elements and the index to access the last element in the list is `3`.
+이 리스트에는 4개의 요소가 있으며 리스트의 마지막 요소에 액세스하는 인덱스는 `3`입니다.
 
 ```python
 seasons = ['Spring', 'Summer', 'Fall', 'Winter']
@@ -453,15 +438,13 @@ print('My favorite season is ', seasons[3])
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- A *for loop* executes commands once for each value in a collection.
-- A `for` loop is made up of a collection, a loop variable, and a body.
-- The first line of the `for` loop must end with a colon, and the body must be indented.
-- Indentation is always meaningful in Python.
-- Loop variables can be called anything (but it is strongly advised to have a meaningful name to the looping variable).
-- The body of a loop can contain many statements.
-- Use `range` to iterate over a sequence of numbers.
-- The Accumulator pattern turns many values into one.
+- *for 루프*는 컬렉션의 각 값에 대해 한 번씩 명령을 실행합니다.
+- `for` 루프는 컬렉션, 루프 변수 및 본문으로 구성됩니다.
+- `for` 루프의 첫 번째 줄은 콜론으로 끝나야 하며 본문은 들여쓰기해야 합니다.
+- 파이썬에서 들여쓰기는 항상 의미가 있습니다.
+- 루프 변수는 무엇이든 호출할 수 있습니다(그러나 루핑 변수에 의미 있는 이름을 지정하는 것이 좋습니다).
+- 루프의 본문에는 많은 문이 포함될 수 있습니다.
+- `range`를 사용하여 숫자 시퀀스를 반복합니다.
+- 누산기 패턴은 많은 값을 하나로 바꿉니다.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
