@@ -1,22 +1,22 @@
 ---
-title: 데이터 셋 순회하기 (Looping Over Data Sets)
+title: 데이터 셋 순회하기
 teaching: 5
 exercises: 10
 ---
 
-::::::::::::::::::::::::::::::::::::::: objectives
+::: {.callout-tip title="학습 목표"}
 
 - 여러 파일들의 이름을 일일이 치지 않고 한꺼번에 묶어 지정(match)할 수 있는 글로빙(globbing) 정규 표현식 패턴을 올바르게 읽고 쓸 수 있습니다.
 - `glob` 라이브러리를 동원해 파일 이름들이 줄줄이 담긴 리스트 명단을 자동으로 척척 뽑아 생성해 냅니다.
 - 이렇게 마련된 파일 이름 리스트 명단을 바탕으로 `for` 루프를 돌려, 각 파일들에 대해 일괄적으로 동일한 연산 처리를 수행하는 자동화 코드를 통째로 엮어 짭니다.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::: questions
+::: {.callout-note title="질문"}
 
 - 무수히 널브러진 방대한 데이터 파일 세트들을 단 한 번의 커맨드 구동으로 한방에 죄다 일괄 처리하려면 어떻게 구상해야 할까요?
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 ## 수많은 파일들의 이름이 적힌 명단(list)이 주어졌을 때, 뺑뺑이 `for` 루프를 구동시켜 파일들을 순차적으로 일괄 타격 처리하세요.
 
@@ -71,7 +71,7 @@ for filename in glob.glob('data/gapminder_*.csv'):
 - 단, 여기서 한 가지 흥미로운 산수 팩트 체크: 전체 통합 데이터 세트 바운더리 안의 최솟값은 필연적으로 어느 특정 쪼개진 단일 지역 데이터 셋 산하 구역의 최솟값과 일치 부합 거수될 수밖에 없음을 유념 직시해 보세요.
   이는 곧 내 연산이 지금 제대로 멀쩡히 가동 굴러가고 있는지 판가름해 주는 쏠쏠 유용한 직관적 크로스 체크(check on correctness) 확인 지표 수단이 되어 주기도 합니다.
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+:::: {.callout-important title="범례"}
 
 ## 매칭 수색 판별망 점검 (Determining Matches)
 
@@ -81,7 +81,7 @@ for filename in glob.glob('data/gapminder_*.csv'):
 2. `data/gapminder_gdp_americas.csv`
 3. `data/gapminder_gdp_asia.csv`
 
-:::::::::::::::  solution
+::: {.callout-caution collapse="true" title="해답"}
 
 ## 해답
 
@@ -89,11 +89,11 @@ for filename in glob.glob('data/gapminder_*.csv'):
 
 
 
-::::::::::::::::::::::::
+:::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+:::: {.callout-important title="범례"}
 
 ## 파일 최소 레코드 덩치 판별 (Minimum File Size)
 
@@ -113,7 +113,7 @@ print('가장 작은 파일의 레코드 건수는', fewest, '건입니다')
 참고로, [`DataFrame.shape()` 메서드][shape-method] 도구를 발동하면
 목표 데이터프레임의 행(rows) 개수와 열(columns) 개수 모양새 윤곽이 담긴 한 쌍의 튜플(tuple) 결과가 반환 떨어집니다.
 
-:::::::::::::::  solution
+::: {.callout-caution collapse="true" title="해답"}
 
 ## 해답
 
@@ -133,11 +133,11 @@ print('가장 작은 파일의 레코드 건수는', fewest, '건입니다')
 
 
 
-::::::::::::::::::::::::
+:::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+:::: {.callout-important title="범례"}
 
 ## 데이터 맞대고 비교 연산하기 (Comparing Data)
 
@@ -149,7 +149,7 @@ print('가장 작은 파일의 레코드 건수는', fewest, '건입니다')
 혹은 Pandas한테 "숫자 아닌 놈들은 걍 눈치껏 씹어 돌려" 라고 친절히 예외 조항(ignore them)을 달아 일러둬야 할 수도 있습니다.
 
 
-:::::::::::::::  solution
+::: {.callout-caution collapse="true" title="해답"}
 
 ## 해답
 
@@ -190,11 +190,11 @@ plt.legend()
 plt.show()
 ```
 
-::::::::::::::::::::::::
+:::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+::::
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::: {.callout-note appearance="simple"}
 
 ## 지저분한 파일 경로명 노가다 손질하기 (Dealing with File Paths)
 
@@ -214,7 +214,7 @@ print(p.suffix)
 **꿀팁(Hint):** 저 `dir()` 마법 점검 함수를 냅다 부려 먹어, 저 `Path` 객체놈 구석구석 도대체 어떤 속성(attributes) 놈팽이들과 잡다 메서드(`methods`) 연장들이 징박혀 포진된 채 은닉 생존해 있는지 낱낱이 싹 다 파헤쳐 색출 확인해 보시길 권장해 봅니다.
 
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 [shape-method]: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.shape.html
 [float-function]: https://docs.python.org/3/library/functions.html#float
@@ -222,12 +222,12 @@ print(p.suffix)
 [pathlib-module]: https://docs.python.org/3/library/pathlib.html
 
 
-:::::::::::::::::::::::::::::::::::::::: keypoints
+::: {.callout-note title="핵심 요약"}
 
 - 리스트(list) 명단에 줄줄이 담긴 파일 이름패들을 투입 던져줘, `for` 구문 루프 뺑뺑이를 돌려가며 각 파일들을 전수 타격 소화해 냅니다.
 - 냅다 `glob.glob` 스캐너 지팡이를 휘둘러 규칙 패턴식(pattern) 잣대에 들어맞는 표적 파일군 무더기들을 수색 일거 타진해 색출해 냅니다.
 - 이렇게 마련된 `glob` 수색 결과물에다 `for` 루프 기어를 물려 동력 융합을 걸어, 다수 무더기 파일(batches of files) 진영을 일타쌍피 일일 싹쓸이 일괄 처리(process)로 섬멸 도모 전개해 냅니다.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 

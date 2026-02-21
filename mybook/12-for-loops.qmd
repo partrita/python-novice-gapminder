@@ -1,22 +1,22 @@
 ---
-title: 불 루프 (For Loops)
+title: For 루프
 teaching: 10
 exercises: 15
 ---
 
-::::::::::::::::::::::::::::::::::::::: objectives
+::: {.callout-tip title="학습 목표"}
 
 - `for` 루프(for loops)가 주로 어떤 용도로 사용되는지 설명합니다.
 - 단순한(중첩되지 않은) 루프의 실행 과정을 추적하고 각 반복(iteration)마다 변수의 값을 정확하게 서술합니다.
 - 누적기(Accumulator) 패턴을 사용하여 값을 집계하는 `for` 루프를 작성합니다.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
-:::::::::::::::::::::::::::::::::::::::: questions
+::: {.callout-note title="질문"}
 
 - 프로그램이 한 번에 여러 작업을 수행하게 하려면 어떻게 해야 하나요?
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 ## *`for` 루프(for loop)* 는 컬렉션(집합)의 각 값에 대해 명령을 한 번씩 실행합니다.
 
@@ -134,13 +134,13 @@ print(total)
   - 계산된 최종값을 다시 `total` 에 할당하여 기존 저장값을 대체(업데이트)합니다.
 - 여기서 굳이 `number + 1` 을 더해야 하는 이유는, `range(10)` 이 1~10이 아니라 0~9까지의 수치를 생성하기 때문입니다.
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+:::: {.callout-important title="범례"}
 
 ## 오류 분류하기 (Classifying Errors)
 
 들여쓰기 오류(IndentationError)는 구문 오류(syntax error)일까요, 아니면 런타임 오류(runtime error)일까요?
 
-:::::::::::::::  solution
+::: {.callout-caution collapse="true" title="해답"}
 
 ## 해답
 
@@ -149,11 +149,11 @@ IndentationError는 구문 오류입니다. 구문 오류가 있는 프로그램
 
 
 
-:::::::::::::::::::::::::
+:::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+:::: {.callout-important title="범례"}
 
 ## 실행 과정 추적하기 (Tracing Execution)
 
@@ -165,7 +165,7 @@ for char in "tin":
     total = total + 1
 ```
 
-:::::::::::::::  solution
+::: {.callout-caution collapse="true" title="해답"}
 
 ## 해답
 
@@ -179,11 +179,11 @@ for char in "tin":
 | 2       | total = 2 char = 'n' | 
 | 3       | total = 3 char = 'n' | 
 
-:::::::::::::::::::::::::
+:::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+:::: {.callout-important title="범례"}
 
 ## 문자열 뒤집기 (Reversing a String)
 
@@ -197,7 +197,7 @@ for char in original:
 print(result)
 ```
 
-:::::::::::::::  solution
+::: {.callout-caution collapse="true" title="해답"}
 
 ## 해답
 
@@ -209,11 +209,11 @@ for char in original:
 print(result)
 ```
 
-:::::::::::::::::::::::::
+:::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+:::: {.callout-important title="범례"}
 
 ## 누적기 사용 연습 (Practice Accumulating)
 
@@ -227,7 +227,7 @@ for word in ["red", "green", "blue"]:
 print(total)
 ```
 
-:::::::::::::::  solution
+::: {.callout-caution collapse="true" title="해답"}
 
 ## 해답
 
@@ -238,7 +238,7 @@ for word in ["red", "green", "blue"]:
 print(total)
 ```
 
-:::::::::::::::::::::::::
+:::
 
 ```{python}
 # 각 단어의 길이를 담은 리스트를 만듭니다: ["red", "green", "blue"] => [3, 5, 4]
@@ -248,7 +248,7 @@ for word in ["red", "green", "blue"]:
 print(lengths)
 ```
 
-:::::::::::::::  solution
+::: {.callout-caution collapse="true" title="해답"}
 
 ## 해답
 
@@ -259,7 +259,7 @@ for word in ["red", "green", "blue"]:
 print(lengths)
 ```
 
-:::::::::::::::::::::::::
+:::
 
 ```{python}
 # 모든 단어 연결하기: ["red", "green", "blue"] => "redgreenblue"
@@ -270,7 +270,7 @@ for ____ in ____:
 print(result)
 ```
 
-:::::::::::::::  solution
+::: {.callout-caution collapse="true" title="해답"}
 
 ## 해답
 
@@ -282,13 +282,13 @@ for word in words:
 print(result)
 ```
 
-::::::::::::::::::::::::
+:::
 
 **약어 만들기:** 원본 리스트 `["red", "green", "blue"]` 에서 시작하여 `for` 루프를 사용해 두문자 약어 `"RGB"` 를 만들어 출력하세요.
 
 **힌트:** 약어의 대문자 형태를 제대로 포맷팅하기 위해 특정 문자열 메서드를 적용해야 할 수도 있습니다.
 
-:::::::::::::::  solution
+::: {.callout-caution collapse="true" title="해답"}
 
 ## 해답
 
@@ -299,11 +299,11 @@ for word in ["red", "green", "blue"]:
 print(acronym)
 ```
 
-::::::::::::::::::::::::
+:::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+:::: {.callout-important title="범례"}
 
 ## 누적 합계 (Cumulative Sum)
 
@@ -320,7 +320,7 @@ print(cumulative)
 data = [1,2,2,5]
 ```
 
-:::::::::::::::  solution
+::: {.callout-caution collapse="true" title="해답"}
 
 ## 해답
 
@@ -334,11 +334,11 @@ for number in data:
 print(cumulative)
 ```
 
-::::::::::::::::::::::::
+:::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+:::: {.callout-important title="범례"}
 
 ## 변수명 오류 식별하기 (Identifying Variable Name Errors)
 
@@ -360,7 +360,7 @@ for number in range(10):
 print(message)
 ```
 
-:::::::::::::::  solution
+::: {.callout-caution collapse="true" title="해답"}
 
 ## 해답
 
@@ -379,11 +379,11 @@ for number in range(10):
 print(message)
 ```
 
-::::::::::::::::::::::::
+:::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+:::: {.callout-important title="범례"}
 
 ## 항목 참조 오류 식별하기 (Identifying Item Errors)
 
@@ -396,7 +396,7 @@ seasons = ['Spring', 'Summer', 'Fall', 'Winter']
 print('My favorite season is ', seasons[4])
 ```
 
-:::::::::::::::  solution
+::: {.callout-caution collapse="true" title="해답"}
 
 ## 해답
 
@@ -407,11 +407,11 @@ seasons = ['Spring', 'Summer', 'Fall', 'Winter']
 print('My favorite season is ', seasons[3])
 ```
 
-::::::::::::::::::::::::
+:::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+::::
 
-:::::::::::::::::::::::::::::::::::::::: keypoints
+::: {.callout-note title="핵심 요약"}
 
 - *`for` 루프(for loop)* 는 지정된 컬렉션 범위 안의 각 개별 값에 대해 명령을 반복 실행합니다.
 - `for` 루프는 순회 대상인 컬렉션(collection), 매 순번 교체되는 루프 변수(loop variable), 그리고 실제 실행될 명령인 본문(body)으로 구성됩니다.
@@ -422,5 +422,5 @@ print('My favorite season is ', seasons[3])
 - 일련의 숫자 대열을 차례로 순회하려면 편리한 `range` 함수를 사용하세요.
 - 누적기(Accumulator) 패턴은 분산된 여러 값들을 모아 단일한 하나의 결괏값으로 압축 집계해 줍니다.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 ```

@@ -2,7 +2,7 @@ project:
   type: book
 
 book:
-  title: "python-novice-gapminder"
+  title: "Gapminder 데이터를 이용한 파이썬 초급 실습"
   author: "Allen Lee"
   date: "2/20/2026"
   chapters:
