@@ -53,3 +53,6 @@ vendor/
 .docker-vendor/
 Gemfile.lock
 .*history
+# pixi environments
+.pixi/*
+!.pixi/config.toml

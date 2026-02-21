@@ -1,0 +1,348 @@
+---
+title: 조건문 (Conditionals)
+teaching: 10
+exercises: 15
+---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- 올바르게 `if` 와 `else` 지시문, 그리고 (비교 연산 논리 기호가 포함되지 않은) 기초적인 불 표현식(Boolean expressions) 구문을 도입한 올바른 조건 제어 코드를 작성해냅니다.
+- 중복 중첩이 없는 단순 평면 독립 조건문 분기 흐름이나 반복 루프 쳇바퀴 궤도 속에 둥지를 튼 조건문(conditionals inside loops) 작동 실행 순서 체계의 동작 과정을 면밀히 추적(Trace)해 파악해냅니다.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- 도대체 단일 프로그램 안에서 제각기 입력된 상이한 종류의 데이터 형태 상황에 직면할 때마다 어떻게 각기 다른 처신 작업(different things) 작동을 융통성 있게 수행하도록 자동 제어 통제할 수 있을까요?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## 코드 블록(block of code)의 실행 여부를 제어할 때는 `if` 구문을 사용합니다.
+
+- `if` 구문(`if` statement)은 특정 조건문(conditional)을 만족할 때만 코드가 실행(executed or not)되도록 제어할 때 쓰입니다.
+- 이 구문의 구조는 이전 장에서 배운 `for` 루프의 형태와 유사(similar)합니다:
+  - 첫 번째 줄은 항상 `if` 문으로 시작하며, 콜론(`:`) 기호로 끝나야 합니다.
+  - 조건이 참일 때 실행할 본문(Body) 블록의 코드는 항상 들여쓰기(indented) 해야 합니다 (일반적으로 스페이스 4칸을 사용합니다).
+
+```{python}
+mass = 3.54
+if mass > 3.0:
+    print(mass, 'is large')
+
+mass = 2.07
+if mass > 3.0:
+    print (mass, 'is large')
+```
+
+
+## 조건문(Conditionals)은 루프(loops) 내부에서 자주 사용됩니다.
+
+- 위에서 본 예제처럼, 비교해야 할 변수가 이미 고정되어 그 값을 명확히 아는(know the value) 경우라면 굳이 조건문을 사용할 필요가 크지 않습니다.
+- 하지만 컬렉션(collection) 데이터 안의 수많은 값들을 루프를 통해 차례대로 하나하나 검증하고 유용한(useful) 처리를 할 때 조건문이 진가를 발휘합니다.
+
+```{python}
+masses = [3.54, 2.07, 9.22, 1.86, 1.71]
+for m in masses:
+    if m > 3.0:
+        print(m, 'is large')
+```
+
+
+## 조건식이 거짓(not true)일 때 특정 코드를 실행하려면 `else` 를 사용합니다.
+
+- `else` 구문은 조건문 분기에서 `if` 문 뒤에 위치합니다.
+- `if` 에 설정해둔 검증 관문을 통과하지 못했을 경우에만 실행할 대안 코드 모음(alternative to execute)을 지정할 수 있습니다.
+
+```{python}
+masses = [3.54, 2.07, 9.22, 1.86, 1.71]
+for m in masses:
+    if m > 3.0:
+        print(m, 'is large')
+    else:
+        print(m, 'is small')
+```
+
+
+## 조건 판단을 연속적으로 추가(additional tests)하려면 `elif` 를 사용합니다.
+
+- 경우에 따라서는 두 가지 대안을 넘어, 세 가지 이상의 여러 분기(several alternative choices)를 제공하고 싶을 때가 있습니다.
+- 이때는 파이썬에서 "else if" 의 약자인 `elif` 구문을 포함하여 조건을 지정할 수 있습니다.
+- `elif` 구문은 항상 특정한 하나의 `if` 구문에 종속되어(Always associated) 연속적으로 사용되어야 합니다.
+- 또한, 조건에 일치하지 않는 나머지 모든 경우를 포괄하는 `else` 구문을 지정하려면 반드시 `elif` 보다 뒤에 위치해야 합니다.
+
+```{python}
+masses = [3.54, 2.07, 9.22, 1.86, 1.71]
+for m in masses:
+    if m > 9.0:
+        print(m, 'is HUGE')
+    elif m > 3.0:
+        print(m, 'is large')
+    else:
+        print(m, 'is small')
+```
+
+
+## 조건문(Conditions)은 단 한 번 위에서 아래 순서대로(in order) 실행됩니다.
+
+- 파이썬 프로그램은 조건문들의 각 분기(branches)를 순서대로 한 번씩 체크(testing each in turn)하면서 하나씩 검증해 내려갑니다.
+- 따라서 어떤 순서(ordering)로 조건문들을 작성하고 배치하느냐에 따라 결괏값이 다르게 판독될 수 있으므로, 순서가 매우 중요(matters)합니다.
+
+```{python}
+grade = 85
+if grade >= 90:
+    print('grade is A')
+elif grade >= 80:
+    print('grade is B')
+elif grade >= 70:
+    print('grade is C')
+```
+
+
+- 한 번 조건문을 평가하여 분기가 결정되어 실행된 후, 그 안에서 데이터 값(change)이 변경되더라도 파이썬은 자동으로 뒤로 돌아가서 조건식을 재평가하지 않습니다(does *not* automatically go back and re-evaluate).
+
+```{python}
+velocity = 10.0
+if velocity > 20.0:
+    print('moving too fast')
+else:
+    print('adjusting velocity')
+    velocity = 50.0
+```
+
+
+- 그래서 대개 이런 조건문(conditionals)들은 어떤 변수들의 값이 변함(evolve)에 따라 코드를 반복시키기 위해 루프(loop) 안에 즐겨 사용(Often use)됩니다.
+
+```{python}
+velocity = 10.0
+for i in range(5): # 루프 본문을 5번 반복 수행(execute the loop 5 times)합니다.
+    print(i, ':', velocity)
+    if velocity > 20.0:
+        print('moving too fast')
+        velocity = velocity - 5.0
+    else:
+        print('moving too slow')
+        velocity = velocity + 10.0
+print('final velocity:', velocity)
+```
+
+
+## 프로그램의 동작 과정을 파악하려면(trace), 시간에 따라 변수들이 어떻게 변하는지 보여주는 표(table)를 만들어 보는 것(Create a table)이 좋습니다.
+
+<table>
+  <tr>   <td><strong>i</strong></td>   <td>0</td>   <td>.</td>   <td>1</td>   <td>.</td>   <td>2</td>   <td>.</td>   <td>3</td>   <td>.</td>   <td>4</td>   <td>.</td>
+  </tr>
+  <tr>   <td><strong>velocity</strong></td>   <td>10.0</td>   <td>20.0</td>   <td>.</td>   <td>30.0</td>   <td>.</td>   <td>25.0</td>   <td>.</td>   <td>20.0</td>   <td>.</td>   <td>30.0</td>
+  </tr>
+</table>
+
+- 위 예제 프로그램에서는 마지막 단계의 `10.0` 값이 산출된 과정을 보여주기 위해 마지막 `print` 구문을 루프 블록 외부(outside)에 배치해야만 했습니다(must have a `print` statement *outside*).
+  루프가 모두 끝나는 마지막 수행(last iteration)이 종료된 시점에, 결국 최종 갱신된(updated) 진짜 종점(final value) 결과를 출력하기 위함입니다.:::::::::::::::::::::::::::::::::::::::::  callout
+
+## `and`, `or`, 괄호를 동원한 복합 관계식 (Compound Relations)
+
+대부분의 경우 조건들은 하나가 아닌 여러 개의 조합이 동시에 맞아야 하거나 어느 하나라도 맞아야 하는 복합적인 요구사항으로 나타납니다. 이런 상황에 대비해 파이썬은 여러 논리 연결사 조건식(relations)을 엮어 결합 조율할 수 있게 `and` (그리고, 동시 충족) 및 `or` (또는, 양자택일)를 지원합니다. 앞서 다룬 예시의 연장선상에서 아래 코드를 보겠습니다:
+
+```{python}
+mass     = [ 3.54,  2.07,  9.22,  1.86,  1.71]
+velocity = [10.00, 20.00, 30.00, 25.00, 20.00]
+
+i = 0
+for i in range(5):
+    if mass[i] > 5 and velocity[i] > 20:
+        print("Fast heavy object.  Duck!")
+    elif mass[i] > 2 and mass[i] <= 5 and velocity[i] <= 20:
+        print("Normal traffic")
+    elif mass[i] <= 2 and velocity[i] <= 20:
+        print("Slow light object.  Ignore it")
+    else:
+        print("Whoa!  Something is up with the data.  Check it")
+```
+
+기초 연산 부호에서처럼, 논리식(조건식) 작성 시에도 의미의 혼동이나 모호함을 방지하려면 반드시 소괄호 `()`를 도입하여 우선순위를 묶어두는 것이 좋습니다(can and should use parentheses). 모범적인 일반 원칙(good general rule) 하나를 소개하자면: 단일 조건을 넘어 `and` 나 `or` 연산을 교차하거나 혼용해서 겹쳐 쓸 일이 있다면 *항상(always)* 괄호를 친다는 것입니다.  예를 들어 아래처럼 작성하는 대신:
+
+```{python}
+if mass[i] <= 2 or mass[i] >= 5 and velocity[i] > 20:
+```
+
+의도하는 명확한 조건에 따라 다음과 같이 둘 중 하나(write one of these)로 명시해야 합니다:
+
+```{python}
+if (mass[i] <= 2 or mass[i] >= 5) and velocity[i] > 20:
+if mass[i] <= 2 or (mass[i] >= 5 and velocity[i] > 20):
+```
+
+이렇게 하면, 코드를 읽는 사람과 파이썬 프로그램 스스로도 사용자의 명확한 작성 의도(what you really mean)를 완벽하게 직관적으로(perfectly clear) 파악할 수 있습니다.
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## 실행 흐름 추적하기 (Tracing Execution)
+
+다음 프로그램은 어떤 결과값을 화면에 출력할까요?
+
+```{python}
+pressure = 71.9
+if pressure > 50.0:
+    pressure = 25.0
+elif pressure <= 50.0:
+    pressure = 0.0
+print(pressure)
+```
+
+:::::::::::::::  solution
+
+## 해답
+
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## 값 변경하여 새로운 리스트 만들기 (Trimming Values)
+
+아래 프로그램의 빈칸을 채워, 원래 리스트에서 음수인 값들은 모두 '0'으로, 양수인 값들은 모두 '1'로 변경한 새로운 리스트를 생성해 보세요.
+
+```{python}
+original = [-1.5, 0.2, 0.4, 0.0, -1.3, 0.4]
+result = []
+for value in original:
+    if value < 0.0:
+        result.append(0)
+    else:
+        result.append(1)
+print(result)
+```
+
+
+:::::::::::::::  solution
+
+## Solution
+
+```{python}
+original = [-1.5, 0.2, 0.4, 0.0, -1.3, 0.4]
+result = []
+for value in original:
+    if value < 0.0:
+        result.append(0)
+    else:
+        result.append(1)
+print(result)
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## 작은 파일만 골라 처리하기 (Processing Small Files)
+
+아래 프로그램을 수정하여 데이터 건수(records)가 50건 미만인 파일들만 선별하여 처리하도록 만들어 보세요.
+
+```{python}
+import glob
+import pandas as pd
+for filename in glob.glob('data/*.csv'):
+    contents = pd.read_csv(filename)
+    ____:
+        print(filename, len(contents))
+```
+
+:::::::::::::::  solution
+
+## 해답
+
+```{python}
+import glob
+import pandas as pd
+for filename in glob.glob('data/*.csv'):
+    contents = pd.read_csv(filename)
+    if len(contents) < 50:
+        print(filename, len(contents))
+```
+
+::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## 초깃값 설정하기 (Initializing)
+
+리스트 안에 포함된 값들의 범위(range)에 상관없이, 루프를 사용해 구하는 방식에서 항상 가장 큰 값(largest)과 가장 작은 값(smallest)을 올바르게 찾을 수 있도록 다음 프로그램을 완성하세요.
+
+```{python}
+values = [...some test data...]
+smallest, largest = None, None
+for v in values:
+    if ____:
+        smallest, largest = v, v
+    ____:
+        smallest = min(____, v)
+        largest = max(____, v)
+print(smallest, largest)
+```
+
+이처럼 변수들을 초기화하여 데이터의 범위(range of the data) 최솟값과 최댓값을 구하는 방식(method)의 장점과 단점(advantages and disadvantages)은 각각 무엇일까요?
+
+:::::::::::::::  solution
+
+## 해답
+
+```{python}
+values = [-2,1,65,78,-54,-24,100]
+smallest, largest = None, None
+for v in values:
+    if smallest is None and largest is None:
+        smallest, largest = v, v
+    else:
+        smallest = min(smallest, v)
+        largest = max(largest, v)
+print(smallest, largest)
+```
+
+만약 코드에서 `is None` 대신 `== None` 을 사용해도 작동은 잘 될 것입니다. 하지만 파이썬 프로그래머들은 `None` 객체의 특수한 성질 때문에 항상 `is None` 구문을 권장하여 사용합니다.
+
+이 방식(this method)의 장점이라면 코드가 조금 더 서술적이어서 로직을 읽기 쉽다(make the code more readable)는 점을 들 수 있습니다.
+단점으로는 연산 구조상 비효율적(not efficient)이라는 것입니다. 루프의 각 반복 단계마다(iteration) 두 개의 함수(`min` 과 `max`)를 동시에 호출하여 비교를 수행하고 있기 때문입니다. 
+루프를 단순화하여 각 반복 수행 시 오직 1회의 산술 비교만 하도록 만들면 훨씬 더 효율적인(more efficient) 코드가 됩니다:
+
+```{python}
+values = [-2,1,65,78,-54,-24,100]
+smallest, largest = None, None
+for v in values:
+    if smallest is None or v < smallest:
+        smallest = v
+    if largest is None or v > largest:
+        largest = v
+print(smallest, largest)
+```
+
+위 코드는 단일 루프(one loop) 안에 조건 분기와 비교 구문(comparison tests)이 4번 등장합니다. 이렇게 비교 횟수를 더 줄이든가(fewer comparisons), 아니면 차라리 각각 1개의 조건만 들어간 두 개의 개별 루프로 분리(two loops that each contain only one comparison test)하는 방향의 개선책도 생각해 볼 수 있습니다. 
+하지만 결국 프로그래밍에서는 가장 기본적이고 단순한 해결책이 최선의 정답(simplest solution is often the best)일 때가 많습니다:
+
+```{python}
+values = [-2,1,65,78,-54,-24,100]
+smallest = min(values)
+largest = max(values)
+print(smallest, largest)
+```
+
+::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- 특정 코드 블록의 실행(executed) 여부를 논리적으로 제어하려면 `if` 지시문을 사용합니다.
+- 조건문들(Conditionals)은 루프(loops) 구문 내에 함께 쓰이는 경우가 매우 흔합니다(often used).
+- 조건 검증이 거짓(*not* true)일 때 우회하여 실행할 기본 코드를 지정하려면 `else` 를 사용(Use `else`)합니다.
+- 추가적인 조건 테스트(additional tests) 분기를 지정하려면 `elif` 를 사용(Use `elif`)합니다.
+- 조건문들(Conditions are tested)은 단 한 번, 위에서 아래 순서대로(once, in order) 평가됩니다.
+- 프로그램의 실행 과정(trace)을 명확하게 파악하려면 일련의 변수 상태를 기록하는 표를 그려보는 것(Create a table)이 도움이 됩니다.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::

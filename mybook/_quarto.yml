@@ -1,0 +1,45 @@
+project:
+  type: book
+
+book:
+  title: "python-novice-gapminder"
+  author: "Allen Lee"
+  date: "2/20/2026"
+  chapters:
+    - index.qmd
+    - 01-run-quit.qmd
+    - 02-variables.qmd
+    - 03-types-conversion.qmd
+    - 04-built-in.qmd
+    - 05-coffee.qmd
+    - 06-libraries.qmd
+    - 07-reading-tabular.qmd
+    - 08-data-frames.qmd
+    - 09-plotting.qmd
+    - 10-lunch.qmd
+    - 11-lists.qmd
+    - 12-for-loops.qmd
+    - 13-conditionals.qmd
+    - 14-looping-data-sets.qmd
+    - 15-coffee.qmd
+    - 16-writing-functions.qmd
+    - 17-scope.qmd
+    - 18-style.qmd
+    - 19-wrap.qmd
+    - 20-feedback.qmd
+
+bibliography: references.bib
+
+execute:
+  error: true
+  freeze: auto
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    number-sections: false
+
+
+

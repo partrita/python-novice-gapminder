@@ -1,0 +1,16 @@
+[workspace]
+authors = ["fkt <deepthought@postech.ac.kr>"]
+channels = ["conda-forge"]
+name = "python-novice-gapminder"
+platforms = ["osx-arm64", "linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+quarto = ">=1.8.27,<2"
+python = "3.11.*"
+jupyter = ">=1.0.0"
+jupyterlab = ">=4.0.0"
+pandas = ">=2.0.0"
+matplotlib = ">=3.7.0"
