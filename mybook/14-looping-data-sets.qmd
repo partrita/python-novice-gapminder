@@ -1,27 +1,27 @@
 ---
-title: 데이터 셋 순회하기
+title: 데이터 세트 순회하기
 teaching: 5
 exercises: 10
 ---
 
 ::: {.callout-tip title="학습 목표"}
 
-- 여러 파일들의 이름을 일일이 치지 않고 한꺼번에 묶어 지정(match)할 수 있는 글로빙(globbing) 정규 표현식 패턴을 올바르게 읽고 쓸 수 있습니다.
-- `glob` 라이브러리를 동원해 파일 이름들이 줄줄이 담긴 리스트 명단을 자동으로 척척 뽑아 생성해 냅니다.
-- 이렇게 마련된 파일 이름 리스트 명단을 바탕으로 `for` 루프를 돌려, 각 파일들에 대해 일괄적으로 동일한 연산 처리를 수행하는 자동화 코드를 통째로 엮어 짭니다.
+- 여러 파일 이름을 한꺼번에 지정할 수 있는 글로빙(globbing) 패턴을 이해하고 사용합니다.
+- `glob` 라이브러리를 사용하여 조건에 맞는 파일 목록을 생성합니다.
+- 파일 목록을 바탕으로 `for` 루프를 사용하여 여러 파일에 대해 동일한 작업을 일괄 처리하는 코드를 작성합니다.
 
 :::
 
 ::: {.callout-note title="질문"}
 
-- 무수히 널브러진 방대한 데이터 파일 세트들을 단 한 번의 커맨드 구동으로 한방에 죄다 일괄 처리하려면 어떻게 구상해야 할까요?
+- 여러 개의 데이터 파일을 한 번에 처리하려면 어떻게 해야 하나요?
 
 :::
 
-## 수많은 파일들의 이름이 적힌 명단(list)이 주어졌을 때, 뺑뺑이 `for` 루프를 구동시켜 파일들을 순차적으로 일괄 타격 처리하세요.
+## 파일 이름 목록을 사용하여 `for` 루프로 파일을 일괄 처리합니다.
 
-- 파일의 이름 지칭은 결국 하나의 문자열(character string) 조각입니다.
-- 그리고 파이썬 리스트(lists) 구조 안에는 당연히 그 문자열 덩어리들을 무더기로 담아 품을 수 있지요.
+- 파일 이름은 문자열 데이터입니다.
+- 파이썬 리스트를 사용하여 여러 파일 이름을 저장하고 관리할 수 있습니다.
 
 ```{python}
 import pandas as pd
@@ -30,34 +30,27 @@ for filename in ['data/gapminder_gdp_africa.csv', 'data/gapminder_gdp_asia.csv']
     print(filename, data.min())
 ```
 
+## [`glob.glob`](https://docs.python.org/3/library/glob.html#glob.glob)을 사용하여 패턴에 일치하는 파일들을 찾습니다.
 
-## [`glob.glob`](https://docs.python.org/3/library/glob.html#glob.glob) 요술 지팡이를 휘둘러, 특정 규칙 패턴(pattern)에 일치하는 파일군 무더기들을 한 번에 쓱 긁어 찾아내세요.
-
-- 유닉스(Unix) 세계의 바닥 용어 중 "글로빙(globbing)" 이라 함은 곧 "어떤 특정 패턴 규칙을 내세워 거기에 부합하는 무더기 파일 세트를 일괄 매칭해 잡아낸다"는 뜻을 품고 있습니다.
-- 이 바닥에서 가장 흔하게 쓰이는 단골 패턴 기호는 이렇습니다:
-  - `*` : "아무 문자나 0개 이상(zero or more characters) 주르륵 다 와도 됨" 이란 뜻의 만능 와일드카드.
-  - `?` : "정확히 딱 한 글자(exactly one character) 문자" 만을 대변하는 치환 기호.
-- 파이썬 공인 내장 표준 라이브러리 안에는 바로 이런 파일 패턴 매칭 탐색 기능을 전담 지원하고자 [`glob`](https://docs.python.org/3/library/glob.html) 모듈이 기본 탑재되어 무장 대기 중입니다.
-- 이 [`glob`](https://docs.python.org/3/library/glob.html) 모듈 안에는 아예 모듈 이름과 똑같은 `glob` 이라는 이름표의 함수가 들어 있어, 실질적인 파일 패턴 매칭 타격 검색을 곧장 수행해 줍니다.
-- 예컨대, `glob.glob('*.txt')` 라고 갈기면, 현재 발 딛고 있는 디렉터리 구역 내에서
-  이름 꽁무니 끝자락이 `.txt` 확장자로 끝나는 모든 파일들만을 싹 다 긁어 매칭 색출해 냅니다.
-- 그 수색 포획 결과물로는 (조건에 맞는 게 아예 없을 시엔 빈 리스트일 수도 있는) 파일 이름 문자열 값어치들이 담긴 하나의 리스트 덩이가 반환 산출됩니다.
+- 유닉스(Unix) 시스템에서 "글로빙(globbing)"은 특정 패턴과 일치하는 파일 집합을 찾는 것을 의미합니다.
+- 가장 흔히 사용되는 패턴 기호는 다음과 같습니다:
+  - `*` : 0개 이상의 임의의 문자와 일치하는 와일드카드.
+  - `?` : 정확히 하나의 문자와 일치하는 기호.
+- 파이썬의 표준 라이브러리인 [`glob`](https://docs.python.org/3/library/glob.html) 모듈은 이러한 파일 패턴 매칭 기능을 제공합니다.
+- `glob.glob('*.txt')`와 같이 실행하면 현재 디렉터리에서 확장자가 `.txt`인 모든 파일의 목록을 리스트 형태로 반환합니다. 만약 일치하는 파일이 없다면 빈 리스트를 반환합니다.
 
 ```{python}
 import glob
-print('data 디렉터리 안의 모든 csv 파일들:', glob.glob('data/*.csv'))
+print('data 디렉터리 안의 모든 csv 파일:', glob.glob('data/*.csv'))
 ```
-
 
 ```{python}
-print('모든 PDB 파일들:', glob.glob('*.pdb'))
+print('모든 PDB 파일:', glob.glob('*.pdb'))
 ```
 
+## `glob`과 `for` 루프를 결합하여 여러 파일을 일괄(batch) 처리합니다.
 
-## `glob` 매칭과 `for` 루프 뺑뺑이를 절묘하게 퓨전 결합해 떼거리 파일 무작위 일괄(batch) 처리 공정을 발동시키세요.
-
-- 만약 파일들이 중구난방이 아니라 시스템적으로 아주 일관성 잣대에 맞춰 체계적으로 이름 지어지고 고이 저장 분류되어 있다면,
-  이 방식은 간단한 패턴식 지시 하나만으로 딱 원하는 타깃 표적 데이터들만 귀신같이 쓸어 담아 찾아낼 수 있어 그 매력과 효력 타당성이 막대하게 엄청납니다.
+- 파일들이 일관된 규칙에 따라 이름 지어져 있다면, 간단한 패턴만으로 원하는 파일들을 쉽게 찾아내어 처리할 수 있습니다.
 
 ```{python}
 for filename in glob.glob('data/gapminder_*.csv'):
@@ -65,42 +58,34 @@ for filename in glob.glob('data/gapminder_*.csv'):
     print(filename, data['gdpPercap_1952'].min())
 ```
 
+- 위 코드의 결과에는 지역별 데이터뿐만 아니라 `gapminder_all.csv`와 같은 전체 데이터 세트도 포함될 수 있습니다. 
+- 특정 파일을 제외하거나 더 구체적인 대상을 지정하려면 패턴을 더 정교하게 작성해야 합니다.
+- 전체 통합 데이터의 최솟값이 특정 지역 데이터의 최솟값과 일치하는지 확인하는 것은 코드가 올바르게 작동하는지 검증하는 좋은 방법이 될 수 있습니다.
 
-- 위 구동 결과엔 지역별로 쪼개진 파편 파생 데이터뿐만 아니라 전체 판을 통합한 `전체` 데이터 세트마저 하나로 합산 판정되어 모조리 쓸려 포섭 추출되어 나옵니다.
-- 하단 연습 문제에선 저 전체 데이터 덩이 하나쯤은 교묘하게 쏙 빠지도록 제외 차단시키는 좀 더 섬세하고 구체적인 한정 패턴식을 고안 구사해 보십시오.
-- 단, 여기서 한 가지 흥미로운 산수 팩트 체크: 전체 통합 데이터 세트 바운더리 안의 최솟값은 필연적으로 어느 특정 쪼개진 단일 지역 데이터 셋 산하 구역의 최솟값과 일치 부합 거수될 수밖에 없음을 유념 직시해 보세요.
-  이는 곧 내 연산이 지금 제대로 멀쩡히 가동 굴러가고 있는지 판가름해 주는 쏠쏠 유용한 직관적 크로스 체크(check on correctness) 확인 지표 수단이 되어 주기도 합니다.
+:::: {.callout-important title="연습 문제"}
 
-:::: {.callout-important title="범례"}
+## 매칭되는 파일 판별하기
 
-## 매칭 수색 판별망 점검 (Determining Matches)
-
-다음 제시된 파일들 가운데, `glob.glob('data/*as*.csv')` 란 조건식 포위망 필터 표현식에 *걸려들지 않고* 무사히 빠져나갈 미스 매치 녀석은 뉘신가요?
+다음 파일 중에서 `glob.glob('data/*as*.csv')` 패턴에 일치하지 **않는** 파일은 무엇인가요?
 
 1. `data/gapminder_gdp_africa.csv`
 2. `data/gapminder_gdp_americas.csv`
 3. `data/gapminder_gdp_asia.csv`
 
 ::: {.callout-caution collapse="true" title="해답"}
-
-## 해답
-
-1번 `africa.csv` 파일은 해당 glob 패턴 그물망 조건에 부합 매칭되지 않아 튕겨 나갑니다.
-
-
-
+1번 `data/gapminder_gdp_africa.csv` 파일은 이름에 `as`가 포함되어 있지 않으므로 패턴에 일치하지 않습니다.
 :::
 
 ::::
 
-:::: {.callout-important title="범례"}
+:::: {.callout-important title="연습 문제"}
 
-## 파일 최소 레코드 덩치 판별 (Minimum File Size)
+## 최소 레코드 수 찾기
 
-아래 프로그램을 이리저리 개조하여, 가장 적은 숫자의 데이터 레코드(행) 줄 수를 품고 있는 
-제일 홀쭉한 파일의 그 해당 최저 레코드 건수 숫자를 출력 인쇄하도록 고치세요.
+아래 프로그램을 수정하여, 데이터의 행(레코드) 수가 가장 적은 파일의 행 수를 출력하도록 만드세요.
 
 ```{python}
+#| eval: false
 import glob
 import pandas as pd
 fewest = ____
@@ -110,14 +95,12 @@ for filename in glob.glob('data/*.csv'):
 print('가장 작은 파일의 레코드 건수는', fewest, '건입니다')
 ```
 
-참고로, [`DataFrame.shape()` 메서드][shape-method] 도구를 발동하면
-목표 데이터프레임의 행(rows) 개수와 열(columns) 개수 모양새 윤곽이 담긴 한 쌍의 튜플(tuple) 결과가 반환 떨어집니다.
+참고: [`DataFrame.shape` 속성][shape-method]은 데이터프레임의 (행 수, 열 수)를 담은 튜플을 반환합니다.
 
 ::: {.callout-caution collapse="true" title="해답"}
 
-## 해답
-
 ```{python}
+#| eval: false
 import glob
 import pandas as pd
 fewest = float('Inf')
@@ -127,65 +110,41 @@ for filename in glob.glob('data/*.csv'):
 print('가장 작은 파일의 레코드 건수는', fewest, '건입니다')
 ```
 
-어쩌면 여러분은 저 `fewest` 변수의 최초 초기 등판 값을 그냥 실측 투입 데이터들보다 넉넉히 좀 더 큰 숫자 대충 아무거나 때려 박아 초기화(initialize) 할 심산으로 기용 골랐을지 모르나, 그딴 얄팍 편법은 나중에 더 방대한 괴물 큰 숫자를 다루는 밭에 저 코드를 재기용 투입 재활용할 찰나 언젠가 크나큰 재앙 붕괴(trouble) 에러 참사를 야기할 위험 복병 뇌관이 도사리게 됩니다.
-대신 파이썬은 이럴 때 아주 기특한 무기인 **양의 무한대(positive infinity)** 개념이란 절대 산술 수구 치트키를 허용 제정 지원해 주며, 저놈을 저기 박아놓으면 앞으로 네 놈 숫자 체급이 얼마나 무한 막대 거구 덩치를 지녔든 아무 괘념 어림 불상사 없이 늘상 찰떡 원활 무사통과 굴러가는 마법 만능 만병통치 효험을 누릴 수 보장해 줄 것입니다.
-그렇다면 저 [`float` 함수][float-function] 가 특수 식별 감별 처리 판독해 내는 또 다른 신통방통 특수 문자열(special strings) 구문 암호들은 과연 어떤 부류 녀석들이 더 존재 자리 잡고 있을까요?
-
-
-
+`fewest` 변수를 초기화할 때 임의의 큰 숫자를 사용할 수도 있지만, 데이터가 그보다 더 클 경우 오류가 발생할 수 있습니다. 파이썬에서는 **양의 무한대(positive infinity)**를 나타내는 `float('Inf')`를 사용하여 어떤 수와 비교해도 안전하게 초기화할 수 있습니다.
 :::
 
 ::::
 
-:::: {.callout-important title="범례"}
+:::: {.callout-important title="연습 문제"}
 
-## 데이터 맞대고 비교 연산하기 (Comparing Data)
+## 여러 데이터 비교 및 시각화하기
 
-과제입니다. 일단 저 지역(region)별로 파편화된 데이터 세트들을 모조리 한꺼번에 빨아들이게끔 프로그램을 짜고,
-그렇게 추출된 전 지역 각양각색의 각 연도별 1인당 평균 GDP 수치 변동 추이를 하나로 뭉쳐 단일 차트(single chart) 도화지 위에다 
-전부 짬뽕해 우겨넣어 꺾은선으로 맵핑(plots)해 내는 스크립트를 작성해 보세요. 
-참고로 데이터프레임 안에서 수식 연산을 뺑뺑 돌릴 참이면, Pandas 녀석은 가끔 중간에 숫자가 아닌(non-numeric) 문구 텍스트 쪼가리 칼럼이 섞여 곱사리 껴있을 때 곧잘 발작 에러(error)를 토해내며 뻗어버릴 공산이 큽니다.
-이럴 땐 아예 그런 불량(?) 칼럼 녀석들을 필터링으로 솎아 빼버리든가, 
-혹은 Pandas한테 "숫자 아닌 놈들은 걍 눈치껏 씹어 돌려" 라고 친절히 예외 조항(ignore them)을 달아 일러둬야 할 수도 있습니다.
-
+모든 지역별 GDP 데이터를 읽어 들여, 각 지역의 연도별 1인당 GDP 평균 변화 추이를 하나의 차트에 그래프로 나타내는 스크립트를 작성해 보세요. 
+참고: 데이터프레임 연산 시 숫자가 아닌 데이터가 포함되어 있으면 오류가 발생할 수 있으므로, 숫자 데이터만 선택하여 계산해야 합니다.
 
 ::: {.callout-caution collapse="true" title="해답"}
 
-## 해답
-
-이 해답 모범 코드 안에선 `split` 이라 불리는 [문자열 절단 분리술(`split` method)][split-method] 수법을 가미하여
-저 복잡다단한 파일 경로명 'data/gapminder\_gdp\_a\_specific\_region.csv' 뭉치 속에서 딱 엑기스인 `region(지역명)` 명칭만 절묘하게 발라 뽑아내 이를 범례(legend) 이름표 딱지로 써먹는 신박한 꼼수 기법 구조를 동원 시연해 보여주겠습니다.
+파일 이름에서 지역명을 추출하여 범례(legend)로 사용하는 예시 코드입니다.
 
 ```{python}
+#| eval: false
 import glob
 import pandas as pd
 import matplotlib.pyplot as plt
+
 fig, ax = plt.subplots(1,1)
 for filename in glob.glob('data/gapminder_gdp*.csv'):
     dataframe = pd.read_csv(filename)
-    # 애초에 기대하는 파일 이름 작명 규격은 'data/gapminder_gdp_<region>.csv' 형태입니다.
-    # 이제 여기서 저 파일 이름 문자열을 `_` (밑줄) 기준으로 난도질 컷팅(split)해 조각낸 다음,
-    # 반환된 리스트 뭉치에서 맨 끄트머리 꽁비 단어인 (`<region>.csv`) 알맹이를 적출해 갈무리하고,
-    # 그 발라낸 꽁비 단어에서 다시 뒤통수 꼬리표인 `.csv` (글자 4개) 녀석을 날려 잘라 먹습니다 ([:-4]).
-    # 참고(NOTE): 바로 다음 콜아웃 박스에서 다뤄볼 pathlib 이란 유틸 모듈 녀석을 동원하면
-    # 이런 시스템 파일 경로명 지지고 볶는 가공 분해 뻘짓(manipulation)들을 훨씬 손쉽고 기깔나게 우회 대행 타개해 줄 수 있기도 합니다:
-    # from pathlib import Path
-    # region = Path(filename).stem.split('_')[-1]
+    # 파일 이름 규칙이 'data/gapminder_gdp_<region>.csv'라고 가정합니다.
+    # '_'를 기준으로 문자열을 나누고 마지막 부분에서 '.csv'를 제외하여 지역명을 추출합니다.
     region = filename.split('_')[-1][:-4]
-    # 요번엔 데이터프레임 열 대가리 제목들 패거리 안에서 '연도(years)' 숫자형 글자들만 골라 뽑아 차출해 냅니다.
-    headings = dataframe.columns[1:]
-    years = headings.str.split('_').str.get(1)
-    # pandas는 데이터프레임 연산 돌릴 때 숫자 아닌 텍스트가 섞인 열(non-numeric columns)이 보이면 게거품 에러를 뿜습니다.
-    # 그치만 여기다 `numeric_only=True` 란 마법 통행증 파라미터 옵션 한 줄만 부기해 달아주면 그딴 텍스트 열들은 투명인간 쥐도 새도 모르게 쿨하게 씹고 무시해 줍니다.
+    
+    # 숫자 데이터만 사용하여 평균을 계산하고 그래프를 그립니다.
     dataframe.mean(numeric_only=True).plot(ax=ax, label=region)
-    # 참견 충고(NOTE): 아예 filter 란 녀석을 부려먹어 진짜 기똥차게 애초부터 이름표에 "gdp"란 문자 핏줄이 흐르는 정예 칼럼 성역만 따로 빼 필터 타격 통과시키는 대안 노선 방식도 존재합니다.
-    # dataframe.filter(like="gdp").mean().plot(ax=ax, label=region)
-# 도화지에다 멋들어지게 차트 대문 제목과 가로축/세로축 라벨 이정표들을 세팅 배정합니다.
+
 ax.set_title('GDP Per Capita for Regions Over Time')
-ax.set_xticks(range(len(years)))
-ax.set_xticklabels(years)
 ax.set_xlabel('Year')
-plt.tight_layout()
+ax.set_ylabel('GDP Per Capita')
 plt.legend()
 plt.show()
 ```
@@ -196,23 +155,18 @@ plt.show()
 
 ::: {.callout-note appearance="simple"}
 
-## 지저분한 파일 경로명 노가다 손질하기 (Dealing with File Paths)
+## 파일 경로 다루기
 
-파이썬 내장된 [`pathlib` 모듈][pathlib-module] 녀석은 거추장스러운 확장자(file extension) 꼬부랑 글씨들을 다 떼어버린 담백한 순수 알맹이 파일명들만 쏙 빼 반환해 탈취해다 주는 식의 쏠쏠하고 요긴한 파일 시스템 조작 유틸 추상 도구(abstractions) 기법들을 한가득 탑재해 제공 선사해 줍니다. 특히나 숱하게 파일이나 디렉터리 창고를 헤집고 뺑뺑이 순회(looping over files)를 털어야 하는 이 파일 노가다 사역 국면에서 이보다 유용한 신통방통 만능 해결사도 없습니다.
-하단 예시 구동에선, `Path` 객체란 마법 보따리를 하나 창조 형성해 낸 뒤 그 안주머니엔 과연 어떤 재주(attributes) 신박한 도구 장비들이 그득 장착 꽂혀 있는지 한 번 꺼내 훔쳐 시연해 점검해 봅시다.
+파이썬의 [`pathlib` 모듈][pathlib-module]을 사용하면 파일 경로, 확장자 분리 등 파일 시스템 조작을 더 쉽고 직관적으로 수행할 수 있습니다. 
 
 ```{python}
 from pathlib import Path
 
 p = Path("data/gapminder_gdp_africa.csv")
-print(p.parent)
-print(p.stem)
-print(p.suffix)
+print(p.parent)  # 부모 디렉터리
+print(p.stem)    # 파일 이름 (확장자 제외)
+print(p.suffix)  # 확장자
 ```
-
-
-**꿀팁(Hint):** 저 `dir()` 마법 점검 함수를 냅다 부려 먹어, 저 `Path` 객체놈 구석구석 도대체 어떤 속성(attributes) 놈팽이들과 잡다 메서드(`methods`) 연장들이 징박혀 포진된 채 은닉 생존해 있는지 낱낱이 싹 다 파헤쳐 색출 확인해 보시길 권장해 봅니다.
-
 
 :::
 
@@ -221,13 +175,10 @@ print(p.suffix)
 [split-method]: https://docs.python.org/3/library/stdtypes.html#str.split
 [pathlib-module]: https://docs.python.org/3/library/pathlib.html
 
-
 ::: {.callout-note title="핵심 요약"}
 
-- 리스트(list) 명단에 줄줄이 담긴 파일 이름패들을 투입 던져줘, `for` 구문 루프 뺑뺑이를 돌려가며 각 파일들을 전수 타격 소화해 냅니다.
-- 냅다 `glob.glob` 스캐너 지팡이를 휘둘러 규칙 패턴식(pattern) 잣대에 들어맞는 표적 파일군 무더기들을 수색 일거 타진해 색출해 냅니다.
-- 이렇게 마련된 `glob` 수색 결과물에다 `for` 루프 기어를 물려 동력 융합을 걸어, 다수 무더기 파일(batches of files) 진영을 일타쌍피 일일 싹쓸이 일괄 처리(process)로 섬멸 도모 전개해 냅니다.
+- 파일 이름 리스트와 `for` 루프를 결합하여 여러 파일을 순차적으로 처리할 수 있습니다.
+- `glob.glob`을 사용하여 특정 패턴과 일치하는 파일 목록을 쉽게 가져올 수 있습니다.
+- `glob`과 `for` 루프를 함께 사용하면 대량의 파일을 효율적으로 일괄 처리할 수 있습니다.
 
 :::
-
-

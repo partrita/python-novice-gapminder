@@ -6,235 +6,112 @@ exercises: 15
 
 ::: {.callout-tip title="학습 목표"}
 
-- Pandas 데이터프레임에서 개별 값을 선택합니다.
-- 데이터프레임에서 전체 행 또는 전체 열을 선택합니다.
-- 단일 조작 한 번으로 데이터프레임에서 행과 열 부분집합(subset)을 함께 선택합니다.
-- 단일 불리언(Boolean) 조건을 사용하여 데이터프레임의 부분집합을 선택합니다.
+- Pandas 데이터프레임에서 특정 위치나 레이블을 사용하여 값을 선택할 수 있습니다.
+- 데이터프레임의 행과 열을 슬라이싱하여 부분집합(subset)을 추출할 수 있습니다.
+- 불리언(Boolean) 조건을 활용하여 특정 조건에 맞는 데이터를 필터링할 수 있습니다.
 
 :::
 
 ::: {.callout-note title="질문"}
 
-- 표 형태의 데이터를 상대로 통계 분석을 어떻게 수행할 수 있나요?
+- 표 형태의 데이터를 어떻게 효율적으로 선택하고 분석할 수 있나요?
 
 :::
 
-## Pandas 데이터프레임과 시리즈(Series)에 대한 참고 사항
+## Pandas 데이터프레임(DataFrame)과 시리즈(Series)
 
-[데이터프레임(DataFrame)][pandas-dataframe]은 [시리즈(Series)][pandas-series]들의 모음입니다.
-데이터프레임은 Pandas가 표(table)를 나타내는 방식이며, 시리즈는 Pandas가 열(column)을 나타내는 데 사용하는 데이터 구조입니다.
+- **데이터프레임(DataFrame)**은 Pandas에서 표(table) 형태의 데이터를 다루는 기본 구조입니다.
+- **시리즈(Series)**는 데이터프레임의 각 열(column)을 나타내는 1차원 데이터 구조입니다.
+- Pandas는 Numpy 라이브러리를 기반으로 구축되어 강력한 수치 계산 능력을 제공하며, 인덱싱, 누락된 데이터 처리, 데이터 병합 등 데이터 분석에 최적화된 기능을 제공합니다.
 
-Pandas는 [Numpy][numpy] 라이브러리 위에 구축되었습니다. 즉, 실제로는 Numpy 배열에 대해 정의된 대부분의 메서드가 Pandas 시리즈/데이터프레임에도 적용됩니다.
+## 데이터 선택하기
 
-Pandas를 매력적으로 만드는 것은 표의 개별 레코드에 접근할 수 있는 강력한 인터페이스, 
-누락된 값(missing values)에 대한 적절한 처리 기능, 
-그리고 데이터프레임 간의 관계형 데이터베이스(relational-databases) 연산을 지원한다는 점입니다.
+데이터프레임에서 특정 위치의 값을 선택할 때는 두 가지 방법을 주로 사용합니다.
 
-## 값 선택하기
+1. **위치 기반 선택 (`iloc`)**: 행과 열의 정수 인덱스(0, 1, 2...)를 사용하여 선택합니다.
+2. **레이블 기반 선택 (`loc`)**: 행 인덱스 이름과 열 이름을 사용하여 선택합니다.
 
-데이터프레임의 `[i,j]` 위치에 있는 값에 접근하려면, 여기서 `i`가 무엇을 의미하는지에 따라 두 가지 옵션이 있습니다.
-데이터프레임은 테이블의 행을 식별하는 방법으로 *인덱스(index)*를 제공한다는 점을 기억하세요.
-따라서 행은 테이블 내의 *위치(position)*뿐만 아니라,
-데이터프레임에서 해당 *항목(entry)*을 고유하게 식별하는 *레이블(label)*을 가집니다.
-
-## 해당 (항목) 위치(position)를 통해 값을 선택하려면 `DataFrame.iloc[..., ...]`를 사용하세요.
-
-- 문자열의 문자를 선택하는 2D 버전과 유사하게 숫자 인덱스로 위치를 지정할 수 있습니다.
+### 위치 기반 선택: `iloc`
 
 ```{python}
 import pandas as pd
 data = pd.read_csv('data/gapminder_gdp_europe.csv', index_col='country')
-print(data.iloc[0, 0])
+print(data.iloc[0, 0])  # 첫 번째 행, 첫 번째 열의 값 선택
 ```
 
-
-## 해당 (항목) 레이블(label)을 통해 값을 선택하려면 `DataFrame.loc[..., ...]`를 사용하세요.
-
-- 행 그리고/또는 열 이름으로 위치를 지정할 수 있습니다.
+### 레이블 기반 선택: `loc`
 
 ```{python}
-print(data.loc["Albania", "gdpPercap_1952"])
+print(data.loc["Albania", "gdpPercap_1952"])  # 'Albania' 행, 'gdpPercap_1952' 열의 값 선택
 ```
 
+## 행과 열 슬라이싱
 
-## `:` 단독 사용은 모든 열 또는 모든 행을 의미합니다.
-
-- 파이썬의 일반적인 슬라이싱 표기법과 동일합니다.
+- `:`을 사용하면 해당 축의 모든 데이터를 선택합니다.
 
 ```{python}
-print(data.loc["Albania", :])
+print(data.loc["Albania", :])  # 'Albania' 행의 모든 열 선택
+print(data.loc[:, "gdpPercap_1952"])  # 'gdpPercap_1952' 열의 모든 행 선택
 ```
 
-
-- 두 번째 인덱스 없이 `data.loc["Albania"]`를 출력해도 같은 결과를 얻습니다.
-
-```{python}
-print(data.loc[:, "gdpPercap_1952"])
-```
-
-
-- `data["gdpPercap_1952"]`를 출력해도 같은 결과를 얻습니다.
-- `data.gdpPercap_1952`를 출력해도 같은 결과를 얻습니다 (메서드에 사용하는 `.` 표기법과 쉽게 혼동되므로 권장하지 않음).
-
-## `DataFrame.loc`와 명명된 슬라이스(named slice)를 사용하여 여러 열이나 행을 선택하세요.
+- 레이블을 사용하여 일정 범위를 슬라이싱할 수 있습니다. `loc` 슬라이싱은 **마지막 레이블을 포함**한다는 점에 유의하세요.
 
 ```{python}
-print(data.loc['Italy':'Poland', 'gdpPercap_1962':'gdpPercap_1972'])
-```
-
-
-위의 코드에서 **`loc`을 사용한 슬라이싱은 양 끝단을 모두 포함한다**는 사실을 발견할 수 있습니다.
-이는 마지막 인덱스를 포함하지 않는 **`iloc`을 사용한 슬라이싱**과는 다릅니다.
-
-## 슬라이싱 결과를 추가 작업에 사용할 수 있습니다.
-
-- 일반적으로 슬라이스만 출력하지는 않습니다.
-- 전체 데이터프레임에서 작동하는 모든 통계 연산자는 슬라이스에서도 동일하게 작동합니다.
-- 예: 슬라이스의 최댓값 계산.
-
-```{python}
-print(data.loc['Italy':'Poland', 'gdpPercap_1962':'gdpPercap_1972'].max())
-```
-
-
-```{python}
-print(data.loc['Italy':'Poland', 'gdpPercap_1962':'gdpPercap_1972'].min())
-```
-
-
-## 비교 연산을 통해 값을 기준으로 데이터를 선택할 수 있습니다.
-
-- 비교는 요소별로 적용됩니다.
-- `True`와 `False`로 채워진 동일한 형태의 데이터프레임을 반환합니다.
-
-```{python}
-# 출력의 가독성을 위해 데이터의 부분집합을 사용합니다.
+# 'Italy'부터 'Poland'까지의 행과 1962년부터 1972년까지의 열 선택
 subset = data.loc['Italy':'Poland', 'gdpPercap_1962':'gdpPercap_1972']
-print('Subset of data:\n', subset)
-
-# 10000보다 큰 값은어디에 있나요?
-print('\nWhere are values large?\n', subset > 10000)
+print(subset)
 ```
 
+## 조건부 필터링 (Boolean Masking)
 
-## 불리언 마스크를 사용하여 값이나 NaN을 선택하세요.
-
-- 불리언으로 가득 찬 프레임은 그 활용 방식 때문에 가끔 *마스크(mask)*라고 불립니다.
+- 비교 연산자를 사용하면 데이터프레임의 각 요소에 대해 조건을 검사하고 `True`/`False`로 구성된 마스크를 생성합니다.
 
 ```{python}
 mask = subset > 10000
+print(mask)
+```
+
+- 이 마스크를 원본 데이터프레임에 적용하면 조건에 맞는 값만 추출할 수 있습니다. 조건에 맞지 않는 위치는 `NaN`(Not a Number, 결측치)으로 표시됩니다.
+
+```{python}
 print(subset[mask])
 ```
 
+## 그룹화(Group By)
 
-- 마스크가 참인 곳의 값을 가져오고, 거짓인 곳에서는 NaN(Not a Number)을 가져옵니다.
-- 연산 시 (max, min, average 등) NaN은 무시되므로 유용합니다.
-
-```{python}
-print(subset[subset > 10000].describe())
-```
-
-
-## 그룹화(Group By): 분할-적용-결합 (split-apply-combine)
-
-학습자들은 종종 이 부분에서 어려움을 겪습니다. 재무 데이터와 그쪽의 개념을 다뤄보지 않은 사람들이 많아서 이 예제의 데이터 개념들의 상황 파악을 힘들어합니다. 가장 큰 문제점은 `wealth_score`를 생성하는 부분인데, 이 단계에 대해서는 충분한 설명이 필요합니다:
-* 이 코드는 수업에서 지금까지 다루지 않은 불리언과 실수(float) 값 간의 암시적 상호 변환을 사용하고 있습니다.
-* `axis=1` 인수에 대한 명확한 설정 설명도 필요합니다.
-
-Pandas의 벡터화(vectorizing) 메서드와 그룹화(grouping) 연산은 사용자가 데이터를 분석할 때 큰 유연성을 제공하는 기능입니다.
-
-예를 들어, 유럽 국가들이 자신들의 GDP에 따라 어떻게 속성별로 구분되어 갈라지는지 더 명확하게 파악하고 싶다고 합시다.
-
-1. 먼저 측정된 조사 기간의 전체 연도에 걸쳐 유럽 국가들을 두 쪽의 그룹으로 나누어 대충 훑어볼 수 있습니다. 
-   즉, 유럽 지역 전체 평균보다 GDP가 *높은(higher)* 그룹과 *낮은(lower)* 그룹입니다.
-2. 그런 다음 1962년부터 2007년까지의 과거 데이터 이력(historical values)을 바탕으로 *부유도 점수(wealthy score)*를 어림잡아 추정하는데, 
-   어떤 한 국가가 GDP가 *더 높은* 그룹 혹은 *더 낮은* 그룹 영역에 속했던 횟수가 얼마나 비일비재한가를 계산하여 산정합니다.
+`groupby`를 사용하면 특정 기준에 따라 데이터를 나누고, 각 그룹에 대해 통계량을 계산한 뒤 다시 결합하는 분석을 수행할 수 있습니다.
 
 ```{python}
+# 전체 평균보다 높은지 여부를 기준으로 그룹화하여 합계 계산
 mask_higher = data > data.mean()
 wealth_score = mask_higher.aggregate('sum', axis=1) / len(data.columns)
-print(wealth_score)
-```
-
-
-마지막으로, 연결된 체인 메서드(chained methods) 기법들을 사용하여 `wealth_score` 테이블에 집계된 각 그룹들에 대하여 그들이 지닌 지난 설문 조사 연도들에 걸친 전체 (재무적) 기여도의 총합을 구합니다:
-
-```{python}
 print(data.groupby(wealth_score).sum())
 ```
 
+---
 
-:::: {.callout-important title="범례"}
+:::: {.callout-important title="연습 문제"}
 
-## 개별 값 선택하기
+## 데이터 선택 연습
 
-사용자의 노트북(notebook)에 Pandas가 이미 임포트되어 있고, 유럽의 Gapminder GDP 데이터가 다음과 같이 로드되어 있다고 가정해 보겠습니다:
-
-```{python}
-import pandas as pd
-
-data_europe = pd.read_csv('data/gapminder_gdp_europe.csv', index_col='country')
-```
-
-이를 활용하여 세르비아(Serbia)의 2007년 1인당 GDP 정보를 찾아내는 표현식을 작성해 보세요.
+1. `data_europe`에서 'Serbia' 국가의 '2007년 1인당 GDP'를 선택하는 코드를 작성하세요.
+2. `iloc[0:2, 0:2]`와 `loc['Albania':'Belgium', '1952':'1962']`의 결과 차이를 설명해 보세요.
 
 ::: {.callout-caution collapse="true" title="해답"}
-
-## 해답
-
-가로 행("Serbia")과 세로 열("gdpPercap\_2007") 양쪽 모두에 대한 레이블(label) 값 명칭 이름을 교차 지목하여 목표 값을 선택 도출해낼 수 있습니다:
-
-```{python}
-print(data_europe.loc['Serbia', 'gdpPercap_2007'])
-```
-
-이 코드는 다음과 같은 출력을 냅니다.
-
-
+1. `data_europe.loc['Serbia', 'gdpPercap_2007']`
+2. `iloc`은 마지막 인덱스를 포함하지 않지만, `loc`은 마지막 레이블을 결과에 포함합니다.
 :::
 
 ::::
 
-:::: {.callout-important title="범례"}
+:::: {.callout-important title="연습 문제"}
 
-## 슬라이싱의 적용 파급 범위 한계
+## 데이터 정제하기
 
-1. 아래 두 코드가 산출하는 출력물 결과값이 정확히 완전히 일치합니까?
-2. 이 비교 대조를 토대로 기인하여 유추할 때,
-  결국 Pandas 내에서 순수 숫자형 슬라이스 구문(numerical slices) 연산 시와 이름 지정 호출 슬라이스 구문(named slices) 연산 시, 그 종착지 결과에 항목이 각각 수용 포함되는지 (아니면 빠지는지 배제되는지)를 양분 결정짓는 규율 법칙은 각각 대체 무엇입니까?
+다음 코드의 각 줄이 수행하는 작업을 설명해 보세요.
 
 ```{python}
-print(data_europe.iloc[0:2, 0:2])
-print(data_europe.loc['Albania':'Belgium', 'gdpPercap_1952':'gdpPercap_1962'])
-```
-
-::: {.callout-caution collapse="true" title="해답"}
-
-## 해답
-
-아니요, 두 연산은 완전히 동일한 산출물을 토해내지 않습니다! 첫 번째 구문의 출력값은 다음과 같습니다:
-
-
-두 번째 구문이 낳는 출력 결과는:
-
-
-보다시피 아주 명확하게, 두 번째 명령 구문이 아까의 첫 번째 문장 쪽에 비견하여 세로 열과 가로 행을 각각 하나씩 여분으로 더 토출 발생시켰음이 확인됩니다. 
-우린 여기서 어떠한 결론 차이를 도출 단언 내릴 수 있을까요? 바로 숫자 기반 슬라이스 자르기인 `0:2` 구문의 기법은 자신이 제공 받은 지명 공간 영지 범위에서 최후미의 도착 종점 인덱스(즉 여기서는 index 2) 번호 자리를 빼버리고 *누락 생략(omits)* 해버린다는 점이고, 반면 이름표 방식 슬라이스인 `'gdpPercap\_1952':'gdpPercap\_1962'` 구문 지령 방식의 기조는 종점 마지막 지정 요소까지 끄트머리에 *꼬박꼬박 내포 포함(includes)* 처리 시켜 버린다는 놀라운 생리적 차이를 통찰하게 됩니다.
-
-
-
-:::
-
-::::
-
-:::: {.callout-important title="범례"}
-
-## Reconstructing Data
-
-Explain what each line in the following short program does:
-what is in `first`, `second`, etc.?
-
-```{python}
+#| eval: false
 first = pd.read_csv('data/gapminder_all.csv', index_col='country')
 second = first[first['continent'] == 'Americas']
 third = second.drop('Puerto Rico')
@@ -243,358 +120,45 @@ fourth.to_csv('result.csv')
 ```
 
 ::: {.callout-caution collapse="true" title="해답"}
-
-## 해답
-
-이 코드 조각을 한 줄씩 자세히 살펴보겠습니다.
-
-```{python}
-first = pd.read_csv('data/gapminder_all.csv', index_col='country')
-```
-
-이 줄은 모든 국가의 GDP 데이터가 포함된 데이터 세트를 `first`라는 데이터프레임으로 로드합니다.
-`index_col='country'` 매개변수는 데이터프레임의 행 레이블(row labels)로 사용할 열을 선택합니다.
-
-```{python}
-second = first[first['continent'] == 'Americas']
-```
-
-이 줄은 데이터 선택을 수행합니다: `first`에서 'continent' 열이 'Americas'와 일치하는 행들만 추출됩니다. 
-대괄호 안의 불리언 표현식인 `first['continent'] == 'Americas'`가どのように (how) 해당 표현식이 참(true)인 행들만을 선택하는 데 사용되는지 확인해 보세요.
-이 표현식 자체를 출력해 보세요! 이 표현식을 구성하는 개별적인 True/False 요소들도 출력해 볼 수 있나요?
-(힌트: 먼저 이 표현식을 특정 변수에 할당해 보세요)
-
-```{python}
-third = second.drop('Puerto Rico')
-```
-
-구문 구조가 암시하듯이, 이 줄은 `second` 데이터프레임에서 레이블이 'Puerto Rico'인 행을 삭제(drop)합니다.
-결과적으로 생성된 `third` 데이터프레임은 원본인 `second` 데이터프레임에 비해 행이 하나 적습니다.
-
-```{python}
-fourth = third.drop('continent', axis = 1)
-```
-
-다시 drop 함수를 적용하지만 이번에는 행이 아니라 전체 열(column)을 삭제합니다.
-이를 수행하려면 `axis` 매개변수도 명시해 주어야 합니다 (인덱스 1을 가지고 있는 두 번째 열을 삭제하고자 합니다).
-
-```{python}
-fourth.to_csv('result.csv')
-```
-
-마지막 단계는 우리가 지금까지 작업해온 데이터를 csv 파일로 작성하여 저장하는 것입니다. 
-Pandas는 `to_csv()` 함수를 통해 이 과정을 매우 수월하게 만들어 줍니다. 
-이 함수에 유일하게 필수로 요구되는 인수는 파일 이름뿐입니다. 
-당신이 Jupyter나 Python 세션을 시작했던 바로 그 작업 디렉토리 경로에 파일이 생성된다는 점에 유의하세요.
-
-
-
+1. `read_csv`: 데이터를 읽어옵니다.
+2. `first[...]`: 대륙이 'Americas'인 행만 필터링합니다.
+3. `drop('Puerto Rico')`: 특정 행을 삭제합니다.
+4. `drop(..., axis=1)`: 특정 열을 삭제합니다.
+5. `to_csv`: 결과를 파일로 저장합니다.
 :::
 
 ::::
 
-:::: {.callout-important title="범례"}
+:::: {.callout-important title="연습 문제"}
 
-## Selecting Indices
+## 메서드 찾아보기
 
-Explain in simple terms what `idxmin` and `idxmax` do in the short program below.
-When would you use these methods?
-
-```{python}
-data = pd.read_csv('data/gapminder_gdp_europe.csv', index_col='country')
-print(data.idxmin())
-print(data.idxmax())
-```
+`dir(data)`를 사용하여 데이터프레임에서 사용할 수 있는 메서드 목록을 확인해 보세요. 그중 중앙값을 계산하는 메서드는 무엇인가요?
 
 ::: {.callout-caution collapse="true" title="해답"}
-
-## Solution
-
-For each column in `data`, `idxmin` will return the index value corresponding to each column's minimum;
-`idxmax` will do accordingly the same for each column's maximum value.
-
-You can use these functions whenever you want to get the row index of the minimum/maximum value and not the actual minimum/maximum value.
-
-
-
+중앙값을 계산하는 메서드는 `median()`입니다. `data.median()`으로 사용할 수 있습니다.
 :::
 
 ::::
 
-:::: {.callout-important title="범례"}
+:::: {.callout-important title="연습 문제"}
 
-## Practice with Selection
+## 데이터 해석의 유의점
 
-Assume Pandas has been imported and the Gapminder GDP data for Europe has been loaded.
-Write an expression to select each of the following:
-
-1. GDP per capita for all countries in 1982.
-2. GDP per capita for Denmark for all years.
-3. GDP per capita for all countries for years *after* 1985.
-4. GDP per capita for each country in 2007 as a multiple of
-  GDP per capita for that country in 1952.
+국경선이나 영토가 시간에 따라 변하는 국가(예: 폴란드)의 장기적인 GDP 데이터를 분석할 때 발생할 수 있는 문제점은 무엇일까요? 이를 해결하기 위해 어떤 고려가 필요할까요?
 
 ::: {.callout-caution collapse="true" title="해답"}
-
-## Solution
-
-1:
-
-```{python}
-data['gdpPercap_1982']
-```
-
-2:
-
-```{python}
-data.loc['Denmark',:]
-```
-
-3:
-
-```{python}
-data.loc[:,'gdpPercap_1985':]
-```
-
-Pandas is smart enough to recognize the number at the end of the column label and does not give you an error, although no column named `gdpPercap_1985` actually exists. This is useful if new columns are added to the CSV file later.
-
-4:
-
-```{python}
-data['gdpPercap_2007']/data['gdpPercap_1952']
-```
-
+영토 변화는 인구와 경제 규모에 직접적인 영향을 미치므로 단순 수치 비교는 왜곡될 수 있습니다. 분석 시 역사적 맥락을 고려하거나, 1인당 GDP와 같은 상대적 지표를 활용하고 데이터의 한계를 명시해야 합니다.
 :::
 
 ::::
-
-:::: {.callout-important title="범례"}
-
-## 값에 접근하기 위한 가지각색의 무수한 경로들
-
-데이터프레임의 특정 값이나 슬라이스 영역에 접근하는 방식에는 명시적인 이름(name)을 쓰거나 숫자인 인덱스(index)를 통하는, 최소한 두 가지 이상의 갈래길이 성립합니다.
-하지만 실제로는 그 외에도 수많은 변종 접근로 방식들이 도사리고 있습니다. 가령 어느 단일 열(column)이나 단일 행(row)을 콕 짚어 하나 추출했다면, 그것은 반환 체계가 `DataFrame` 형태일 수도 있지만 경우에 따라 `Series` 객체 껍질로 떨어질 수도 있습니다.
-
-하나의 데이터프레임을 상대로 아래의 7가지 미션 각각을 수행하기 위한 가지각색 서로 다른 대안 우회 방식 구문들을 모두 한 번 상상 제안해 발굴해 보십시오:
-
-1. 단일 세로 열(column) 하나 얻기
-2. 단일 가로 행(row) 하나 얻기
-3. 데이터프레임 안의 특정 개별 원소 알맹이 하나 콕 찍어 색출
-4. 여러 개의 세로 열 동시 추출
-5. 여러 개의 가로 행 동시 추출
-6. 딱 정해진 특정 다수의 행들과 열들을 선별하여 십자 교차해 부분집합 얻기
-7. 일정 범위 구간을 가진 행 및 열 영역을 슬라이싱해 부분집합 얻기
-
-::: {.callout-caution collapse="true" title="해답"}
-
-## 해답
-
-1\. 단일 세로 열(column) 하나 얻기:
-
-```{python}
-# 이름(name)으로 접근
-data["col_name"]   # Series 형태로 반환됨
-data[["col_name"]] # DataFrame 형태로 반환됨
-
-# .loc 구문과 이름으로 접근
-data.T.loc["col_name"]  # Series 형태로 반환됨
-data.T.loc[["col_name"]].T  # DataFrame 형태로 반환됨
-
-# 점 표기법(Dot notation) 사용 (Series 반환)
-data.col_name
-
-# 인덱스 순번(iloc)으로 접근
-data.iloc[:, col_index]   # Series 형태로 반환됨
-data.iloc[:, [col_index]] # DataFrame 형태로 반환됨
-
-# 마스크(mask) 불리언 기법 혼용
-data.T[data.T.index == "col_name"].T
-```
-
-2\. 단일 가로 행(row) 하나 얻기:
-
-```{python}
-# .loc 구문과 이름(name)으로 접근
-data.loc["row_name"] # Series 형태로 반환됨
-data.loc[["row_name"]] # DataFrame 형태로 반환됨
-
-# 전치(transpose) 후 이름으로 접근
-data.T["row_name"] # Series 형태로 반환됨
-data.T[["row_name"]].T # DataFrame 형태로 반환됨
-
-# 인덱스 순번으로 접근
-data.iloc[row_index]   # Series 형태로 반환됨
-data.iloc[[row_index]]   # DataFrame 형태로 반환됨
-
-# 마스크 기법 사용
-data[data.index == "row_name"]
-```
-
-3\. 데이터프레임 안의 특정 개별 원소 알맹이 하나 색출:
-
-```{python}
-# 열/행 이름 교차 지목
-data["column_name"]["row_name"]         # Series 타고 접근
-
-data[["col_name"]].loc["row_name"]  # Series 형태로 반환됨
-data[["col_name"]].loc[["row_name"]]  # DataFrame 형태로 반환됨
-
-data.loc["row_name"]["col_name"]  # 순수 원소 값(value) 자체
-data.loc[["row_name"]]["col_name"]  # Series 형태로 반환됨
-data.loc[["row_name"]][["col_name"]]  # DataFrame 형태로 반환됨
-
-data.loc["row_name", "col_name"]  # 순수 원소 값(value) 자체
-data.loc[["row_name"], "col_name"]  # Series. 인덱스 보존됨. 열 이름은 `.name` 속성으로 이관.
-data.loc["row_name", ["col_name"]]  # Series 형태로 반환됨. 인덱스가 `.name.` 속성으로 이관됨. 열 이름을 인덱스로 설정함.
-data.loc[["row_name"], ["col_name"]]  # DataFrame 형태로 반환됨 (원본 인덱스와 열 이름이 보존됨)
-
-# 열/행 이름 교차 지목: 점 표기법(Dot notation) 사용
-data.col_name.row_name
-
-# 열/행 인덱스 순번 교차 지목
-data.iloc[row_index, col_index] # 순수 원소 값(value) 자체
-data.iloc[[row_index], col_index] # Series 형태로 반환됨. 인덱스 보존됨. 열 이름은 `.name` 속성으로 이관.
-data.iloc[row_index, [col_index]] # Series 형태로 반환됨. 인덱스가 `.name.` 속성으로 이관됨. 열 이름을 인덱스로 설정함.
-data.iloc[[row_index], [col_index]] # DataFrame 형태로 반환됨 (원본 인덱스와 열 이름이 보존됨)
-
-# 열 이름(name) 먼저 + 행 인덱스(index) 순번 지목
-data["col_name"][row_index]
-data.col_name[row_index]
-data["col_name"].iloc[row_index]
-
-# 열 인덱스(index) 순번 먼저 + 행 이름(name) 지목
-data.iloc[:, [col_index]].loc["row_name"]  # Series 형태로 반환됨
-data.iloc[:, [col_index]].loc[["row_name"]]  # DataFrame 형태로 반환됨
-
-# 마스크(mask) 불리언 기법 다단 혼용
-data[data.index == "row_name"].T[data.T.index == "col_name"].T
-```
-
-4\. 여러 개의 세로 열 동시 추출:
-
-```{python}
-# 이름(name)으로 그룹 지정
-data[["col1", "col2", "col3"]]
-data.loc[:, ["col1", "col2", "col3"]]
-
-# 인덱스 순번으로 그룹 지정
-data.iloc[:, [col1_index, col2_index, col3_index]]
-```
-
-5\. 여러 개의 가로 행 동시 추출:
-
-```{python}
-# 이름(name)으로 그룹 지정
-data.loc[["row1", "row2", "row3"]]
-
-# 인덱스 순번으로 그룹 지정
-data.iloc[[row1_index, row2_index, row3_index]]
-```
-
-6\. 딱 정해진 특정 다수의 행들과 열들을 선별하여 십자 교차해 부분집합 얻기:
-
-```{python}
-# 양쪽 다 이름(names)으로 지정
-data.loc[["row1", "row2", "row3"], ["col1", "col2", "col3"]]
-
-# 양쪽 다 인덱스 순번(indices)으로 지정
-data.iloc[[row1_index, row2_index, row3_index], [col1_index, col2_index, col3_index]]
-
-# 열은 이름(names) + 행은 인덱스(indices) 혼용 지목
-data[["col1", "col2", "col3"]].iloc[[row1_index, row2_index, row3_index]]
-
-# 열은 인덱스(indices) + 행은 이름(names) 혼용 지목
-data.iloc[:, [col1_index, col2_index, col3_index]].loc[["row1", "row2", "row3"]]
-```
-
-7\. 일정 범위 구간을 가진 행 및 열 영역을 슬라이싱해 부분집합 얻기:
-
-```{python}
-# 이름(name) 기반 슬라이싱 (양 끝단 모두 포함)
-data.loc["row1":"row2", "col1":"col2"]
-
-# 인덱스(index) 기반 슬라이싱 (끝단은 미포함)
-data.iloc[row1_index:row2_index, col1_index:col2_index]
-
-# 열은 이름(names) 슬라이싱 + 행은 인덱스(indices) 슬라이싱 지목
-data.loc[:, "col1_name":"col2_name"].iloc[row1_index:row2_index]
-
-# 열은 인덱스(indices) 슬라이싱 + 행은 이름(names) 슬라이싱 지목
-data.iloc[:, col1_index:col2_index].loc["row1":"row2"]
-```
-
-:::
-
-::::
-
-:::: {.callout-important title="범례"}
-
-## `dir()` 내장 함수를 통원하여 사용 가능한 전체 메서드 탐색해보기
-
-파이썬 언어 자체에는 지정된 타겟 데이터 객체 무리 안에 이미 내장 장착되어 즉시 대령 출동 가능한 온갖 전체 *메서드(함수 군단)* 목록 스펙들을 모조리 나열해 스캔 감시 발라내어 전시해 주는 거울 탐지기 같은 `dir()` 란 막강한 전수 내장 함수가 있습니다. 앞서 지나온 에피소드 4 과정에서 우린 문자열(string)을 상대로 이런저런 몇몇 내장 메서드들을 맛보기로 써봤습니다만, 실은 `dir()` 탐지기에 찍어 투시해보면 상상을 초월해 훨씬 대거 포진한 무수한 지원 부대 메서드들이 은폐 엄폐 대기 중임을 확인 경악할 수 있습니다:
-
-```{python}
-my_string = 'Hello world!'   # 문자열(string) 객체를 가상 하나 창조해 세팅합니다 
-dir(my_string)
-```
-
-이 커맨드 지령을 투입 시, 되돌아 반환 토출되는 응답 목록은 대략 이러합니다:
-
-```{python}
-['__add__',
-...
-'__subclasshook__',
-'capitalize',
-'casefold',
-'center',
-...
-'upper',
-'zfill']
-```
-
-이 토해내진 목록의 이름표 메서드들이 상세 구체적으로 뭔 조화 묘기 스킬 작용을 수행하는 건지 더 부기 심층 탐구 정보를 캐내려면 `help()` 구문 조력을 붙여 투입 활용하거나 그 자리에 <kbd>Shift</kbd>\+<kbd>Tab</kbd> 키보드 단축 신공을 조작 발동할 수 있습니다.
-
-이제 여러분ගේ 노트북 무대 위엔 Pandas가 이미 늠름히 수입(imported) 장착 참전해 있고 유럽 대륙을 향한 Gapminder GDP 전체 데이터 표가 `data` 란 변수 명의로 무사 대령 로드 적발 합체 입수 수용 상주해 있다 치겠습니다. 그렇다면, 당장 저 `dir()` 무기를 동원 응용 색출 조사하셔서 조사 대상 구비 연도 각 해마다 유럽 전(全) 국가 대륙들을 싸잡아 망라하여 1인당 GDP의 "중앙값(median)"을 산출하여 표출 출력해 도출해내어 줄 특정 수식 함수(function)의 진명 정석 출처 족집게 이름을 탐색 찾아 도출 선점해 보세요.
-
-::: {.callout-caution collapse="true" title="해답"}
-
-## 해답
-
-무수한 후보 족보들 틈바구니 사이에서, `dir()` 의 투시경 진단 목록 나열을 살펴보면 필히 눈에 익은 타당한 구세주 `median()` 함수가 그 위풍당당 리스트 궤적 안 하나의 든든한 가용 선택 대안 돌파구로 등재 노출되어 있음을 발굴 확인할 수 있습니다. 고로 정답 구문은:
-
-```{python}
-data.median()
-```
-
-:::
-
-::::
-
-:::: {.callout-important title="범례"}
-
-## 분석 결과의 이면과 맥락(해석, Interpretation) 통찰하기
-
-현 지도상에 그어진 폴란드(Poland)라는 이 한 국가의 테두리 국경선은 1945년 제2차 대전 종식 무렵에 획정된 이래 지금까지 쭉 불변의 요새처럼 안정되이 고정 안주 지속 유지 보존되어 왔습니다,
-하지만 정작 역사를 되짚어 그보다 한참 그 이전 과거의 격동 격랑 연도들 파란 세월 시절엔 무려 셀 수 없이 수차례 국경 영토선이 빈번히 갈가리 갈라치고 확장 축소 병합 갈취 병합 개작 뒤바뀌고 요동치며 전복 조절 파행 변동 출렁여 개편 수정된 혹독 참상 굴곡 일진 광풍 이면이 존재합니다.
-행여나 당신이 막중한 지시 하명 과제를 등쳐 업고 지난 온전한 '20세기 전체 100년 스펙트럼 기간' 내내, 즉 파란만장 그 자체이던 그 전(全) 세기를 통틀어 총괄 아우르는 '폴란드의 1인당 GDP 추이 종단 표 목록 리포트표(table)'를 홀로 새롭게 손수 직조 구성 재건 축성 지어 만들어야 하는 역사가 조물주 입장에 봉착 처했다 가정치면, 당신은 당최 과연 ఈ 불가항력 딜레마(영토 변동에 따른 인구/경제력 고무줄 지표 모순 현상) 모순 지뢰 장벽 오류 사태에 맞서 어떻게 이 위기 오점 사안 모순을 방어 회피 조율 돌파 대처 수용 가공하여 해결 대입 수습 헤쳐 나갈 방책 묘수 플랜 대응책 관점을 구상 대응 설계 지향 강구 취하시렵니까?
-
-
-::::
-
-[pandas-dataframe]: https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html
-[pandas-series]: https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.html
-[numpy]: https://www.numpy.org/
-
 
 ::: {.callout-note title="핵심 요약"}
 
-- 해당 자리에 위치한 순수 항목 숫자 순서 자리 번지수(integer location)로 값을 콕 짚어 고집 수배 선점 선택 기용하려면 `DataFrame.iloc[..., ...]` 를 단행 작용 가동 차출 발동하세요.
-- 단독 달랑 `:` 콜론 표지 기호를 심어 던지면 곧 좌우 위아래 전체 열 일체 내지 가로 행 전체 범위 일망타진 도매 모두를 뜻함 상징 대변합니다.
-- `DataFrame.loc` 과 명단 특정 별칭 지명 부여 이름을 달은 슬라이스(named slice) 기법을 동반 콤비 교합 짝 혼용 버무려 쓰면 곧 수많은 대량 구역 지정 단위 다수 열과 또는 다중 행들을 떼거지 쌍 도매 싹쓸이 복수 선택 무더기 추합 동시 발췌 영입 발췌 획득 견인 선점 확보하게 해줍니다.
-- 아예 슬라이스 칼질 도축 가공을 거쳐 나온 재가공 표본 잔재 결괏물 결과 파편 토대 자체 위에 거듭 즉시 다시 연쇄 가물에 이은 상위 부가 제2 제3 후속 작전 응용 연산 추가 도모 통계 구동 투입 파업 작용 작업 기조 연달 조치 작용 가산 이행 조작 활용 편법 적용 처행 재료 활용에 연속 이바지 활용 쓰임이 무궁 막역 단행 충분 무방 거듭 허가 투입 반영 활용 될 수 있습니다.
-- 특정 지정된 수위 격차 허들 값어치 조건 부합 수준 잣대를 바탕 필터로 데이터를 갈라 선별 여과 걸러 탈색 탈곡 차출 검증 뽑아 걸러 내려면 양자 대조 비교식(comparisons) 검문 도구 방식 기조 필터를 채용 개통 도입 검진 부리세요.
-- 참 거짓 불리언(Boolean) 가림판 가면 거름망 껍질 여과 마스크(mask) 구조 필터를 입혀 덧씌우면 무사 진품 진본 원래 진본 데이터 값어치 알맹이만 구원 차단 도출 발췌 채득 걸러 내거나 아님 불합격 오답 결손 사칭 진상 조각 빈틈 사형 자리에 오명 오인 빈칸 부재 허상 대치 폐품 공백 파편인 오점 대체 흔적 조각 빈 공란 처리 폐지 취급 유령 빈 값 결측 부재 전무 처리된 텅 빈 무(無) 찌꺼기 즉 거짓 공강 기호 대치인 일명 불명확 부재 기호 그 NaN 유령 오점 폐품 대치 표상만 유치 남겨 선택 구별 방출 발라서 교대 방치 걸러 내치 축출 분리 수급 소외 걸러 제외 구분 방출 선택 도출 확보 뽑을 수 있습니다.
+- `iloc`은 위치(정수)를 기준으로, `loc`은 레이블(이름)을 기준으로 데이터를 선택합니다.
+- `:`를 사용하여 전체 범위를 지정하거나 슬라이싱을 수행할 수 있습니다.
+- 불리언 마스크를 사용하여 특정 조건에 맞는 데이터만 필터링할 수 있습니다.
+- `NaN`은 데이터가 없음을 나타내며, 통계 연산 시 자동으로 제외되는 경우가 많습니다.
+- `groupby`를 활용하면 데이터를 그룹별로 나누어 분석할 수 있습니다.
 
 :::
-
-
